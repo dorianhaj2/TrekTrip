@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JetClientState">
+    <option name="draftsState">
+      <draftsState>
+        <option name="requests">
+          <list>
+            <requestState>
+              <option name="id" value="c8bdb7d0-9602-4948-89a9-6ee6a3e17e5e" />
+              <option name="method" value="GET" />
+              <option name="name" value="Get all users" />
+              <option name="sortWeight" value="1000000" />
+              <option name="url" value="http://localhost:8080/user/all" />
+            </requestState>
+            <requestState>
+              <option name="id" value="59b3ba10-4499-4d81-9184-96c8d1599290" />
+              <option name="method" value="GET" />
+              <option name="name" value="Get user by id" />
+              <option name="sortWeight" value="2000000" />
+              <option name="url" value="GET http://localhost:8080/user/1" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;username&quot;:&quot;user1&quot;,&#10;  &quot;email&quot;:&quot;mail@mail.com&quot;,&#10;  &quot;password&quot;:&quot;pass1&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="a3629777-8570-4ec6-b980-514c6aa0376c" />
+              <option name="method" value="POST" />
+              <option name="name" value="Save user 1" />
+              <option name="sortWeight" value="3000000" />
+              <option name="url" value="http://localhost:8080/user" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;&quot;username&quot;:&quot;user2&quot;,&#10;&quot;email&quot;:&quot;mail2@mail.com&quot;,&#10;&quot;password&quot;:&quot;pass2&quot;,&#10;&quot;description&quot;:&quot;&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="67d9adaf-e4d6-43b7-96e0-90380685ec6a" />
+              <option name="method" value="POST" />
+              <option name="name" value="Save user 2" />
+              <option name="sortWeight" value="4000000" />
+              <option name="url" value="http://localhost:8080/user" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;username&quot;:&quot;user2&quot;,&#10;  &quot;email&quot;:&quot;mail2@mail.com&quot;,&#10;  &quot;password&quot;:&quot;pass2&quot;,&#10;  &quot;image&quot;:&quot;2&quot;,&#10;  &quot;description&quot;:&quot;Ja sam drugi user&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="2d652268-f417-44e2-8ef1-0e56add650de" />
+              <option name="method" value="PUT" />
+              <option name="name" value="Update user" />
+              <option name="sortWeight" value="5000000" />
+              <option name="url" value="http://localhost:8080/user/2" />
+            </requestState>
+            <requestState>
+              <option name="id" value="cddb4197-91d5-4087-983f-3f370cf3e052" />
+              <option name="method" value="DELETE" />
+              <option name="name" value="Delete user" />
+              <option name="sortWeight" value="6000000" />
+              <option name="url" value="http://localhost:8080/user/2" />
+            </requestState>
+            <requestState>
+              <option name="id" value="986b689d-9e3f-43e7-9a80-996aa60d403e" />
+              <option name="method" value="GET" />
+              <option name="name" value="Get all images" />
+              <option name="sortWeight" value="7000000" />
+              <option name="url" value="http://localhost:8080/image/all" />
+            </requestState>
+            <requestState>
+              <option name="id" value="9f364cc5-3876-4407-ad84-1aea1f19b030" />
+              <option name="method" value="GET" />
+              <option name="name" value="Get image by id" />
+              <option name="sortWeight" value="8000000" />
+              <option name="url" value="GET http://localhost:8080/image/1" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;url&quot;: &quot;url1&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="6ccea368-a943-4476-b69d-64d974472f1f" />
+              <option name="method" value="POST" />
+              <option name="name" value="Save image 1" />
+              <option name="sortWeight" value="9000000" />
+              <option name="url" value="http://localhost:8080/image" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;url&quot;: &quot;url2&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="66da4de1-11f1-44e6-a6f2-2addfb63b7ae" />
+              <option name="method" value="POST" />
+              <option name="name" value="Save image 2" />
+              <option name="sortWeight" value="10000000" />
+              <option name="url" value="http://localhost:8080/image" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;url&quot;: &quot;url3&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="e9449cd7-c4f3-4256-bd31-56ee54c3c7e3" />
+              <option name="method" value="POST" />
+              <option name="name" value="Save image 3" />
+              <option name="sortWeight" value="10500000" />
+              <option name="url" value="http://localhost:8080/image" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;url&quot;: &quot;url4&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="7aa53ca1-ce6f-4bd9-9809-38f126d2321a" />
+              <option name="method" value="POST" />
+              <option name="name" value="Save image 4" />
+              <option name="sortWeight" value="10750000" />
+              <option name="url" value="http://localhost:8080/image" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;url&quot;: &quot;url21&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="ef6f9685-e869-441f-a058-8d820d9aa6c5" />
+              <option name="method" value="PUT" />
+              <option name="name" value="Update image" />
+              <option name="sortWeight" value="11000000" />
+              <option name="url" value="http://localhost:8080/image/2" />
+            </requestState>
+            <requestState>
+              <option name="id" value="7b9fa8d6-82e9-4212-a3f0-23b16aed2f0b" />
+              <option name="method" value="DELETE" />
+              <option name="name" value="Delete image" />
+              <option name="sortWeight" value="12000000" />
+              <option name="url" value="http://localhost:8080/image/2" />
+            </requestState>
+            <requestState>
+              <option name="id" value="fe7997e8-5d8c-4032-87b4-448981a37aef" />
+              <option name="method" value="GET" />
+              <option name="name" value="Get all trips" />
+              <option name="sortWeight" value="13000000" />
+              <option name="url" value="http://localhost:8080/trip/all" />
+            </requestState>
+            <requestState>
+              <option name="id" value="a0918f70-8d3d-45a5-9af3-3d51fc081dfd" />
+              <option name="method" value="GET" />
+              <option name="name" value="Get trip by id" />
+              <option name="sortWeight" value="14000000" />
+              <option name="url" value="GET http://localhost:8080/trip/1" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;title&quot;: &quot;trip1&quot;,&#10;  &quot;description&quot;: &quot;opis tripa 1&quot;,&#10;  &quot;user&quot;: {&#10;    &quot;id&quot;: 1&#10;  },&#10;  &quot;images&quot;: [{&quot;id&quot;: 1}, {&quot;id&quot;: 2}],&#10;  &quot;highlight&quot;: &quot;lokacija 2&quot;,&#10;  &quot;lengthInDays&quot;: 3,&#10;  &quot;location_id&quot;: 1,&#10;  &quot;isPublic&quot;: true&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="8798130e-12d1-4d13-a3df-faf1b0e7b725" />
+              <option name="method" value="POST" />
+              <option name="name" value="Save trip 1 " />
+              <option name="sortWeight" value="15000000" />
+              <option name="url" value="http://localhost:8080/trip" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;title&quot;: &quot;trip2&quot;,&#10;  &quot;description&quot;: &quot;opis tripa 2&quot;,&#10;  &quot;user&quot;: {&#10;    &quot;id&quot;: 2&#10;  },&#10;  &quot;images&quot;: [{&quot;id&quot;: 4}, {&quot;id&quot;: 3}],&#10;  &quot;highlight&quot;: &quot;lokacija 3&quot;,&#10;  &quot;lengthInDays&quot;: 4,&#10;  &quot;location_id&quot;: 3,&#10;  &quot;isPublic&quot;: true&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="56b93dad-23af-4289-affb-9ffe7ef2f71f" />
+              <option name="method" value="POST" />
+              <option name="name" value="Save trip 2" />
+              <option name="sortWeight" value="16000000" />
+              <option name="url" value="http://localhost:8080/trip" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;title&quot;: &quot;trip1&quot;,&#10;  &quot;description&quot;: &quot;opis tripa 1, promijenjeno&quot;,&#10;  &quot;user&quot;: {&#10;    &quot;id&quot;: 1&#10;  },&#10;  &quot;images&quot;: [{&quot;id&quot;: 1}, {&quot;id&quot;: 2}],&#10;  &quot;highlight&quot;: &quot;lokacija 1&quot;,&#10;  &quot;lengthInDays&quot;: 3,&#10;  &quot;location_id&quot;: 1,&#10;  &quot;isPublic&quot;: true&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="c15c37ce-6ef7-4f79-bb1c-40b82ecac8d9" />
+              <option name="method" value="PUT" />
+              <option name="name" value="Update trip" />
+              <option name="sortWeight" value="17000000" />
+              <option name="url" value="http://localhost:8080/trip/2" />
+            </requestState>
+            <requestState>
+              <option name="id" value="58e68abc-9c67-4ba4-907f-5ab896ba91e7" />
+              <option name="method" value="DELETE" />
+              <option name="name" value="Delete trip" />
+              <option name="sortWeight" value="18000000" />
+              <option name="url" value="http://localhost:8080/trip/2" />
+            </requestState>
+            <requestState>
+              <option name="id" value="da28f571-13e2-484c-93e6-78305233c4ee" />
+              <option name="method" value="GET" />
+              <option name="name" value="Get all ratings" />
+              <option name="sortWeight" value="19000000" />
+              <option name="url" value="http://localhost:8080/rating/all" />
+            </requestState>
+            <requestState>
+              <option name="id" value="2fce7dde-2c82-4365-a30a-05e754afb3f5" />
+              <option name="method" value="GET" />
+              <option name="name" value="Get rating by id" />
+              <option name="sortWeight" value="20000000" />
+              <option name="url" value="GET http://localhost:8080/rating/2" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;user&quot;: {&#10;    &quot;id&quot;: 1&#10;  },&#10;  &quot;trip&quot;: {&#10;    &quot;id&quot;: 1&#10;  },&#10;  &quot;rating&quot;: 5&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="07797a81-05d2-4028-9c33-7e43223ad1c7" />
+              <option name="method" value="POST" />
+              <option name="name" value="Save rating 1 " />
+              <option name="sortWeight" value="21000000" />
+              <option name="url" value="http://localhost:8080/rating" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;user&quot;: {&#10;    &quot;id&quot;: 2&#10;  },&#10;  &quot;trip&quot;: {&#10;    &quot;id&quot;: 2&#10;  },&#10;  &quot;rating&quot;: 9&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="58461260-90c1-4e6e-a12a-23e530a0edb6" />
+              <option name="method" value="POST" />
+              <option name="name" value="Save rating 2" />
+              <option name="sortWeight" value="22000000" />
+              <option name="url" value="http://localhost:8080/rating" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;user&quot;: {&#10;    &quot;id&quot;: 1&#10;  },&#10;  &quot;trip&quot;: {&#10;    &quot;id&quot;: 1&#10;  },&#10;  &quot;rating&quot;: 7&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="c61346a1-d59e-4ed2-ae8f-40083e649809" />
+              <option name="method" value="PUT" />
+              <option name="name" value="Update rating" />
+              <option name="sortWeight" value="23000000" />
+              <option name="url" value="http://localhost:8080/rating/2" />
+            </requestState>
+            <requestState>
+              <option name="id" value="dbb5ea34-4005-4e84-93c9-ee6e318cdd68" />
+              <option name="method" value="DELETE" />
+              <option name="name" value="Delete rating" />
+              <option name="sortWeight" value="24000000" />
+              <option name="url" value="http://localhost:8080/rating/2" />
+            </requestState>
+          </list>
+        </option>
+      </draftsState>
+    </option>
+    <option name="id" value="4fb360b0-897d-4f59-8fe5-08d920ef3134" />
+    <option name="version" value="2" />
+  </component>
+</project>

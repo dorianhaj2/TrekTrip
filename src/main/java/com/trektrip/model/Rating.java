@@ -5,37 +5,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "trips")
-public class Trip {
+@Table(name = "ratings")
+public class Rating {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-
-    private String description;
-
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @OneToMany(targetEntity = Image.class)
-    private List<Image> images;
+    @ManyToOne
+    @JoinColumn(name = "trip_id", referencedColumnName = "id")
+    private Trip trip;
 
-    private String highlight;
-
-    private int lengthInDays;
-
-    //Promijeniti u List<Location>
-    private Long location_id;
-
-    private boolean isPublic;
-
+    private int rating;
 }
