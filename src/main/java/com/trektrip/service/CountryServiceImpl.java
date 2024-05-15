@@ -3,14 +3,18 @@ package com.trektrip.service;
 import com.trektrip.model.Country;
 import com.trektrip.repository.CountryRepository;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
 @Service
 public class CountryServiceImpl implements CountryService{
+
     private CountryRepository countryRepository;
+
     @Override
     public List<Country> getAllCountries() {
         return countryRepository.findAll();

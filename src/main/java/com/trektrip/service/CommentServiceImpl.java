@@ -3,13 +3,16 @@ package com.trektrip.service;
 import com.trektrip.model.Comment;
 import com.trektrip.repository.CommentRepository;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
 @Service
 public class CommentServiceImpl implements CommentService {
+
     private CommentRepository commentRepository;
 
     @Override
