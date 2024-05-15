@@ -389,6 +389,34 @@
               <option name="name" value="Draft" />
               <option name="sortWeight" value="25000000" />
             </requestState>
+            <requestState>
+              <option name="id" value="344d4ef0-e089-47e4-8733-dd0bdb203fb6" />
+              <option name="method" value="GET" />
+              <option name="name" value="Draft (1)" />
+              <option name="sortWeight" value="26000000" />
+              <option name="url" value="http://localhost:8080/countries/all" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;name&quot;: &quot;Sweden&quot;,&#10;  &quot;continent&quot;: &quot;Europe&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="8fef67f7-c4b3-4eb8-9ad8-4f7c7759ae16" />
+              <option name="method" value="POST" />
+              <option name="name" value="Draft (2)" />
+              <option name="sortWeight" value="27000000" />
+              <option name="url" value="http://localhost:8080/country" />
+            </requestState>
           </list>
         </option>
       </draftsState>
