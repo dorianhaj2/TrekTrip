@@ -383,6 +383,12 @@
               <option name="sortWeight" value="24000000" />
               <option name="url" value="http://localhost:8080/rating/2" />
             </requestState>
+            <requestState>
+              <option name="id" value="0b588a22-9a70-4e6a-a0ff-80d1ed37b34b" />
+              <option name="method" value="GET" />
+              <option name="name" value="Draft" />
+              <option name="sortWeight" value="25000000" />
+            </requestState>
           </list>
         </option>
       </draftsState>
