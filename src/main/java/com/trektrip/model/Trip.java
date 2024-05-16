@@ -33,8 +33,11 @@ public class Trip {
 
     private int lengthInDays;
 
-    //Promijeniti u List<Location>
-    private Long location_id;
+    @ManyToMany
+    @JoinTable(name = "trips_locations",
+            joinColumns = @JoinColumn(name = "trip_id"),
+            inverseJoinColumns = @JoinColumn(name = "location_id"))
+    private List<Location> locations;
 
     private boolean isPublic;
 

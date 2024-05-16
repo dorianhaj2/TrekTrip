@@ -232,7 +232,7 @@
             <requestState>
               <option name="body">
                 <bodyState>
-                  <option name="raw" value="{&#10;  &quot;title&quot;: &quot;trip1&quot;,&#10;  &quot;description&quot;: &quot;opis tripa 1&quot;,&#10;  &quot;user&quot;: {&#10;    &quot;id&quot;: 1&#10;  },&#10;  &quot;images&quot;: [{&quot;id&quot;: 1}, {&quot;id&quot;: 2}],&#10;  &quot;highlight&quot;: &quot;lokacija 2&quot;,&#10;  &quot;lengthInDays&quot;: 3,&#10;  &quot;location_id&quot;: 1,&#10;  &quot;isPublic&quot;: true&#10;}" />
+                  <option name="raw" value="{&#10;  &quot;title&quot;: &quot;trip1&quot;,&#10;  &quot;description&quot;: &quot;opis tripa 1&quot;,&#10;  &quot;user&quot;: {&#10;    &quot;id&quot;: 1&#10;  },&#10;  &quot;images&quot;: [{&quot;id&quot;: 1}, {&quot;id&quot;: 2}],&#10;  &quot;highlight&quot;: &quot;lokacija 2&quot;,&#10;  &quot;lengthInDays&quot;: 3,&#10;  &quot;locations&quot;: [{&quot;id&quot;: 1}],&#10;  &quot;isPublic&quot;: true&#10;}" />
                   <option name="type" value="JSON" />
                 </bodyState>
               </option>
@@ -370,36 +370,30 @@
                   </headerState>
                 </list>
               </option>
-              <option name="id" value="c61346a1-d59e-4ed2-ae8f-40083e649809" />
+              <option name="id" value="38c058a6-4829-4a4a-8b7b-7dc89f0ffaa0" />
               <option name="method" value="PUT" />
               <option name="name" value="Update rating" />
-              <option name="sortWeight" value="23000000" />
-              <option name="url" value="http://localhost:8080/rating/2" />
-            </requestState>
-            <requestState>
-              <option name="id" value="dbb5ea34-4005-4e84-93c9-ee6e318cdd68" />
-              <option name="method" value="DELETE" />
-              <option name="name" value="Delete rating" />
               <option name="sortWeight" value="24000000" />
               <option name="url" value="http://localhost:8080/rating/2" />
             </requestState>
             <requestState>
-              <option name="id" value="0b588a22-9a70-4e6a-a0ff-80d1ed37b34b" />
-              <option name="method" value="GET" />
-              <option name="name" value="Draft" />
+              <option name="id" value="d6836f46-6fd3-4992-addc-930d5c7c9cf4" />
+              <option name="method" value="DELETE" />
+              <option name="name" value="Delete rating" />
               <option name="sortWeight" value="25000000" />
+              <option name="url" value="http://localhost:8080/rating/2" />
             </requestState>
             <requestState>
               <option name="id" value="344d4ef0-e089-47e4-8733-dd0bdb203fb6" />
               <option name="method" value="GET" />
-              <option name="name" value="Draft (1)" />
+              <option name="name" value="Get all countries" />
               <option name="sortWeight" value="26000000" />
-              <option name="url" value="http://localhost:8080/countries/all" />
+              <option name="url" value="http://localhost:8080/country/all" />
             </requestState>
             <requestState>
               <option name="body">
                 <bodyState>
-                  <option name="raw" value="{&#10;  &quot;name&quot;: &quot;Sweden&quot;,&#10;  &quot;continent&quot;: &quot;Europe&quot;&#10;}" />
+                  <option name="raw" value="{&#10;  &quot;name&quot;: &quot;France&quot;,&#10;  &quot;continent&quot;: &quot;Europe&quot;&#10;}" />
                   <option name="type" value="JSON" />
                 </bodyState>
               </option>
@@ -413,9 +407,163 @@
               </option>
               <option name="id" value="8fef67f7-c4b3-4eb8-9ad8-4f7c7759ae16" />
               <option name="method" value="POST" />
-              <option name="name" value="Draft (2)" />
+              <option name="name" value="Save country" />
               <option name="sortWeight" value="27000000" />
               <option name="url" value="http://localhost:8080/country" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;name&quot;: &quot;Norway&quot;,&#10;  &quot;continent&quot;: &quot;Europe&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="c61346a1-d59e-4ed2-ae8f-40083e649809" />
+              <option name="method" value="PUT" />
+              <option name="name" value="Update country" />
+              <option name="sortWeight" value="27125000" />
+              <option name="url" value="http://localhost:8080/country/2" />
+            </requestState>
+            <requestState>
+              <option name="id" value="dbb5ea34-4005-4e84-93c9-ee6e318cdd68" />
+              <option name="method" value="DELETE" />
+              <option name="name" value="Delete country" />
+              <option name="sortWeight" value="27187500" />
+              <option name="url" value="http://localhost:8080/country/2" />
+            </requestState>
+            <requestState>
+              <option name="id" value="0b588a22-9a70-4e6a-a0ff-80d1ed37b34b" />
+              <option name="method" value="GET" />
+              <option name="name" value="Get all locations" />
+              <option name="sortWeight" value="27500000" />
+              <option name="url" value="http://localhost:8080/location/all" />
+            </requestState>
+            <requestState>
+              <option name="id" value="64f9bdc4-31d7-4c0f-b291-c1f467481200" />
+              <option name="method" value="GET" />
+              <option name="name" value="Get location by id" />
+              <option name="sortWeight" value="27750000" />
+              <option name="url" value="http://localhost:8080/location/1" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;city&quot;: &quot;Zagreb&quot;,&#10;  &quot;country&quot;: {&quot;id&quot;:1},&#10;  &quot;pin&quot;: {&#10;    &quot;id&quot;: 1&#10;  }&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="7218e542-142f-4c9b-ba0c-597c72a24ab4" />
+              <option name="method" value="POST" />
+              <option name="name" value="Save location" />
+              <option name="sortWeight" value="28000000" />
+              <option name="url" value="http://localhost:8080/location" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;user&quot;: {&#10;    &quot;id&quot;: 1&#10;  },&#10;  &quot;trip&quot;: {&#10;    &quot;id&quot;: 1&#10;  },&#10;  &quot;rating&quot;: 7&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="eb4b4a13-4b5a-42e6-815c-29952cbea6cf" />
+              <option name="method" value="PUT" />
+              <option name="name" value="Update location" />
+              <option name="sortWeight" value="28500000" />
+              <option name="url" value="http://localhost:8080/rating/2" />
+            </requestState>
+            <requestState>
+              <option name="id" value="4be7ba06-3917-4453-abc8-d71ecd980176" />
+              <option name="method" value="DELETE" />
+              <option name="name" value="Delete location" />
+              <option name="sortWeight" value="28750000" />
+              <option name="url" value="http://localhost:8080/rating/2" />
+            </requestState>
+            <requestState>
+              <option name="id" value="02d2285c-1d49-49a0-b8db-692656e49e98" />
+              <option name="method" value="GET" />
+              <option name="name" value="Get all pins" />
+              <option name="sortWeight" value="28875000" />
+              <option name="url" value="http://localhost:8080/pin/all" />
+            </requestState>
+            <requestState>
+              <option name="id" value="7583584c-75c1-4777-b158-7ee190c1a31c" />
+              <option name="method" value="GET" />
+              <option name="name" value="Get pin by id" />
+              <option name="sortWeight" value="28937500" />
+              <option name="url" value="http://localhost:8080/pin/1" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;x_coord&quot;: 33.3425,&#10;  &quot;y_coord&quot;: 53.5464,&#10;  &quot;description&quot;: &quot;opis&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="9d3102c3-c475-4e5f-8069-e3ada5015a90" />
+              <option name="method" value="POST" />
+              <option name="name" value="Save pin" />
+              <option name="sortWeight" value="29000000" />
+              <option name="url" value="http://localhost:8080/pin" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;x_coord&quot;: 23.3825,&#10;  &quot;y_coord&quot;: 69.5964,&#10;  &quot;description&quot;: &quot;opis&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="8733a9af-16c8-4729-becf-cb7708dc17df" />
+              <option name="method" value="PUT" />
+              <option name="name" value="Update pin" />
+              <option name="sortWeight" value="30000000" />
+              <option name="url" value="http://localhost:8080/pin/2" />
+            </requestState>
+            <requestState>
+              <option name="id" value="bab1b96e-1486-4dd5-a58a-f31790aa58c2" />
+              <option name="method" value="DELETE" />
+              <option name="name" value="Delete pin" />
+              <option name="sortWeight" value="31000000" />
+              <option name="url" value="http://localhost:8080/pin/2" />
             </requestState>
           </list>
         </option>
