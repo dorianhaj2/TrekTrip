@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb548c3c-a8c8-4d82-bf7b-041c4b2f7ebb" name="Changes" comment="Location and Pin logic added">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trektrip/controller/LocationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/trektrip/controller/LocationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trektrip/controller/PinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/trektrip/controller/PinController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trektrip/repository/LocationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/trektrip/repository/LocationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trektrip/repository/PinRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/trektrip/repository/PinRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trektrip/service/LocationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/trektrip/service/LocationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trektrip/service/LocationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/trektrip/service/LocationServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trektrip/service/PinService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/trektrip/service/PinService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/trektrip/service/PinServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/trektrip/service/PinServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/JetClient/history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/JetClient/history.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/JetClient/state.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/JetClient/state.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/trektrip/model/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/trektrip/model/Location.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/trektrip/model/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/trektrip/model/Trip.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,9 +21,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2gYAdpuQkvlfw1trLG1tOON3q7N" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -33,9 +32,15 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.TrektripApplication.executor": "Run",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/TVZ FAKS/Napredno programiranje u Javi/TrekTripPull/src/main/java/com/trektrip/service",
+    "last_opened_file_path": "C:/Users/doria/Desktop/predavanja",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -79,6 +84,7 @@
       <option name="presentableId" value="Default" />
       <updated>1715864227367</updated>
       <workItem from="1715864228548" duration="380000" />
+      <workItem from="1715867005930" duration="1271000" />
     </task>
     <task id="LOCAL-00001" summary="Location and Pin logic added">
       <option name="closed" value="true" />
