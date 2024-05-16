@@ -1,7 +1,7 @@
 package com.trektrip.service;
 
-import com.trektrip.trektrip.model.Pin;
-import com.trektrip.trektrip.repository.PinRepository;
+import com.trektrip.model.Pin;
+import com.trektrip.repository.PinRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

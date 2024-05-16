@@ -1,6 +1,6 @@
 package com.trektrip.service;
 
-import com.trektrip.trektrip.model.Pin;
+import com.trektrip.model.Pin;
 
 import java.util.List;
 import java.util.Optional;

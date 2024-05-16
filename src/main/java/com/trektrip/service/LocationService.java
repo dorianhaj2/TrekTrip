@@ -1,6 +1,6 @@
 package com.trektrip.service;
 
-import com.trektrip.trektrip.model.Location;
+import com.trektrip.model.Location;
 
 import java.util.List;
 import java.util.Optional;

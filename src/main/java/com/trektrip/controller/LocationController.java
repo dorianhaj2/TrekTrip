@@ -1,7 +1,7 @@
 package com.trektrip.controller;
 
-import com.trektrip.trektrip.model.Location;
-import com.trektrip.trektrip.service.LocationService;
+import com.trektrip.model.Location;
+import com.trektrip.service.LocationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

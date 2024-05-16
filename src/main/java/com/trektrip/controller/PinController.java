@@ -1,8 +1,8 @@
 package com.trektrip.controller;
 
-import com.trektrip.trektrip.model.Pin;
-import com.trektrip.trektrip.service.LocationServiceImpl;
-import com.trektrip.trektrip.service.PinService;
+import com.trektrip.model.Pin;
+import com.trektrip.service.LocationServiceImpl;
+import com.trektrip.service.PinService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

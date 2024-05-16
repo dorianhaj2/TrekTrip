@@ -1,6 +1,6 @@
 package com.trektrip.repository;
 
-import com.trektrip.trektrip.model.Pin;
+import com.trektrip.model.Pin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

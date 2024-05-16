@@ -1,7 +1,7 @@
 package com.trektrip.service;
 
-import com.trektrip.trektrip.model.Location;
-import com.trektrip.trektrip.repository.LocationRepository;
+import com.trektrip.model.Location;
+import com.trektrip.repository.LocationRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
