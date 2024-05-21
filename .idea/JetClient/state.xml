@@ -48,7 +48,7 @@
             <requestState>
               <option name="body">
                 <bodyState>
-                  <option name="raw" value="{&#10;&quot;username&quot;:&quot;user2&quot;,&#10;&quot;email&quot;:&quot;mail2@mail.com&quot;,&#10;&quot;password&quot;:&quot;pass2&quot;,&#10;&quot;description&quot;:&quot;&quot;&#10;}" />
+                  <option name="raw" value="{&#10;&quot;username&quot;:&quot;user2&quot;,&#10;&quot;email&quot;:&quot;mail2@mail.com&quot;,&#10;&quot;password&quot;:&quot;pass2&quot;&#10;}" />
                   <option name="type" value="JSON" />
                 </bodyState>
               </option>
@@ -64,12 +64,12 @@
               <option name="method" value="POST" />
               <option name="name" value="Save user 2" />
               <option name="sortWeight" value="4000000" />
-              <option name="url" value="http://localhost:8080/user" />
+              <option name="url" value="http://localhost:8080/user/register" />
             </requestState>
             <requestState>
               <option name="body">
                 <bodyState>
-                  <option name="raw" value="{&#10;  &quot;username&quot;:&quot;user2&quot;,&#10;  &quot;email&quot;:&quot;mail2@mail.com&quot;,&#10;  &quot;password&quot;:&quot;pass2&quot;,&#10;  &quot;image&quot;:&quot;2&quot;,&#10;  &quot;description&quot;:&quot;Ja sam drugi user&quot;&#10;}" />
+                  <option name="raw" value="{&#10;  &quot;username&quot;:&quot;user2&quot;,&#10;  &quot;email&quot;:&quot;mail2@mail.com&quot;,&#10;  &quot;password&quot;:&quot;pass2&quot;&#10;}" />
                   <option name="type" value="JSON" />
                 </bodyState>
               </option>
@@ -92,7 +92,7 @@
               <option name="method" value="DELETE" />
               <option name="name" value="Delete user" />
               <option name="sortWeight" value="6000000" />
-              <option name="url" value="http://localhost:8080/user/2" />
+              <option name="url" value="http://localhost:8080/user/1" />
             </requestState>
             <requestState>
               <option name="id" value="986b689d-9e3f-43e7-9a80-996aa60d403e" />
@@ -580,6 +580,67 @@
               <option name="name" value="Delete pin" />
               <option name="sortWeight" value="31000000" />
               <option name="url" value="http://localhost:8080/pin/2" />
+            </requestState>
+            <requestState>
+              <option name="id" value="38df4aa2-e518-4afa-a783-26398f012402" />
+              <option name="method" value="GET" />
+              <option name="name" value="Get all user roles" />
+              <option name="sortWeight" value="31500000" />
+              <option name="url" value="http://localhost:8080/userRole/all" />
+            </requestState>
+            <requestState>
+              <option name="id" value="97bead1e-bdb0-46bd-8da9-33f79b4e81d2" />
+              <option name="method" value="GET" />
+              <option name="name" value="Get user role by id" />
+              <option name="sortWeight" value="31750000" />
+              <option name="url" value="GET http://localhost:8080/userRole/1" />
+            </requestState>
+            <requestState>
+              <option name="auth">
+                <authState>
+                  <option name="type" value="BASIC" />
+                </authState>
+              </option>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;name&quot;:&quot;USER&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="7eee7e98-df9d-47ed-bbf9-32330fdd1761" />
+              <option name="method" value="POST" />
+              <option name="name" value="Save user role 1" />
+              <option name="sortWeight" value="32000000" />
+              <option name="url" value="http://localhost:8080/userRole" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;name&quot;:&quot;ADMIN&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="6da0a233-2caa-4bcc-9670-48073d59848b" />
+              <option name="method" value="POST" />
+              <option name="name" value="Save user role 2" />
+              <option name="sortWeight" value="33000000" />
+              <option name="url" value="http://localhost:8080/userRole" />
             </requestState>
           </list>
         </option>

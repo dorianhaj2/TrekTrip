@@ -1,11 +1,13 @@
 package com.trektrip.service;
 
 import com.trektrip.model.UserInfo;
+import com.trektrip.model.UserRole;
 import com.trektrip.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +29,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserInfo createUser(UserInfo user) {
+        if (user.getRoles() == null) {
+            user.setRoles(new ArrayList<>());
+            user.getRoles().add(new UserRole(1L));
+        }
         return userRepository.save(user);
     }
 
