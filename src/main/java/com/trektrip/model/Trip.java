@@ -24,7 +24,7 @@ public class Trip {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    private UserInfo user;
 
     @OneToMany(targetEntity = Image.class)
     private List<Image> images;

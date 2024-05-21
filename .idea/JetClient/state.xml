@@ -20,6 +20,11 @@
               <option name="url" value="GET http://localhost:8080/user/1" />
             </requestState>
             <requestState>
+              <option name="auth">
+                <authState>
+                  <option name="type" value="BASIC" />
+                </authState>
+              </option>
               <option name="body">
                 <bodyState>
                   <option name="raw" value="{&#10;  &quot;username&quot;:&quot;user1&quot;,&#10;  &quot;email&quot;:&quot;mail@mail.com&quot;,&#10;  &quot;password&quot;:&quot;pass1&quot;&#10;}" />
@@ -38,7 +43,7 @@
               <option name="method" value="POST" />
               <option name="name" value="Save user 1" />
               <option name="sortWeight" value="3000000" />
-              <option name="url" value="http://localhost:8080/user" />
+              <option name="url" value="http://localhost:8080/user/register" />
             </requestState>
             <requestState>
               <option name="body">
@@ -391,6 +396,17 @@
               <option name="url" value="http://localhost:8080/country/all" />
             </requestState>
             <requestState>
+              <option name="auth">
+                <authState>
+                  <option name="basic">
+                    <basicAuthState>
+                      <option name="pass" value="74f24081-8a59-4007-9e73-2489bdd44c3e" />
+                      <option name="username" value="user" />
+                    </basicAuthState>
+                  </option>
+                  <option name="type" value="BASIC" />
+                </authState>
+              </option>
               <option name="body">
                 <bodyState>
                   <option name="raw" value="{&#10;  &quot;name&quot;: &quot;France&quot;,&#10;  &quot;continent&quot;: &quot;Europe&quot;&#10;}" />
