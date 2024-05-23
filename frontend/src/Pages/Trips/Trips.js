@@ -1,17 +1,13 @@
-import TripCard from "../../Components/TripCard/TripCard";
+import React from 'react';
+import TripCard from '../../Components/TripCard/TripCard';
+import { Link } from 'react-router-dom';
+import tripsData from './tripsData';
+import './Trips.css'
 
-export default function Trips() {
-    const [trips, setTrips] = useState([]);
+const Trips = () => {
 
-    useEffect(() => {
-      // Fetch all trips
-      fetch('/api/trips')
-        .then(response => response.json())
-        .then(data => setTrips(data))
-        .catch(error => console.error('Error fetching trips:', error));
-    }, []);
-  
-
+    
+  return (
     <div className="App">
         <div className="filters">
             <button>Trajanje</button>
@@ -19,10 +15,15 @@ export default function Trips() {
             <button>Cijena</button>
         </div>
         <div className="destinations">
-            {trips.map((trip) => (
-                <TripCard key={trip.id} trip={trip} />
+            {tripsData.map((trip) => (
+                <Link key={trip.id} to={`/putovanja/${trip.id}`}>
+                    <TripCard trip={trip} />
+                </Link>
+                
             ))}
         </div>
     </div>
-
+  )
 }
+
+export default Trips

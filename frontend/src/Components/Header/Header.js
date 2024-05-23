@@ -31,19 +31,13 @@ const Header = () => {
                         Putovanja
                     </button>
                 </Link>
-                 (
                    <Link to='/prijava'>
                         <button className={`nav_button ${activeButton === 4 ? 'active' : ''}`}
                             onClick={() => handleButtonClick(4)}>
                             Prijava
                         </button>
                     </Link>
-                ) : (
-                    <button className={`nav_button ${activeButton === 5 ? 'active' : ''}`}
-                        onClick={() => handleButtonClick(5)}>
-                        Odjava
-                    </button>
-                )
+                
             </nav>
         </header>  
     )
