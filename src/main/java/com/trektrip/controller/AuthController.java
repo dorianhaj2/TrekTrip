@@ -2,12 +2,15 @@ package com.trektrip.controller;
 
 import com.trektrip.dto.RefreshTokenRequestDTO;
 import com.trektrip.model.RefreshToken;
+import com.trektrip.repository.RefreshTokenRepository;
 import com.trektrip.service.JwtService;
 import com.trektrip.dto.JwtResponseDTO;
 import com.trektrip.dto.AuthRequestDTO;
 import com.trektrip.service.RefreshTokenService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
 
 
 @RestController
@@ -27,6 +32,8 @@ public class AuthController {
     private JwtService jwtService;
 
     private RefreshTokenService refreshTokenService;
+
+    private RefreshTokenRepository refreshTokenRepository;
 
     @PostMapping("/login")
     public JwtResponseDTO authenticateAndGetToken(@RequestBody AuthRequestDTO authRequestDTO){
@@ -56,8 +63,15 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    public void logout() {
-        System.out.println("Logout...");
+    public ResponseEntity<?> logout(@RequestBody RefreshTokenRequestDTO refreshTokenRequestDTO) {
+        Optional<RefreshToken> refreshTokenOptional = refreshTokenService.findByToken(refreshTokenRequestDTO.getToken());
+        if (refreshTokenOptional.isPresent()) {
+            refreshTokenRepository.delete(refreshTokenOptional.get());
+            System.out.println("Logout...");
+            return ResponseEntity.ok().build();
+        }
+
+        throw new BadCredentialsException("Invalid token!");
     }
 
 }

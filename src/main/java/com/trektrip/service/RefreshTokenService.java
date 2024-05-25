@@ -5,11 +5,12 @@ import com.trektrip.model.UserInfo;
 import com.trektrip.repository.RefreshTokenRepository;
 import com.trektrip.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.sql.Ref;
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -27,7 +28,7 @@ public class RefreshTokenService {
             RefreshToken refreshToken = RefreshToken.builder()
                     .userInfo(userOptional.get())
                     .token(UUID.randomUUID().toString())
-                    .expiryDate(Instant.now().plusMillis(600000))
+                    .expiryDate(Instant.now().plusMillis(10000))
                     .build();
             return refreshTokenRepository.save(refreshToken);
         } else {
@@ -45,6 +46,16 @@ public class RefreshTokenService {
             throw new RuntimeException(token.getToken() + " Refresh token is expired. Please make a new login..!");
         }
         return token;
+    }
+
+    public void deleteByUserId(Long userId) {
+        Iterable<RefreshToken> allRefreshTokens = refreshTokenRepository.findAll();
+
+        for (RefreshToken rt : allRefreshTokens) {
+            if (rt.getUserInfo().getId().equals(userId))
+                refreshTokenRepository.delete(rt);
+        }
+
     }
 
 }

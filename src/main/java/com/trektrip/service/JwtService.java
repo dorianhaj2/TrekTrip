@@ -2,16 +2,12 @@ package com.trektrip.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
-import org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,7 +32,7 @@ public class JwtService {
     }
 
     private Claims extractAllClaims(String token) {
-        //Changed
+
         return Jwts.parser()
                 .verifyWith(getSignKey())
                 .build()
@@ -59,7 +55,7 @@ public class JwtService {
     }
 
     private String createToken(Map<String, Object> claims, String username) {
-        //Changed
+
         return Jwts.builder()
                 .claims(claims)
                 .subject(username)
@@ -73,4 +69,6 @@ public class JwtService {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET);
         return new SecretKeySpec(keyBytes, "HmacSHA256");
     }
+
+
 }

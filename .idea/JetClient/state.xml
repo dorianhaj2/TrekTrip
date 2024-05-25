@@ -95,6 +95,16 @@
               <option name="url" value="http://localhost:8080/user/1" />
             </requestState>
             <requestState>
+              <option name="auth">
+                <authState>
+                  <option name="bearer">
+                    <ks>
+                      <option name="token" value="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTcxNjY1MzA3MCwiZXhwIjoxNzE2NjYwMjcwfQ.4a2pmqfI5jx47ysZLc1FTmu5RvYHKwb-o-4-nIkFcY0" />
+                    </ks>
+                  </option>
+                  <option name="type" value="BEARER" />
+                </authState>
+              </option>
               <option name="id" value="986b689d-9e3f-43e7-9a80-996aa60d403e" />
               <option name="method" value="GET" />
               <option name="name" value="Get all images" />
@@ -673,6 +683,11 @@
               <option name="url" value="http://localhost:8080/userRole" />
             </requestState>
             <requestState>
+              <option name="auth">
+                <authState>
+                  <option name="type" value="BEARER" />
+                </authState>
+              </option>
               <option name="body">
                 <bodyState>
                   <option name="raw" value="{&#10;  &quot;username&quot;: &quot;user1&quot;,&#10;  &quot;password&quot;: &quot;pass1&quot;&#10;}" />
@@ -694,11 +709,61 @@
               <option name="url" value="http://localhost:8080/auth/login" />
             </requestState>
             <requestState>
+              <option name="auth">
+                <authState>
+                  <option name="bearer">
+                    <ks>
+                      <option name="token" value="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTcxNjY1NDM1OCwiZXhwIjoxNzE2NjYxNTU4fQ.Agqyxx35FMqSLOvE-p4jqhvKVmf9DU3qXL4_Tc32ujo" />
+                    </ks>
+                  </option>
+                  <option name="type" value="BEARER" />
+                </authState>
+              </option>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;token&quot;: &quot;abe35d00-8ad1-4502-a5c8-fa00b5221483&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
               <option name="id" value="94787aea-6956-4cb7-adfa-ccd0a71e5ded" />
               <option name="method" value="POST" />
               <option name="name" value="Logout" />
               <option name="sortWeight" value="35000000" />
               <option name="url" value="http://localhost:8080/auth/logout" />
+            </requestState>
+            <requestState>
+              <option name="auth">
+                <authState>
+                  <option name="type" value="BEARER" />
+                </authState>
+              </option>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;token&quot;: &quot;2a32f788-94e2-4a6e-b598-9c32e5b92659&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="3ab0109f-646d-472b-ad9d-7f4d9b10958a" />
+              <option name="method" value="POST" />
+              <option name="name" value="Refresh Token" />
+              <option name="sortWeight" value="36000000" />
+              <option name="url" value="http://localhost:8080/auth/refreshToken" />
             </requestState>
           </list>
         </option>
