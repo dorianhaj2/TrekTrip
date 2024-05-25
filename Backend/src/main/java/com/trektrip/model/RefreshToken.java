@@ -2,27 +2,24 @@ package com.trektrip.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "ratings")
-public class Rating {
+import java.time.Instant;
 
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class RefreshToken {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
+    private String token;
+    private Instant expiryDate;
+    @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private UserInfo user;
-
-    @ManyToOne
-    @JoinColumn(name = "trip_id", referencedColumnName = "id")
-    private Trip trip;
-
-    private int rating;
+    private UserInfo userInfo;
 }

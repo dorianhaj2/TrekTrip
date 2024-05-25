@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.grammars.hql.HqlParser;
 
 import java.time.LocalDateTime;
 
@@ -20,7 +19,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    private UserInfo user;
 
     @ManyToOne
     @JoinColumn(name="trip_id", referencedColumnName = "id")

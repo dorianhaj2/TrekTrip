@@ -1,11 +1,13 @@
 package com.trektrip.service;
 
-import com.trektrip.model.User;
+import com.trektrip.model.UserInfo;
+import com.trektrip.model.UserRole;
 import com.trektrip.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,29 +18,33 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public List<User> getAllUsers() {
+    public List<UserInfo> getAllUsers() {
         return userRepository.findAll();
     }
 
     @Override
-    public Optional<User> getUserById(Long id) {
+    public Optional<UserInfo> getUserById(Long id) {
         return userRepository.findById(id);
     }
 
     @Override
-    public User createUser(User user) {
+    public UserInfo createUser(UserInfo user) {
+        if (user.getRoles() == null) {
+            user.setRoles(new ArrayList<>());
+            user.getRoles().add(new UserRole(1L));
+        }
         return userRepository.save(user);
     }
 
     @Override
-    public User updateUser(User user, Long id) {
-        Optional<User> optionalUser = userRepository.findById(id);
+    public UserInfo updateUser(UserInfo user, Long id) {
+        Optional<UserInfo> optionalUser = userRepository.findById(id);
 
         if (optionalUser.isPresent()) {
             user.setId(id);
             return userRepository.save(user);
         } else {
-            throw new EntityNotFoundException("User with ID = '" + id + "' not found!");
+            throw new EntityNotFoundException("UserInfo with ID = '" + id + "' not found!");
         }
     }
 

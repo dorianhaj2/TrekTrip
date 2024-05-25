@@ -20,6 +20,11 @@
               <option name="url" value="GET http://localhost:8080/user/1" />
             </requestState>
             <requestState>
+              <option name="auth">
+                <authState>
+                  <option name="type" value="BASIC" />
+                </authState>
+              </option>
               <option name="body">
                 <bodyState>
                   <option name="raw" value="{&#10;  &quot;username&quot;:&quot;user1&quot;,&#10;  &quot;email&quot;:&quot;mail@mail.com&quot;,&#10;  &quot;password&quot;:&quot;pass1&quot;&#10;}" />
@@ -38,12 +43,12 @@
               <option name="method" value="POST" />
               <option name="name" value="Save user 1" />
               <option name="sortWeight" value="3000000" />
-              <option name="url" value="http://localhost:8080/user" />
+              <option name="url" value="http://localhost:8080/user/register" />
             </requestState>
             <requestState>
               <option name="body">
                 <bodyState>
-                  <option name="raw" value="{&#10;&quot;username&quot;:&quot;user2&quot;,&#10;&quot;email&quot;:&quot;mail2@mail.com&quot;,&#10;&quot;password&quot;:&quot;pass2&quot;,&#10;&quot;description&quot;:&quot;&quot;&#10;}" />
+                  <option name="raw" value="{&#10;&quot;username&quot;:&quot;user2&quot;,&#10;&quot;email&quot;:&quot;mail2@mail.com&quot;,&#10;&quot;password&quot;:&quot;pass2&quot;&#10;}" />
                   <option name="type" value="JSON" />
                 </bodyState>
               </option>
@@ -59,12 +64,12 @@
               <option name="method" value="POST" />
               <option name="name" value="Save user 2" />
               <option name="sortWeight" value="4000000" />
-              <option name="url" value="http://localhost:8080/user" />
+              <option name="url" value="http://localhost:8080/user/register" />
             </requestState>
             <requestState>
               <option name="body">
                 <bodyState>
-                  <option name="raw" value="{&#10;  &quot;username&quot;:&quot;user2&quot;,&#10;  &quot;email&quot;:&quot;mail2@mail.com&quot;,&#10;  &quot;password&quot;:&quot;pass2&quot;,&#10;  &quot;image&quot;:&quot;2&quot;,&#10;  &quot;description&quot;:&quot;Ja sam drugi user&quot;&#10;}" />
+                  <option name="raw" value="{&#10;  &quot;username&quot;:&quot;user2&quot;,&#10;  &quot;email&quot;:&quot;mail2@mail.com&quot;,&#10;  &quot;password&quot;:&quot;pass2&quot;&#10;}" />
                   <option name="type" value="JSON" />
                 </bodyState>
               </option>
@@ -87,9 +92,19 @@
               <option name="method" value="DELETE" />
               <option name="name" value="Delete user" />
               <option name="sortWeight" value="6000000" />
-              <option name="url" value="http://localhost:8080/user/2" />
+              <option name="url" value="http://localhost:8080/user/1" />
             </requestState>
             <requestState>
+              <option name="auth">
+                <authState>
+                  <option name="bearer">
+                    <ks>
+                      <option name="token" value="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTcxNjY1MzA3MCwiZXhwIjoxNzE2NjYwMjcwfQ.4a2pmqfI5jx47ysZLc1FTmu5RvYHKwb-o-4-nIkFcY0" />
+                    </ks>
+                  </option>
+                  <option name="type" value="BEARER" />
+                </authState>
+              </option>
               <option name="id" value="986b689d-9e3f-43e7-9a80-996aa60d403e" />
               <option name="method" value="GET" />
               <option name="name" value="Get all images" />
@@ -216,6 +231,16 @@
               <option name="url" value="http://localhost:8080/image/2" />
             </requestState>
             <requestState>
+              <option name="auth">
+                <authState>
+                  <option name="bearer">
+                    <ks>
+                      <option name="token" value="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTcxNjMyODIwNCwiZXhwIjoxNzE2MzM1NDA0fQ.21UYbI2Nicw2rRW3jYZCUEwO4PEZK0XBC4K9e7edfng" />
+                    </ks>
+                  </option>
+                  <option name="type" value="BEARER" />
+                </authState>
+              </option>
               <option name="id" value="fe7997e8-5d8c-4032-87b4-448981a37aef" />
               <option name="method" value="GET" />
               <option name="name" value="Get all trips" />
@@ -230,9 +255,19 @@
               <option name="url" value="GET http://localhost:8080/trip/1" />
             </requestState>
             <requestState>
+              <option name="auth">
+                <authState>
+                  <option name="bearer">
+                    <ks>
+                      <option name="token" value="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTcxNjMyODIwNCwiZXhwIjoxNzE2MzM1NDA0fQ.21UYbI2Nicw2rRW3jYZCUEwO4PEZK0XBC4K9e7edfng" />
+                    </ks>
+                  </option>
+                  <option name="type" value="BEARER" />
+                </authState>
+              </option>
               <option name="body">
                 <bodyState>
-                  <option name="raw" value="{&#10;  &quot;title&quot;: &quot;trip1&quot;,&#10;  &quot;description&quot;: &quot;opis tripa 1&quot;,&#10;  &quot;user&quot;: {&#10;    &quot;id&quot;: 1&#10;  },&#10;  &quot;images&quot;: [{&quot;id&quot;: 1}, {&quot;id&quot;: 2}],&#10;  &quot;highlight&quot;: &quot;lokacija 2&quot;,&#10;  &quot;lengthInDays&quot;: 3,&#10;  &quot;locations&quot;: [{&quot;id&quot;: 1}],&#10;  &quot;isPublic&quot;: true&#10;}" />
+                  <option name="raw" value="{&#10;  &quot;title&quot;: &quot;trip1&quot;,&#10;  &quot;description&quot;: &quot;opis tripa 1&quot;,&#10;  &quot;user&quot;: {&#10;    &quot;id&quot;: 5&#10;  },&#10;  &quot;highlight&quot;: &quot;lokacija 2&quot;,&#10;  &quot;lengthInDays&quot;: 3,&#10;  &quot;isPublic&quot;: true&#10;}" />
                   <option name="type" value="JSON" />
                 </bodyState>
               </option>
@@ -300,6 +335,16 @@
               <option name="url" value="http://localhost:8080/trip/2" />
             </requestState>
             <requestState>
+              <option name="auth">
+                <authState>
+                  <option name="bearer">
+                    <ks>
+                      <option name="token" value="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTcxNjMyODIwNCwiZXhwIjoxNzE2MzM1NDA0fQ.21UYbI2Nicw2rRW3jYZCUEwO4PEZK0XBC4K9e7edfng" />
+                    </ks>
+                  </option>
+                  <option name="type" value="BEARER" />
+                </authState>
+              </option>
               <option name="id" value="da28f571-13e2-484c-93e6-78305233c4ee" />
               <option name="method" value="GET" />
               <option name="name" value="Get all ratings" />
@@ -391,6 +436,17 @@
               <option name="url" value="http://localhost:8080/country/all" />
             </requestState>
             <requestState>
+              <option name="auth">
+                <authState>
+                  <option name="basic">
+                    <basicAuthState>
+                      <option name="pass" value="74f24081-8a59-4007-9e73-2489bdd44c3e" />
+                      <option name="username" value="user" />
+                    </basicAuthState>
+                  </option>
+                  <option name="type" value="BASIC" />
+                </authState>
+              </option>
               <option name="body">
                 <bodyState>
                   <option name="raw" value="{&#10;  &quot;name&quot;: &quot;France&quot;,&#10;  &quot;continent&quot;: &quot;Europe&quot;&#10;}" />
@@ -564,6 +620,150 @@
               <option name="name" value="Delete pin" />
               <option name="sortWeight" value="31000000" />
               <option name="url" value="http://localhost:8080/pin/2" />
+            </requestState>
+            <requestState>
+              <option name="id" value="38df4aa2-e518-4afa-a783-26398f012402" />
+              <option name="method" value="GET" />
+              <option name="name" value="Get all user roles" />
+              <option name="sortWeight" value="31500000" />
+              <option name="url" value="http://localhost:8080/userRole/all" />
+            </requestState>
+            <requestState>
+              <option name="id" value="97bead1e-bdb0-46bd-8da9-33f79b4e81d2" />
+              <option name="method" value="GET" />
+              <option name="name" value="Get user role by id" />
+              <option name="sortWeight" value="31750000" />
+              <option name="url" value="GET http://localhost:8080/userRole/1" />
+            </requestState>
+            <requestState>
+              <option name="auth">
+                <authState>
+                  <option name="type" value="BASIC" />
+                </authState>
+              </option>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;name&quot;:&quot;USER&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="7eee7e98-df9d-47ed-bbf9-32330fdd1761" />
+              <option name="method" value="POST" />
+              <option name="name" value="Save user role 1" />
+              <option name="sortWeight" value="32000000" />
+              <option name="url" value="http://localhost:8080/userRole" />
+            </requestState>
+            <requestState>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;name&quot;:&quot;ADMIN&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="6da0a233-2caa-4bcc-9670-48073d59848b" />
+              <option name="method" value="POST" />
+              <option name="name" value="Save user role 2" />
+              <option name="sortWeight" value="33000000" />
+              <option name="url" value="http://localhost:8080/userRole" />
+            </requestState>
+            <requestState>
+              <option name="auth">
+                <authState>
+                  <option name="type" value="BEARER" />
+                </authState>
+              </option>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;username&quot;: &quot;user1&quot;,&#10;  &quot;password&quot;: &quot;pass1&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="bdb63816-5a12-4aaa-aa32-569593f013db" />
+              <option name="method" value="POST" />
+              <option name="name" value="Login" />
+              <option name="sortWeight" value="34000000" />
+              <option name="url" value="http://localhost:8080/auth/login" />
+            </requestState>
+            <requestState>
+              <option name="auth">
+                <authState>
+                  <option name="bearer">
+                    <ks>
+                      <option name="token" value="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTcxNjY1NDM1OCwiZXhwIjoxNzE2NjYxNTU4fQ.Agqyxx35FMqSLOvE-p4jqhvKVmf9DU3qXL4_Tc32ujo" />
+                    </ks>
+                  </option>
+                  <option name="type" value="BEARER" />
+                </authState>
+              </option>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;token&quot;: &quot;abe35d00-8ad1-4502-a5c8-fa00b5221483&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="94787aea-6956-4cb7-adfa-ccd0a71e5ded" />
+              <option name="method" value="POST" />
+              <option name="name" value="Logout" />
+              <option name="sortWeight" value="35000000" />
+              <option name="url" value="http://localhost:8080/auth/logout" />
+            </requestState>
+            <requestState>
+              <option name="auth">
+                <authState>
+                  <option name="type" value="BEARER" />
+                </authState>
+              </option>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;token&quot;: &quot;2a32f788-94e2-4a6e-b598-9c32e5b92659&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="3ab0109f-646d-472b-ad9d-7f4d9b10958a" />
+              <option name="method" value="POST" />
+              <option name="name" value="Refresh Token" />
+              <option name="sortWeight" value="36000000" />
+              <option name="url" value="http://localhost:8080/auth/refreshToken" />
             </requestState>
           </list>
         </option>
