@@ -1,0 +1,51 @@
+.trips-page {
+    font-family: Arial, sans-serif;
+  }
+  
+  .trips-header, .trips-footer {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .nav-links a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+  }
+  
+  .nav-links a:hover {
+    text-decoration: underline;
+  }
+  
+  .main {
+    padding: 20px;
+  }
+  
+  .trips-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .trips-footer {
+    margin-top: 20px;
+    padding: 10px;
+  }
+  
+  .footer-links a {
+    color: white;
+    margin: 0 5px;
+    text-decoration: none;
+  }
+  
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
