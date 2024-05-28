@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Login.css'
+import './Auth.css';
 
 const Login = () => {
     
@@ -19,9 +19,9 @@ const Login = () => {
     const loginImage = process.env.PUBLIC_URL + '/Login.jpg'
 
   return (
-    <div className="login-page">
-        <form className="form" /*onSubmit={handleSubmit}*/>
-          <h1 className='auth_title'>PRIJAVA</h1>
+    <div className="auth-container">
+        <form className="auth-form" /*onSubmit={handleSubmit}*/>
+          <h1 className='auth-title'>PRIJAVA</h1>
           <label>
             Email
             <input type="email" name="email" /*value={formData.email} onChange={handleChange} */required />
@@ -30,15 +30,15 @@ const Login = () => {
             Lozinka
             <input type="password" name="password" /*value={formData.password} onChange={handleChange} */required />
           </label>
-          <label className="remember-me-checkbox">
+          <label className="auth-checkbox">
             <input type="checkbox" name="rememberMe" /*checked={formData.rememberMe} onChange={handleChange} *//>
             Zapamti me
           </label>
-          <button type="submit" className="login-submit">PRIJAVI SE</button>
+          <button type="submit" className="auth-submit">PRIJAVI SE</button>
           <p>Nemate račun? <Link to="/registracija">Registracija</Link></p>
         </form>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;

@@ -1,0 +1,43 @@
+/* src/components/HomePage.css */
+.homepage {
+    text-align: center;
+  }
+  
+  .homepage-header {
+    background-color: #e0e4e8;
+    padding: 20px;
+  }
+  
+  .homepage-header h1 {
+    font-size: 2.5em;
+    margin: 0;
+  }
+  
+  .homepage-header p {
+    margin: 0.5em 0 1em;
+    font-size: 1.2em;
+    color: #666;
+  }
+  
+  .featured-trips {
+    margin-top: 40px;
+  }
+  
+  .trip-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .featured-trips h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .trip-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  

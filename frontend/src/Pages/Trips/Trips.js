@@ -5,7 +5,6 @@ import tripsData from './tripsData';
 import './Trips.css'
 
 const Trips = () => {
-
     
   return (
     <div className="App">
@@ -19,7 +18,6 @@ const Trips = () => {
                 <Link key={trip.id} to={`/putovanja/${trip.id}`}>
                     <TripCard trip={trip} />
                 </Link>
-                
             ))}
         </div>
     </div>
