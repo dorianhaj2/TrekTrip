@@ -1,7 +1,7 @@
 .auth-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     min-height: 100vh;
     background-image: url('Login.jpg');
@@ -29,7 +29,7 @@
     width: 35%;
     display: flex;
     flex-direction: column;
-    margin:0 auto;
+    margin-right: 50px;
     padding: 1rem;
     border: 1px solid;
     border-radius: 20px;
@@ -38,6 +38,7 @@
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
     background-color: white;
+    font-weight: 500;
   }
   
   .auth-title {
@@ -51,13 +52,13 @@
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
+    text-align: left;
   }
   
   .auth-form input{
-    padding: 1rem;
+    padding: 1.5rem;
     font-size: 15px;
     margin: 0.5rem 0;
-    background-color: #4A5568;
     border-radius:15px;
     -webkit-border-radius:15px;
     -moz-border-radius:15px;
@@ -67,20 +68,26 @@
     color: white;
 }
 
+.remember {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .auth-checkbox {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    flex-direction: row !important;
 }
 
 .auth-checkbox input {
-    margin-right: 10px;
+    margin-right: 10px ;
 }
 
 .auth-submit {
     padding: 10px;
     width: 40%;
-    margin: 0 auto;
+    margin: 20px auto;
     background-color: #115fb4;
     color: white;
     border: none;
@@ -98,7 +105,6 @@
 
 .auth-form p {
     font-size: 0.9em;
-    margin: 0 auto;
 }
 
 @media(max-width:480px){

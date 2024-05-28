@@ -30,10 +30,13 @@ const Login = () => {
             Lozinka
             <input type="password" name="password" /*value={formData.password} onChange={handleChange} */required />
           </label>
-          <label className="auth-checkbox">
-            <input type="checkbox" name="rememberMe" /*checked={formData.rememberMe} onChange={handleChange} *//>
-            Zapamti me
-          </label>
+          <div className='remember'>
+            <label className="auth-checkbox">
+              <input type="checkbox" name="rememberMe" /*checked={formData.rememberMe} onChange={handleChange} *//>
+              Zapamti me
+            </label>
+            <p>Zaboravljena lozinka?</p>
+          </div>
           <button type="submit" className="auth-submit">PRIJAVI SE</button>
           <p>Nemate račun? <Link to="/registracija">Registracija</Link></p>
         </form>

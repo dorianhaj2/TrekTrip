@@ -63,7 +63,7 @@ const Home = () => {
         <div className="trip-cards">
             {topTrips.map((trip) => (
                 <Link key={trip.id} to={`/putovanja/${trip.id}`}>
-                    <HighlightedTripCard trip={trip} />
+                    <HighlightedTripCard trip={trip} className="trip-card"/>
                 </Link>
             ))}
         </div>

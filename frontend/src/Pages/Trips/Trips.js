@@ -7,7 +7,7 @@ import './Trips.css'
 const Trips = () => {
     
   return (
-    <div className="App">
+    <div className="trips">
         <div className="filters">
             <button>Trajanje</button>
             <button>Ocjena</button>

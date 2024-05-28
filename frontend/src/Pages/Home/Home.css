@@ -20,7 +20,7 @@
   }
   
   .featured-trips {
-    margin-top: 40px;
+    margin: 60px;
   }
   
   .trip-cards {
@@ -32,12 +32,10 @@
   
   .featured-trips h2 {
     font-size: 2em;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
+  }
+  .trip-card {
+    width: 80%;
   }
   
-  .trip-cards {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
   

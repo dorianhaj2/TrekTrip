@@ -1,11 +1,12 @@
 .card {
     display: flex;
-    margin: 20px 0;
+    margin: 20px auto;
     width: 60%;
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
     background-color: #fff;
+    text-align: left;
   }
   
   .card-image {

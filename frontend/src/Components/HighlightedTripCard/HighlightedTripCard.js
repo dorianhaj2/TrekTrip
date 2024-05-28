@@ -13,6 +13,7 @@ const HighlightedTripCard = ({ trip }) => {
         <Stack spacing={1}>
             <Rating className="rating" name="half-rating-read" value={trip.rating} precision={0.1} readOnly />
         </Stack>
+        <p>{trip.description}</p>
       </div>
     </div>
   );

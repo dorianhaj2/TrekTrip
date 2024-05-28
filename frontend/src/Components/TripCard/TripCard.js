@@ -9,10 +9,10 @@ function TripCard({ trip }) {
             <img src={trip.image} alt={trip.title} className="card-image" />
             <div className="card-content">
                 <h2 className="card-title">{trip.title}</h2>
-                <p className="card-description">{trip.description}</p>
                 <Stack spacing={1}>
                     <Rating className="rating" name="half-rating-read" value={trip.rating} precision={0.1} readOnly />
                 </Stack>
+                <p className="card-description">{trip.description}</p>
             </div>
         </div>
   );
