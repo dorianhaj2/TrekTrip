@@ -10,13 +10,12 @@
     padding: 20px;
   }
   
-  .auth-header {
-    margin-bottom: 20px;
-  }
-  
-  .auth-logo {
-    max-width: 200px;
-  }
+ .logo-text {
+   font-size: 150px;
+    position: absolute; 
+    top: 100px;
+    left: 400px;
+ }
   
   .auth-form-container {
     background: rgba(255, 255, 255, 0.9);

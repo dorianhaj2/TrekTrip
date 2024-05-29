@@ -5,7 +5,7 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
-    background-color: #fff;
+    background-color: #dae5ef;
     text-align: left;
   }
   
@@ -15,8 +15,9 @@
   }
   
   .card-content {
-    padding: 20px;
+    padding: 60px;
     width: 60%;
+    color: black;
   }
   
   .card-title {
@@ -30,4 +31,8 @@
   
   .card-rating {
     color: gold;
+  }
+
+  .destinations a {
+    text-decoration: none;
   }
