@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import tripsData from '../Trips/tripsData';
-import StarRating from '../../Components/StarRating/StarRating';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import './Trip.css';
@@ -51,25 +50,33 @@ const Trip = () => {
             <div className="main-image" style={{ backgroundImage: `url(${trip.image})` }}>
                 <div className="overlay"></div>
             </div>
-            <div className="trip-info">
-                <h1>{trip.title}</h1>
-                <p className="author">Autor: {trip.author}</p>
-                <Stack spacing={1}>
-                    <Rating className="rating" name="half-rating-read" value={trip.rating} precision={0.1}/>
-                </Stack>                
-                <div className="trip-summary">
-                    <p><strong>Država:</strong> {trip.summary.country}</p>
-                    <p><strong>Odredište:</strong> {trip.summary.destination}</p>
-                    <p><strong>Mjesec:</strong> {trip.summary.month}</p>
-                    <p><strong>Trajanje:</strong> {trip.summary.duration}</p>
-                    <p><strong>Cijena:</strong> {trip.summary.price}</p>
-                </div>
-                {trip.details.map(detail => (
-                    <div key={detail.day} className="trip-detail">
-                        <h2>{detail.day}. dan: {detail.title}</h2>
-                        <p>{detail.description}</p>
+            <div className="trip">
+                <div className='trip-intro'>
+                    <div className='trip-title'>
+                        <h1>{trip.title}</h1>
+                        <p className="author">Autor: {trip.author}</p>
                     </div>
-                ))}
+                    <div className='trip-days'>
+                        {trip.details.map(detail => (
+                            <div key={detail.day} className="trip-detail">
+                                <h2>{detail.day}. dan: {detail.title}</h2>
+                                <p>{detail.description}</p>
+                            </div>
+                        ))} 
+                    </div>
+                </div>
+                <div className='trip-details'>
+                    <Stack spacing={1}>
+                        <Rating className="rating" name="half-rating-read" value={trip.rating} precision={0.1} size='large'/>
+                    </Stack>  
+                    <div className="trip-summary">
+                        <p><strong>Država:</strong></p><span>{trip.summary.country}</span>
+                        <p><strong>Odredište:</strong></p><span>{trip.summary.destination}</span>
+                        <p><strong>Mjesec:</strong></p><span>{trip.summary.month}</span>
+                        <p><strong>Trajanje:</strong></p><span>{trip.summary.duration}</span>
+                        <p><strong>Cijena:</strong></p><span>{trip.summary.price}</span>
+                    </div>   
+                </div>             
             </div>
             <div className="comments-section">
                 <h2>Komentari</h2>

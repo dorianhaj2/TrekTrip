@@ -23,3 +23,7 @@
   gap: 18px; 
   width: 100%; 
 }
+
+.destinations a {
+  text-decoration: none;
+}
