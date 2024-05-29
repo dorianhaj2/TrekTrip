@@ -1,15 +1,14 @@
 import React from 'react';
-import './Register.css'
+import '../Login/Auth.css';
 
 const Register = () => {
   return (
-    <div className="register-page">
-      <div className="register-header">
-        <img src="path_to_your_logo.png" alt="TrekTrip" className="register-logo" />
+    <div className="auth-container">
+      <div className="auth-header">
+        <img src="path_to_your_logo.png" alt="TrekTrip" className="auth-logo" />
       </div>
-      <div className="register-form-container">
-        <form className="register-form" /*onSubmit={handleSubmit}*/>
-          <h2>REGISTRACIJA</h2>
+        <form className="auth-form" /*onSubmit={handleSubmit}*/>
+          <h1 className='auth-title'>REGISTRACIJA</h1>
           <label>
             Email
             <input type="email" name="email" /*value={formData.email} onChange={handleChange} */required />
@@ -26,15 +25,14 @@ const Register = () => {
             Potvrdite lozinku
             <input type="password" name="confirmPassword" /*value={formData.confirmPassword} onChange={handleChange} */required />
           </label>
-          <label className="terms-checkbox">
+          <label className="auth-checkbox">
             <input type="checkbox" name="termsAccepted" /*checked={formData.termsAccepted} onChange={handleChange} */required />
             I agree to the Terms of service
           </label>
-          <button type="submit" className="register-submit">PODNESI</button>
+          <button type="submit" className="auth-submit">PODNESI</button>
         </form>
       </div>
-    </div>
-  )
+  );
 }
 
-export default Register
+export default Register;

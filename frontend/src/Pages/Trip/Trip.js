@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import tripsData from '../Trips/tripsData';
+import StarRating from '../../Components/StarRating/StarRating';
+import Rating from '@mui/material/Rating';
+import Stack from '@mui/material/Stack';
 import './Trip.css';
 
 const Trip = () => {
@@ -51,7 +54,9 @@ const Trip = () => {
             <div className="trip-info">
                 <h1>{trip.title}</h1>
                 <p className="author">Autor: {trip.author}</p>
-                <div className="rating">⭐ {trip.rating}/5</div>
+                <Stack spacing={1}>
+                    <Rating className="rating" name="half-rating-read" value={trip.rating} precision={0.1}/>
+                </Stack>                
                 <div className="trip-summary">
                     <p><strong>Država:</strong> {trip.summary.country}</p>
                     <p><strong>Odredište:</strong> {trip.summary.destination}</p>
