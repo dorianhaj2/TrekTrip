@@ -8,32 +8,78 @@ import Trips from './Pages/Trips/Trips';
 import Trip from './Pages/Trip/Trip';
 import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import { Navigate } from 'react-router-dom';
+import UpdateProfile from './Pages/UpdateProfile/UpdateProfile';
+import AddTrip from './Pages/AddTrip/AddTrip';
 import './App.css';
+
+const PrivateRoute = ({ children }) => {
+  const { isLoggedIn } = useAuth();
+  return isLoggedIn ? children : <Navigate to="/prijava" />;
+};
+
+const PublicRoute = ({ children }) => {
+  const { isLoggedIn } = useAuth();
+  return isLoggedIn ? <Navigate to="/profil" /> : children;
+};
 
 function App() {
   return (
     <HashRouter>
-     
+      <AuthProvider>
         <Header></Header>
         <div className="app">
           <Box 
             sx={{ 
               minHeight: '100vh', 
               width: '100%',  
-              backgroundColor: '#f0f0f0',
+              backgroundColor: '#ffffff',
             }}>
             <Routes>
               <Route path='/' element={<Home/>} exact/>
-              <Route path='/profil' element={<Profile/>}/>
+              <Route 
+                path='/profil' 
+                element={
+                        <PrivateRoute>
+                          <Profile />
+                        </PrivateRoute>}
+              />
+              <Route 
+                path='/uredi-profil' 
+                element={
+                      <PrivateRoute>
+                        <UpdateProfile />
+                      </PrivateRoute>}
+              />
+              <Route 
+                path='/dodajput' 
+                element={
+                    <PrivateRoute>
+                      <AddTrip />
+                    </PrivateRoute>}
+              />
               <Route path='/putovanja' element={<Trips/>}/>
               <Route exact path="/putovanja/:id" element={<Trip/>} />
-              <Route path='/prijava' element={<Login/>}/>
-              <Route path='/registracija' element={<Register/>}/>
+              <Route 
+                path="/prijava" 
+                element={
+                        <PublicRoute>
+                          <Login />
+                        </PublicRoute>}
+              />
+              <Route 
+                path="/registracija" 
+                element={
+                        <PublicRoute>
+                          <Register />
+                        </PublicRoute>}
+              />
             </Routes>
           </Box>
         </div>
         <Footer></Footer>
-     
+      </AuthProvider>
   </HashRouter>
   );
 }

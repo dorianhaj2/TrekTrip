@@ -11,7 +11,9 @@
   flex-direction: column; 
   align-items: flex-start; 
   gap: 10px; 
+  width: 200px; /* Set a default width */
 }
+
 .filters button {
   width: 100%;
 }
@@ -26,4 +28,30 @@
 
 .destinations a {
   text-decoration: none;
+}
+
+.dropdown {
+  width: 100%;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .filters {
+    position: static; /* Make it flow with the document */
+    width: 100%; /* Full width on small screens */
+    flex-direction: row; /* Row direction to align buttons horizontally */
+    justify-content: space-between; /* Evenly space the buttons */
+  }
+}
+
+@media (max-width: 480px) {
+  .filters {
+    flex-direction: column;
+    width: 70%;
+    margin: 0 auto;
+  }
+  
+  .filters button, .sort-dropdown {
+    width: 100%; /* Ensure buttons take full width */
+  }
 }

@@ -2,44 +2,79 @@ import React, { useState, useEffect } from 'react';
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 import { Link } from 'react-router-dom';
 import HighlightedTripCard from '../../Components/HighlightedTripCard/HighlightedTripCard';
-import tripsData from '../Trips/tripsData';
+import axiosInstance from '../../axios/axiosInstance';
 import './Home.css';
 
 const geoUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-continents.json";
 
 const Home = () => {
   const [trips, setTrips] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [topTrips, setTopTrips] = useState([]);
 
   useEffect(() => {
-    // Fetch trips from the API or static file
-    fetch('/api/trips')
-      .then(response => response.json())
-      .then(data => {
-        // Sort trips by rating and get the top 3
-        const topTrips = data.sort((a, b) => b.rating - a.rating).slice(0, 3);
-        setTrips(topTrips);
-      });
-  }, []);
+      const fetchTrips = async () => {
+          try {
+              const response = await axiosInstance.get(`/trip/all`);
+              setTrips(response.data); // Assuming the response data is an array of trips
+              setLoading(false);
+              console.log(response.data)
+          } catch (error) {
+              console.error('Error fetching trips:', error);
+              setError(error.message);
+              setLoading(false);
+          }
+      };
+
+      fetchTrips();
+
+  }, [trips]);
+
+  useEffect(() => {
+    const calculateAverageRating = (ratings) => {
+      if (!ratings.length) return 0;
+      const total = ratings.reduce((sum, rating) => sum + rating.rating, 0);
+      return total / ratings.length;
+    };
+
+    // Calculate average rating for each trip
+    const tripsWithAverageRating = trips.map(trip => {
+      const averageRating = calculateAverageRating(trip.ratings);
+      return { ...trip, averageRating };
+    });
+
+    // Sort trips based on average rating in descending order
+    const sortedTrips = tripsWithAverageRating.sort((a, b) => b.averageRating - a.averageRating);
+    
+    // Get the top 3 highest rated trips
+    const topThreeTrips = sortedTrips.slice(0, 3);
+
+    setTopTrips(topThreeTrips);
+  }, [trips]);
+
+  if (loading) {
+      return <div>Loading...</div>;
+  }
+
+  if (error) {
+      return <div>Error: {error}</div>;
+  }
 
   const handleContinentClick = (continent) => {
     // Handle continent click, you can navigate to a different view or filter trips
     console.log(`Continent clicked: ${continent}`);
   };
 
-  const [topTrips, setTopTrips] = useState([]);
-
-  useEffect(() => {
-    // Sort trips by rating and get the top 3
-    const sortedTrips = tripsData.sort((a, b) => b.rating - a.rating).slice(0, 3);
-    setTopTrips(sortedTrips);
-  }, []);
-
   return (
     <div className="homepage">
       <header className="homepage-header">
         <h1>Pronađite svoju sljedeću pustolovinu</h1>
         <p>Vaš pouzdani kompas kroz labirint putovanja, osvjetljavajući skrivene dragulje i stvarajući avanture po narudžbi s preciznošću i strašću</p>
-        <ComposableMap>
+        <ComposableMap
+          width={800}
+          height={300}
+        >
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
               geographies.map(geo => (
