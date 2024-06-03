@@ -1,5 +1,6 @@
 import axiosInstance from "../axios/axiosInstance";
-const API_URL = '/trip'; // Assuming the base URL is relative to the base URL configured in axiosInstance
+
+const API_URL = '/trip'; 
 
 const getAllTrips = () => {
     return axiosInstance.get(`${API_URL}/all`);

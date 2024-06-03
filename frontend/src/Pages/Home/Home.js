@@ -17,7 +17,7 @@ const Home = () => {
       const fetchTrips = async () => {
           try {
               const response = await axiosInstance.get(`/trip/all`);
-              setTrips(response.data); // Assuming the response data is an array of trips
+              setTrips(response.data); 
               setLoading(false);
               console.log(response.data)
           } catch (error) {
@@ -38,16 +38,13 @@ const Home = () => {
       return total / ratings.length;
     };
 
-    // Calculate average rating for each trip
     const tripsWithAverageRating = trips.map(trip => {
       const averageRating = calculateAverageRating(trip.ratings);
       return { ...trip, averageRating };
     });
 
-    // Sort trips based on average rating in descending order
     const sortedTrips = tripsWithAverageRating.sort((a, b) => b.averageRating - a.averageRating);
     
-    // Get the top 3 highest rated trips
     const topThreeTrips = sortedTrips.slice(0, 3);
 
     setTopTrips(topThreeTrips);

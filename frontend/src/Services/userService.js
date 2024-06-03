@@ -1,12 +1,11 @@
-import axios from 'axios';
-
-class UserService {
+import axiosInstance from "../axios/axiosInstance";
+class userService {
     constructor() {
-        this.apiUrl = 'http://localhost:8080/user'; // Your API base URL
+        this.apiUrl = '/user'; // Your API base URL relative to the axiosInstance baseURL
     }
 
     getAllUsers() {
-        return axios.get(`${this.apiUrl}/all`)
+        return axiosInstance.get(`${this.apiUrl}/all`)
             .then(response => response.data)
             .catch(error => {
                 console.error('Error fetching all users:', error);
@@ -15,7 +14,7 @@ class UserService {
     }
 
     getUserById(id) {
-        return axios.get(`${this.apiUrl}/${id}`)
+        return axiosInstance.get(`${this.apiUrl}/${id}`)
             .then(response => response.data)
             .catch(error => {
                 console.error('Error fetching user by ID:', error);
@@ -23,8 +22,17 @@ class UserService {
             });
     }
 
+    getUserByUsername(username) {
+        return this.getAllUsers()
+            .then(users => users.find(user => user.username === username))
+            .catch(error => {
+                console.error('Error fetching user by username:', error);
+                throw error;
+            });
+    }
+    
     createUser(user) {
-        return axios.post(this.apiUrl, user)
+        return axiosInstance.post(this.apiUrl, user)
             .then(response => response.data)
             .catch(error => {
                 console.error('Error creating user:', error);
@@ -33,7 +41,7 @@ class UserService {
     }
 
     updateUser(id, user) {
-        return axios.put(`${this.apiUrl}/${id}`, user)
+        return axiosInstance.put(`${this.apiUrl}/${id}`, user)
             .then(response => response.data)
             .catch(error => {
                 console.error('Error updating user:', error);
@@ -42,7 +50,7 @@ class UserService {
     }
 
     deleteUser(id) {
-        return axios.delete(`${this.apiUrl}/${id}`)
+        return axiosInstance.delete(`${this.apiUrl}/${id}`)
             .then(response => response.data)
             .catch(error => {
                 console.error('Error deleting user:', error);
@@ -51,14 +59,7 @@ class UserService {
     }
 
     getCurrentUser() {
-        const token = localStorage.getItem('jwtToken');
-        const config = {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        };
-
-        return axios.get(`${this.apiUrl}/current`, config)
+        return axiosInstance.get(`${this.apiUrl}/current`)
             .then(response => response.data)
             .catch(error => {
                 console.error('Error fetching current user:', error);
@@ -67,4 +68,4 @@ class UserService {
     }
 }
 
-export default UserService;
+export default userService;

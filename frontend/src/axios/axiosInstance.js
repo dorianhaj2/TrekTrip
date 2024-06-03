@@ -3,7 +3,7 @@ import axios from 'axios';
 // Function to refresh access token
 const refreshAccessToken = async () => {
   try {
-    const res = await axios.post('http://localhost:8080/auth/refreshToken', {  // Correct URL
+    const res = await axios.post('http://localhost:8080/auth/refreshToken', {
       token: localStorage.getItem('authToken')
     });
     const accessToken = res.data.accessToken;
@@ -18,11 +18,10 @@ const refreshAccessToken = async () => {
 
 // Create Axios instance
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8080', // Adjust to your API base URL
-  // Other Axios configurations
+  baseURL: 'http://localhost:8080', 
 });
 
-// Add a request interceptor to attach the token to the request
+// Request interceptor to attach the token to the request
 axiosInstance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('accessToken');
@@ -36,7 +35,7 @@ axiosInstance.interceptors.request.use(
   }
 );
 
-// Add a response interceptor to handle token expiration
+// Response interceptor to handle token expiration
 axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {

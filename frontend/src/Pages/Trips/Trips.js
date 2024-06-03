@@ -38,7 +38,7 @@ const Trips = () => {
         const fetchCountries = async () => {
             try {
                 const response = await countryService.getAllCountries();
-                const sortedCountries = response.data.sort((a, b) => a.name.localeCompare(b.name)); // Sort countries alphabetically
+                const sortedCountries = response.data.sort((a, b) => a.name.localeCompare(b.name));
                 setCountries(sortedCountries);
             } catch (error) {
                 console.error('Error fetching countries:', error);

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axiosInstance from '../../axios/axiosInstance'; // Adjust the path as necessary
+import axiosInstance from '../../axios/axiosInstance'; 
 
 const UpdateProfile = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    id: '', // Assuming you have the user's ID
+    id: '', 
     username: '',
     description: '',
-    image: null // Assuming you're uploading an image
+    image: null
   });
 
   const userId = localStorage.getItem('userId');
@@ -60,18 +60,18 @@ const UpdateProfile = () => {
   return (
     <form onSubmit={handleSubmit} encType="multipart/form-data">
       <label>
-        Username:
+        Korisničko ime:
         <input type="text" name="username" value={formData.username} onChange={handleChange} />
       </label>
       <label>
-        Description:
+        Opis:
         <textarea name="description" value={formData.description} onChange={handleChange} />
       </label>
       <label>
-        Profile Image:
+        Profilna slika:
         <input type="file" name="image" onChange={handleImageChange} />
       </label>
-      <button type="submit">Update Profile</button>
+      <button type="submit">Uredi profil</button>
     </form>
   );
 };

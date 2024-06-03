@@ -87,6 +87,8 @@ const Profile = () => {
     fetchData(); 
   }, [activeUser]); 
 
+  console.log(user)
+
   return (
     <div>
       {loading ? (
@@ -96,10 +98,9 @@ const Profile = () => {
           <div className="profile-info">
             <div className="profile-details">
               <h1>{user.username}</h1>
-              {/* Assuming user.profilePicture is the URL of the user's profile picture */}
               <div className='profile-photo'>
                 <img
-                  src={user.profilePicture ? user.profilePicture : 'https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg'}
+                  src={user.image ? user.profilePicture : 'https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg'}
                   alt="Profile"
                   className="profile-pic"
                 />
@@ -132,16 +133,6 @@ const Profile = () => {
       ) : (
         <p>No user data available</p>
       )}
-      <div>
-      {userRole ? (
-        <div>
-          <p>Role ID: {userRole.id}</p>
-          <p>Role Name: {userRole.name}</p>
-        </div>
-      ) : (
-        <p>No user role found for ID {id}</p>
-      )}
-    </div>
     </div>
   );
 };
