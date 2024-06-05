@@ -18,10 +18,7 @@ public class Location {
     @ManyToOne
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private Country country;
-//    private Integer pin_id;
     @OneToOne
     @JoinColumn(name = "pin_ID", referencedColumnName = "id")
     private Pin pin;
 }
-
-//One to many primjer na 25:48
