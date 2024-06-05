@@ -1,5 +1,6 @@
 package com.trektrip.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,12 +18,15 @@ public class Rating {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private UserInfo user;
-
-    @ManyToOne
     @JoinColumn(name = "trip_id", referencedColumnName = "id")
+    @JsonBackReference
     private Trip trip;
 
-    private int rating;
+    @Column(name = "rating", columnDefinition = "DOUBLE")
+    private double rating;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private UserInfo user;
 }
+

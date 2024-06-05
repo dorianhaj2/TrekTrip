@@ -36,7 +36,7 @@ public class LocationServiceImpl implements LocationService {
         Optional<Location> locationOptional = locationRepository.findById(id);
         if (locationOptional.isPresent()) {
             Location locationToUpdate = locationOptional.get();
-            locationToUpdate.setCity(location.getCity());
+            locationToUpdate.setDestination(location.getDestination());
             return locationRepository.save(locationToUpdate);
         } else {
             throw new EntityNotFoundException("Location with the ID '"+ id + "' not found");

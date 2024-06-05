@@ -20,7 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/auth")
@@ -37,8 +38,10 @@ public class AuthController {
 
     @PostMapping("/login")
     public JwtResponseDTO authenticateAndGetToken(@RequestBody AuthRequestDTO authRequestDTO){
+        Logger logger = LoggerFactory.getLogger(getClass());
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequestDTO.getUsername(), authRequestDTO.getPassword()));
         if(authentication.isAuthenticated()){
+            logger.info("User '{}' authenticated successfully", authRequestDTO.getUsername());
             RefreshToken refreshToken = refreshTokenService.createRefreshToken(authRequestDTO.getUsername());
             return JwtResponseDTO.builder()
                     .accessToken(jwtService.generateToken(authRequestDTO.getUsername()))
@@ -50,16 +53,24 @@ public class AuthController {
     }
 
     @PostMapping("/refreshToken")
-    public JwtResponseDTO refreshToken(@RequestBody RefreshTokenRequestDTO refreshTokenRequestDTO){
+    public JwtResponseDTO refreshToken(@RequestBody RefreshTokenRequestDTO refreshTokenRequestDTO) {
+        System.out.println("Received refresh token request: " + refreshTokenRequestDTO.getToken());
+
         return refreshTokenService.findByToken(refreshTokenRequestDTO.getToken())
-                .map(refreshTokenService::verifyExpiration)
-                .map(RefreshToken::getUserInfo)
-                .map(userInfo -> {
-                    String accessToken = jwtService.generateToken(userInfo.getUsername());
+                .map(refreshToken -> {
+                    System.out.println("Refresh token found in DB.");
+                    refreshTokenService.verifyExpiration(refreshToken);
+                    String username = refreshToken.getUserInfo().getUsername();
+                    System.out.println("Generating new JWT for user: " + username);
+                    String accessToken = jwtService.generateToken(username);
                     return JwtResponseDTO.builder()
                             .accessToken(accessToken)
                             .token(refreshTokenRequestDTO.getToken()).build();
-                }).orElseThrow(() ->new RuntimeException("Refresh Token is not in DB..!!"));
+                })
+                .orElseThrow(() -> {
+                    System.out.println("Refresh Token is not in DB or expired..!!");
+                    return new RuntimeException("Refresh Token is not in DB or expired..!!");
+                });
     }
 
     @PostMapping("/logout")

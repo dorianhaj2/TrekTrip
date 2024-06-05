@@ -1,6 +1,6 @@
 package com.trektrip.model;
 
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,5 +38,9 @@ public class UserInfo {
             inverseJoinColumns = { @JoinColumn(name = "role_id") }
     )
     private List<UserRole> roles;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @JsonBackReference
+    private List<Trip> trips;  // Add this line to include the trips
 
 }

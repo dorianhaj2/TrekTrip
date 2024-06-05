@@ -14,10 +14,14 @@ public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String city;
+
+    @Column(name = "destination")
+    private String destination;
+
     @ManyToOne
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private Country country;
+
     @OneToOne
     @JoinColumn(name = "pin_ID", referencedColumnName = "id")
     private Pin pin;
