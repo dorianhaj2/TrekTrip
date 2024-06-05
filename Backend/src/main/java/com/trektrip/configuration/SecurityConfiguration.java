@@ -38,8 +38,8 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(toH2Console()).permitAll();
-                    auth.requestMatchers("/auth/login", "auth/refreshToken", "user/register", "userRole").permitAll();
-                    auth.requestMatchers("/auth/logout").hasRole("USER");
+                    auth.requestMatchers("/auth/login", "/auth/refreshToken", "/user/register", "/trip/**").permitAll();
+                    auth.requestMatchers( "/auth/logout").hasRole("USER");
                     auth.anyRequest().authenticated();
                 })
                 .authenticationProvider(authenticationProvider())

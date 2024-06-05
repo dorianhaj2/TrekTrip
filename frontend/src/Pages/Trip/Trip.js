@@ -27,21 +27,25 @@ const Trip = () => {
                 setTrip(response.data);
 
                 const username = localStorage.getItem('username');
+
+                if (username) {
                 const usersResponse = await axiosInstance.get(`/user/all`);
                 const users = usersResponse.data;
                 const activeUser = users.find(user => user.username === username);
                 if (activeUser) {
                     setActiveUserId(activeUser.id);
                     console.log(activeUser.id)
-                }
 
-                // Check if the user has already rated this trip
-                console.log(activeUserId)
-                const existingRating = response.data.ratings.find(rating => rating.user.id === activeUser.id);
-                if (existingRating) {
-                    setUserRating(existingRating.rating);
-                    setHasRated(true); // User has already rated
+                    // Check if the user has already rated this trip
+                    console.log(activeUserId)
+                    const existingRating = response.data.ratings.find(rating => rating.user.id === activeUser.id);
+                    if (existingRating) {
+                        setUserRating(existingRating.rating);
+                        setHasRated(true); // User has already rated
+                    }
                 }
+            }
+
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching trip:', error);
