@@ -1,0 +1,80 @@
+{
+    "sitenames": {
+      "home": "Trektrip",
+      "trips": "Trips",
+      "profile": "Profile",
+      "editProfile": "Edit Profile",
+      "addTrip": "Add Trip",
+      "login": "Login",
+      "register": "Register"
+    },
+    "home": {
+      "title": "Find your next adventure",
+      "subtitle": "Your reliable compass through the maze of travel, illuminating hidden gems and creating adventures on demand with precision and passion",
+      "tripsTitle": "Featured Trips"
+    },
+    "language": {
+      "croatian": "Croatian",
+      "english": "English"
+    },
+    "header": {
+      "trips": "Trips",
+      "login": "Login",
+      "profile": "Profile",
+      "logout": "Logout"
+    },
+    "footer": {
+      "privacyPolicy": "",
+      "cookiePolicy": "",
+      "contact": "Contact"
+    },
+    "login": {
+      "title": "LOGIN",
+      "username": "Username",
+      "password": "Password",
+      "submit": "Login",
+      "noAccount": "Don't have an account?",
+      "register": "Register",
+      "remember": "Remember me",
+      "forgotten": "Forgotten password?"
+    },
+    "register": {
+        "title": "REGISTER",
+        "email": "Email",
+        "username": "Username",
+        "password": "Password",
+        "repeatPassword": "Repeat your password",
+        "submit": "Register",
+        "haveAccount": "Already have an account?",
+        "login": "Login"
+    },
+    "profile": {
+      "about": "About Me",
+      "trips": "My Trips",
+      "editProfile": "Edit Profile",
+      "addTrip": "Add Trip"
+    },
+    "filters": {
+      "sort": "Sort",
+      "all": "All",
+      "country": "Country",
+      "month": "Month",
+      "clearFilters": "CLEAR FILTERS"
+    },
+    "trip": {
+      "country": "Country",
+      "destination": "Destination",
+      "month": "Month",
+      "duration": "Duration",
+      "price": "Price",
+      "author": "Author",
+      "comments": "Comments"
+    },
+    "editProfile": {
+      "username": "Username",
+      "description": "Description",
+      "profile-photo": "Profile Photo",
+      "editButton": "Edit Profile"
+    }
+  }
+  

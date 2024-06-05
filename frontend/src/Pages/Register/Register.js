@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios'; // Import axios for making HTTP requests
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
+import axiosInstance from '../../axios/axiosInstance';
 import '../Login/Auth.css';
 
 const Register = () => {
@@ -8,8 +12,9 @@ const Register = () => {
     username: '',
     email: '',
     password: '',
-    repeatPassword: ''
   });
+
+  const {t} = useTranslation();
 
   const [registering, setRegistering] = useState(false);
   const [registrationFailed, setRegistrationFailed] = useState(false);
@@ -38,12 +43,11 @@ const Register = () => {
     }
 
     try {
-      // Send POST request to register user
-      const response = await axios.post('/user/register', formData);
+      const response = await axiosInstance.post('/user/register', formData);
       
       console.log('Registration successful:', response.data);
-      // Redirect user to login page after successful registration
       navigate('/prijava');
+      window.scroll(0, 0);
     } catch (error) {
       console.error('Registration failed:', error);
       setError('Registration failed. Please try again later.');
@@ -55,22 +59,25 @@ const Register = () => {
 
   return (
     <div className="auth-container">
+      <Helmet>
+        <title>{t('sitenames.register')}</title>
+      </Helmet>
       <form className="auth-form" onSubmit={handleSubmit}>
-        <h1 className="auth-title">REGISTRACIJA</h1>
+        <h1 className="auth-title">{t('register.title')}</h1>
         <label>
-          Email
+          {t('register.email')}
           <input type="email" name="email" value={formData.email} onChange={handleChange} required />
         </label>
         <label>
-          Korisničko ime
+          {t('register.username')}
           <input type="text" name="username" value={formData.username} onChange={handleChange} required />
         </label>
         <label>
-          Lozinka
+          {t('register.password')}
           <input type="password" name="password" value={formData.password} onChange={handleChange} required />
         </label>
         <label>
-          Ponovite lozinku
+          {t('register.repeatPassword')}
           <input type="password" name="repeatPassword" value={formData.repeatPassword} onChange={handleChange} required />
         </label>
         <button
@@ -78,8 +85,9 @@ const Register = () => {
           className="auth-submit"
           disabled={!formData.username || !formData.email || !formData.password || !formData.repeatPassword || registering}
         >
-          PODNESI
+          {t('register.submit')}
         </button>
+        <p>{t('register.haveAccount')} <Link to="/prijava">{t('register.login')}</Link></p>
         {error && <p className="error-message">{error}</p>}
       </form>
     </div>

@@ -11,7 +11,7 @@ import Register from './Pages/Register/Register';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { Navigate } from 'react-router-dom';
 import UpdateProfile from './Pages/UpdateProfile/UpdateProfile';
-import AddTrip from './Pages/AddTrip/AddTrip';
+import AddTrip from './Pages/AddTrip/AddTrip'
 import './App.css';
 
 const PrivateRoute = ({ children }) => {

@@ -3,11 +3,14 @@ import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 import { Link } from 'react-router-dom';
 import HighlightedTripCard from '../../Components/HighlightedTripCard/HighlightedTripCard';
 import axiosInstance from '../../axios/axiosInstance';
+import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet';
 import './Home.css';
 
 const geoUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-continents.json";
 
 const Home = () => {
+  const {t} = useTranslation();
   const [trips, setTrips] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -65,9 +68,12 @@ const Home = () => {
 
   return (
     <div className="homepage">
+      <Helmet>
+        <title>{t('sitenames.home')}</title>
+      </Helmet>
       <header className="homepage-header">
-        <h1>Pronađite svoju sljedeću pustolovinu</h1>
-        <p>Vaš pouzdani kompas kroz labirint putovanja, osvjetljavajući skrivene dragulje i stvarajući avanture po narudžbi s preciznošću i strašću</p>
+        <h1>{t('home.title')}</h1>
+        <p>{t('home.subtitle')}</p>
         <ComposableMap
           width={800}
           height={300}
@@ -91,7 +97,7 @@ const Home = () => {
         </ComposableMap>
       </header>
       <section className="featured-trips">
-        <h2>Istaknuta putovanja</h2>
+        <h2>{t('home.tripsTitle')}</h2>
         <div className="trip-cards">
             {topTrips.map((trip) => (
                 <Link key={trip.id} to={`/putovanja/${trip.id}`}>

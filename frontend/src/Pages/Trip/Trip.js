@@ -4,9 +4,11 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import axiosInstance from '../../axios/axiosInstance';
 import tripService from '../../Services/tripService';
+import { useTranslation } from 'react-i18next';
 import './Trip.css';
 
 const Trip = () => {
+    const {t} = useTranslation();
     const { id } = useParams();
     const [trip, setTrip] = useState(null);
     const [userRating, setUserRating] = useState('');
@@ -96,7 +98,7 @@ const Trip = () => {
                 <div className='trip-intro'>
                     <div className='trip-title'>
                         <h1>{trip.title}</h1>
-                        <p className="author">Autor: {trip.user.username}</p>
+                        <p className="author">{t('trip.author')}: {trip.user.username}</p>
                     </div>
                     
                 </div>
@@ -114,16 +116,16 @@ const Trip = () => {
                         <p>Average Rating: {averageRating.toFixed(1)}</p>
                     </Stack> 
                     <div className="trip-summary">
-                        <p><strong>Država:</strong></p><span>{trip.locations.length > 0 ? trip.locations[0].country.name : 'Unknown Country'}</span>
-                        <p><strong>Odredište:</strong></p><span>{trip.locations.map(location => location.destination).join(', ')}</span>
-                        <p><strong>Mjesec:</strong></p><span>{trip.tripMonth}</span>
-                        <p><strong>Trajanje:</strong></p><span>{trip.lengthInDays} dana</span>
-                        <p><strong>Cijena:</strong></p><span>{trip.price} €</span>
+                        <p><strong>{t('trip.country')}:</strong></p><span>{trip.locations.length > 0 ? trip.locations[0].country.name : 'Unknown Country'}</span>
+                        <p><strong>{t('trip.destination')}:</strong></p><span>{trip.locations.map(location => location.destination).join(', ')}</span>
+                        <p><strong>{t('trip.month')}:</strong></p><span>{trip.tripMonth}</span>
+                        <p><strong>{t('trip.duration')}:</strong></p><span>{trip.lengthInDays} dana</span>
+                        <p><strong>{t('trip.price')}:</strong></p><span>{trip.price} €</span>
                     </div>   
                 </div>             
             </div>
             <div className="comments-section">
-                <h2>Komentari</h2>
+                <h2>{t('trip.comments')}</h2>
             </div>
         </div>
     );

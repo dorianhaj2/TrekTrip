@@ -4,9 +4,12 @@ import HighlightedTripCard from '../../Components/HighlightedTripCard/Highlighte
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import axiosInstance from '../../axios/axiosInstance';
+import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet';
 import './Profile.css';
 
 const Profile = () => {
+  const {t} = useTranslation();
   const [user, setUser] = useState(null);
   const [id, setId] = useState(null);
   const [activeUser, setActiveUser] = useState(null);
@@ -91,6 +94,9 @@ const Profile = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>{t('sitenames.profile')}</title>
+      </Helmet>
       {loading ? (
         <p>Loading...</p>
       ) : user ? (
@@ -107,20 +113,20 @@ const Profile = () => {
               </div>
               <div className="profile-buttons">
                 <Link to='/uredi-profil'>
-                  <button>Uredi profil</button>
+                  <button>{t('profile.editProfile')}</button>
                 </Link>
                 <Link to='/dodaj-put'>
-                  <button>Dodaj put</button>
+                  <button>{t('profile.addTrip')}</button>
                 </Link>
               </div>
             </div>
             <div className="about-me">
-              <h2>O meni</h2>
+              <h2>{t('profile.about')}</h2>
               <p>{user.description}</p>
             </div>
           </div>
           <div className="my-trips">
-            <h2>Moja putovanja</h2>
+            <h2>{t('profile.trips')}</h2>
             <div className="trip-cards">
               {topTrips.map((trip) => (
                 <Link key={trip.id} to={`/putovanja/${trip.id}`}>

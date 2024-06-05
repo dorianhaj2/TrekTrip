@@ -4,9 +4,12 @@ import { Link } from 'react-router-dom';
 import tripService from '../../Services/tripService';
 import countryService from '../../Services/countryService';
 import { MenuItem, Select, FormControl, InputLabel, Button } from '@mui/material';
+import { Helmet } from 'react-helmet';
+import { useTranslation } from 'react-i18next';
 import './Trips.css';
 
 const Trips = () => {
+    const {t} = useTranslation();
     const [trips, setTrips] = useState([]);
     const [originalTrips, setOriginalTrips] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -118,9 +121,12 @@ const Trips = () => {
 
     return (
         <div className="trips">
+            <Helmet>
+                <title>{t('sitenames.trips')}</title>
+            </Helmet>
             <div className="filters">
                 <FormControl variant="outlined" className="dropdown">
-                    <InputLabel>Sortiraj</InputLabel>
+                    <InputLabel>{t('filters.sort')}</InputLabel>
                     <Select
                         value={sortCriteria}
                         onChange={handleSortChange}
@@ -134,7 +140,7 @@ const Trips = () => {
                     </Select>
                 </FormControl>
                 <FormControl variant="outlined" className="dropdown">
-                    <InputLabel>Država</InputLabel>
+                    <InputLabel>{t('filters.country')}</InputLabel>
                     <Select
                         value={selectedCountry}
                         onChange={handleCountryChange}
@@ -147,20 +153,20 @@ const Trips = () => {
                     </Select>
                 </FormControl>
                 <FormControl variant="outlined" className="dropdown">
-                    <InputLabel>Mjesec</InputLabel>
+                    <InputLabel>{t('filters.month')}</InputLabel>
                     <Select
                         value={selectedMonth}
                         onChange={handleMonthChange}
                         label="Month"
                     >
-                        <MenuItem value="Svi">Svi</MenuItem>
+                        <MenuItem value="Svi">{t('filters.all')}</MenuItem>
                         {months.map((month, index) => (
                             <MenuItem key={index} value={month}>{month}</MenuItem>
                         ))}
                     </Select>
             </FormControl>
                 <Button variant="contained" color="secondary" onClick={handleClearFilters}>
-                    Clear Filters
+                    {t('filters.clearFilters')}
                 </Button>
             </div>
             <div className="destinations">
