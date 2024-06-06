@@ -22,7 +22,7 @@
             <requestState>
               <option name="auth">
                 <authState>
-                  <option name="type" value="BASIC" />
+                  <option name="type" value="BEARER" />
                 </authState>
               </option>
               <option name="body">
@@ -713,7 +713,7 @@
                 <authState>
                   <option name="bearer">
                     <ks>
-                      <option name="token" value="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTcxNjY1NDM1OCwiZXhwIjoxNzE2NjYxNTU4fQ.Agqyxx35FMqSLOvE-p4jqhvKVmf9DU3qXL4_Tc32ujo" />
+                      <option name="token" value="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTcxNjkxMjY4MywiZXhwIjoxNzE2OTE5ODgzfQ.pQeMesYnVVhJ76-ey8YnTAidgvq9EpWxAUt-ibiABJQ" />
                     </ks>
                   </option>
                   <option name="type" value="BEARER" />
@@ -721,7 +721,7 @@
               </option>
               <option name="body">
                 <bodyState>
-                  <option name="raw" value="{&#10;  &quot;token&quot;: &quot;abe35d00-8ad1-4502-a5c8-fa00b5221483&quot;&#10;}" />
+                  <option name="raw" value="{&#10;  &quot;token&quot;: &quot;3e51d39a-cadd-4291-a2bb-8e59401cef3d&quot;&#10;}" />
                   <option name="type" value="JSON" />
                 </bodyState>
               </option>
@@ -747,7 +747,7 @@
               </option>
               <option name="body">
                 <bodyState>
-                  <option name="raw" value="{&#10;  &quot;token&quot;: &quot;2a32f788-94e2-4a6e-b598-9c32e5b92659&quot;&#10;}" />
+                  <option name="raw" value="{&#10;  &quot;token&quot;: &quot;97ea90ed-00f4-432e-ae62-5360c57ff0ef&quot;&#10;}" />
                   <option name="type" value="JSON" />
                 </bodyState>
               </option>
