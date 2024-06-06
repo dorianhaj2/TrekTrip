@@ -40,7 +40,7 @@ const AddTrip = () => {
     try {
       const tripData = {
         ...formData,
-        user: userId,
+        user: {id: userId},
       };
       const response = await tripService.createTrip(tripData);
       console.log('Trip added successfully:', response.data);
