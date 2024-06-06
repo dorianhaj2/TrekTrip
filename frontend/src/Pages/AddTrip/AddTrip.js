@@ -44,7 +44,7 @@ const AddTrip = () => {
       };
       const response = await tripService.createTrip(tripData);
       console.log('Trip added successfully:', response.data);
-      navigate('/trips'); 
+      navigate('/putovanja'); 
     } catch (error) {
       console.error('Adding trip failed:', error);
       setError('Failed to add trip. Please try again later.');
