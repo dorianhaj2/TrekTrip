@@ -53,7 +53,7 @@ function App() {
                       </PrivateRoute>}
               />
               <Route 
-                path='/dodajput' 
+                path='/dodaj-put' 
                 element={
                     <PrivateRoute>
                       <AddTrip />

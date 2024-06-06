@@ -22,7 +22,7 @@ const Home = () => {
               const response = await axiosInstance.get(`/trip/all`);
               setTrips(response.data); 
               setLoading(false);
-              console.log(response.data)
+              //console.log(response.data)
           } catch (error) {
               console.error('Error fetching trips:', error);
               setError(error.message);

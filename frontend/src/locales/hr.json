@@ -75,5 +75,14 @@
         "description": "Opis",
         "profile-photo": "Profilna slika",
         "editButton": "Uredi profil"
+    },
+    "addTrip": {
+        "title": "Dodajte Novo Putovanje",
+        "name": "Naslov",
+        "description": "Opis",
+        "length": "Trajanje u danima",
+        "price": "Cijena",
+        "month": "Mjesec putovanja",
+        "submit": "Dodaj Putovanje"
     }
 }

@@ -47,9 +47,7 @@ const UpdateProfile = () => {
       });
 
       console.log('User updated:', res.data);
-      // Optionally, you can handle success or update UI accordingly
 
-      // Update the local storage username if it was changed
       if (formData.username) {
         localStorage.setItem('username', formData.username);
       }
@@ -57,7 +55,6 @@ const UpdateProfile = () => {
       navigate('/profil');
     } catch (error) {
       console.error('Error updating user:', error);
-      // Optionally, you can handle errors or update UI accordingly
     }
   };
 

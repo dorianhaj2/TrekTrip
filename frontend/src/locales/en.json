@@ -75,6 +75,15 @@
       "description": "Description",
       "profile-photo": "Profile Photo",
       "editButton": "Edit Profile"
+    },
+    "addTrip": {
+      "title": "Add New Trip",
+      "name": "Title",
+      "description": "Description",
+      "length": "Duration in Days",
+      "price": "Price",
+      "month": "Travel Month",
+      "submit": "Add Trip"
     }
   }
   
