@@ -30,7 +30,6 @@ const Header = () => {
             logout();
             navigate('/');
         } catch (error) {
-            // Handle logout error
             console.error('Logout error:', error);
         }
     };

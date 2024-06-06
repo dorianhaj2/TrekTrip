@@ -1,4 +1,5 @@
 import axiosInstance from "../axios/axiosInstance";
+
 const API_URL = '/country'; 
 
 const getAllCountries = () => {

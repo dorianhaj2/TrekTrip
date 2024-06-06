@@ -24,8 +24,9 @@
         "logout": "Odjava"
     },
     "footer": {
-        "privacyPolicy": "",
-        "cookiePolicy": "",
+        "privacyPolicy": "Pravila o privatnosti",
+        "termsConditions": "Uvjeti i odredbe",
+        "cookiePolicy": "Pravila o kolačićima",
         "contact": "Kontakt"
     },
     "login": {
@@ -36,7 +37,8 @@
         "noAccount": "Nemate račun?",
         "register": "Registrirajte se",
         "remember": "Zapamti me",
-        "forgotten": "Zaboravljena lozinka?"
+        "forgotten": "Zaboravljena lozinka?",
+        "failed": "Prijava nije uspjela. Pokušajte ponovo."
     },
     "register": {
         "title": "REGISTRACIJA",
@@ -59,6 +61,11 @@
         "all": "Svi",
         "country": "Država",
         "month": "Mjesec",
+        "highestRated": "Najbolje ocijenjeni",
+        "longest": "Najduži",
+        "shortest": "Najkraći",
+        "mostExpensive": "Najskuplji",
+        "leastExpensive": "Najjeftiniji",
         "clearFilters": "OČISTI FILTERE"
     },
     "trip": {
@@ -83,6 +90,21 @@
         "length": "Trajanje u danima",
         "price": "Cijena",
         "month": "Mjesec putovanja",
-        "submit": "Dodaj Putovanje"
-    }
+        "submit": "Dodaj Putovanje",
+        "chooseMonth": "Odaberite Mjesec"
+    },
+    "months": [
+        "Siječanj",
+        "Veljača",
+        "Ožujak",
+        "Travanj",
+        "Svibanj",
+        "Lipanj",
+        "Srpanj",
+        "Kolovoz",
+        "Rujan",
+        "Listopad",
+        "Studeni",
+        "Prosinac"
+    ]
 }

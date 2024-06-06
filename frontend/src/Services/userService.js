@@ -1,7 +1,8 @@
 import axiosInstance from "../axios/axiosInstance";
+
 class userService {
     constructor() {
-        this.apiUrl = '/user'; // Your API base URL relative to the axiosInstance baseURL
+        this.apiUrl = '/user';
     }
 
     getAllUsers() {

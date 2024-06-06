@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // Import axios for making HTTP requests
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
@@ -35,7 +34,6 @@ const Register = () => {
     setRegistering(true);
     setError('');
 
-    // Check if passwords match
     if (formData.password !== formData.repeatPassword) {
       setError('Passwords do not match');
       setRegistering(false);

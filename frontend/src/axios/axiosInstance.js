@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-// Function to refresh access token
 const refreshAccessToken = async () => {
   try {
     const res = await axios.post('http://localhost:8080/auth/refreshToken', {

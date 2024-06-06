@@ -8,6 +8,8 @@ import './AddTrip.css';
 const AddTrip = () => {
   const {t} = useTranslation();
 
+  const months = t('months', { returnObjects: true });
+
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -51,11 +53,6 @@ const AddTrip = () => {
     }
   };
 
-  const months = [
-    'Siječanj', 'Veljača', 'Ožujak', 'Travanj', 'Svibanj', 'Lipanj',
-    'Srpanj', 'Kolovoz', 'Rujan', 'Listopad', 'Studeni', 'Prosinac'
-  ];
-
   return (
     <div className="auth-container">
       <Helmet>
@@ -82,7 +79,7 @@ const AddTrip = () => {
         <label>
           {t('addTrip.month')}
           <select name="tripMonth" value={formData.tripMonth} onChange={handleChange} required>
-            <option value="">Odaberite Mjesec</option>
+            <option value="">{t('addTrip.chooseMonth')}</option>
             {months.map((month, index) => (
               <option key={index} value={month}>{month}</option>
             ))}

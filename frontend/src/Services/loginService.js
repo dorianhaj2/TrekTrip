@@ -1,9 +1,8 @@
-// LoginService.js
 import axios from 'axios';
 
 class LoginService {
     constructor() {
-        this.apiUrl = 'http://localhost:8080/api'; // Your API base URL
+        this.apiUrl = 'http://localhost:8080/api';
     }
 
     authenticate(userCredentials) {
@@ -15,7 +14,7 @@ class LoginService {
     }
 
     logout() {
-        localStorage.removeItem('jwtToken'); // Remove JWT token from localStorage upon logout
+        localStorage.removeItem('jwtToken'); 
     }
 }
 

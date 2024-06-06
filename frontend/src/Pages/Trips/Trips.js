@@ -18,7 +18,7 @@ const Trips = () => {
     const [selectedCountry, setSelectedCountry] = useState('');
     const [countries, setCountries] = useState([]);
     const [selectedMonth, setSelectedMonth] = useState('');
-    const months = ['Siječanj', 'Veljača', 'Ožujak', 'Travanj', 'Svibanj', 'Lipanj', 'Srpanj', 'Kolovoz', 'Rujan', 'Listopad', 'Studeni', 'Prosinac'];
+    const months = t('months', { returnObjects: true });
     const [filtersApplied, setFiltersApplied] = useState(false);
 
     useEffect(() => {
@@ -132,11 +132,11 @@ const Trips = () => {
                         onChange={handleSortChange}
                         label="Sort"
                     >
-                        <MenuItem value="highestRated">Najbolje ocijenjeni</MenuItem>
-                        <MenuItem value="longest">Najduži</MenuItem>
-                        <MenuItem value="shortest">Najkraći</MenuItem>
-                        <MenuItem value="mostExpensive">Najskuplji</MenuItem>
-                        <MenuItem value="leastExpensive">Najjeftiniji</MenuItem>
+                        <MenuItem value="highestRated">{t('filters.highestRated')}</MenuItem>
+                        <MenuItem value="longest">{t('filters.longest')}</MenuItem>
+                        <MenuItem value="shortest">{t('filters.shortest')}</MenuItem>
+                        <MenuItem value="mostExpensive">{t('filters.mostExpensive')}</MenuItem>
+                        <MenuItem value="leastExpensive">{t('filters.leastExpensive')}</MenuItem>
                     </Select>
                 </FormControl>
                 <FormControl variant="outlined" className="dropdown">

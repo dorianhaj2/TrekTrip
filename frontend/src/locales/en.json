@@ -24,8 +24,9 @@
       "logout": "Logout"
     },
     "footer": {
-      "privacyPolicy": "",
-      "cookiePolicy": "",
+      "privacyPolicy": "Privacy Policy",
+      "termsConditions": "Terms & Conditions",
+      "cookiePolicy": "Cookie Policy",
       "contact": "Contact"
     },
     "login": {
@@ -36,7 +37,8 @@
       "noAccount": "Don't have an account?",
       "register": "Register",
       "remember": "Remember me",
-      "forgotten": "Forgotten password?"
+      "forgotten": "Forgotten password?",
+       "failed": "Login failed. Please try again."
     },
     "register": {
         "title": "REGISTER",
@@ -59,6 +61,11 @@
       "all": "All",
       "country": "Country",
       "month": "Month",
+      "highestRated": "Highest Rated",
+      "longest": "Longest",
+      "shortest": "Shortest",
+      "mostExpensive": "Most Expensive",
+      "leastExpensive": "Least Expensive",
       "clearFilters": "CLEAR FILTERS"
     },
     "trip": {
@@ -83,7 +90,22 @@
       "length": "Duration in Days",
       "price": "Price",
       "month": "Travel Month",
-      "submit": "Add Trip"
-    }
+      "submit": "Add Trip",
+      "chooseMonth": "Choose a Month"
+    },
+    "months": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
   }
   

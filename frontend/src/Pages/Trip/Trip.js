@@ -63,9 +63,9 @@ const Trip = () => {
             await axiosInstance.post(`/rating`, { tripId: id, rating: newValue, userId: activeUserId });
             console.log('Rating added/updated successfully');
             // Refetch trip data to get updated ratings
-                const response = await tripService.getTripById(id);
+            const response = await tripService.getTripById(id);
             setTrip(response.data);
-            setHasRated(true); // Update state to reflect user has rated
+            setHasRated(true);
         } catch (error) {
             console.error('Error adding/updating rating:', error);
         }
@@ -94,7 +94,6 @@ const Trip = () => {
 
     return (
         <div className="trip-page">
-            {/* Render trip details using the fetched data */}
             <div className="main-image" style={{ backgroundImage: `url(${trip.image})` }}>
                 <div className="overlay"></div>
             </div>

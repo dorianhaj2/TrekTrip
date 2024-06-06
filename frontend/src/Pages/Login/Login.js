@@ -51,7 +51,6 @@ const Login = () => {
 
         console.log(authToken)
         
-        // Save the encoded token to localStorage
         localStorage.setItem('authToken', authToken);
         localStorage.setItem('username', username);
         localStorage.setItem('accessToken', accessToken);
@@ -59,26 +58,21 @@ const Login = () => {
         navigate('/');
         window.scroll(0, 0);
     } catch (error) {
-        // Handle login error
         if (error.response) {
-          // Server responded with a status code outside of 2xx
           console.error('Login failed:', error.response.data);
           setError("Molimo provjerite podatke")
       } else if (error.request) {
-          // Request made but no response received
           console.error('No response received:', error.request);
       } else {
-          // Something else went wrong
           console.error('Error during login:', error.message);
       }
       setLoginFailed(true);
     } finally {
-      setAuthenticating(false); // Re-enable inputs
+      setAuthenticating(false);
     }
 
 };
   
-
     return (
       <div className="auth-container">
         <Helmet>
@@ -132,7 +126,7 @@ const Login = () => {
             {t('login.submit')}
             {authenticating && <span className="spinner-border spinner-border-sm ml-2" role="status" aria-hidden="true"></span>}
           </button>
-          {loginFailed && <div className="alert alert-danger mt-3">Prijava nije uspjela. Pokušajte ponovo.</div>}
+          {loginFailed && <div className="alert alert-danger mt-3">{t('login.failed')}</div>}
           <p>{t('login.noAccount')} <Link to="/registracija">{t('login.register')}</Link></p>
           {error && <p className="error">{error}</p>}
         </form>

@@ -13,7 +13,7 @@ const Profile = () => {
   const [user, setUser] = useState(null);
   const [id, setId] = useState(null);
   const [activeUser, setActiveUser] = useState(null);
-  const [loading, setLoading] = useState(true); // State to track loading status
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
   const [userRole, setUserRole] = useState(null);
