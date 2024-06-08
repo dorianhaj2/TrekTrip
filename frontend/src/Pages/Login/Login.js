@@ -49,7 +49,8 @@ const Login = () => {
 
         login(authToken)
 
-        console.log(authToken)
+        console.log(authToken);
+        console.log(accessToken);
         
         localStorage.setItem('authToken', authToken);
         localStorage.setItem('username', username);
