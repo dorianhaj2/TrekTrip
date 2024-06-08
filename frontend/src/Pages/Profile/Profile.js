@@ -90,7 +90,7 @@ const Profile = () => {
     fetchData(); 
   }, [activeUser]); 
 
-  console.log(user)
+  //console.log(user)
 
   return (
     <div>
