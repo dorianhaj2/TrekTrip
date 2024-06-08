@@ -75,6 +75,7 @@
       "duration": "Duration",
       "price": "Price",
       "author": "Author",
+      "days": "days",
       "comments": "Comments"
     },
     "editProfile": {

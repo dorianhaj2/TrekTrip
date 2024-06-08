@@ -114,7 +114,7 @@ const Trip = () => {
                             precision={0.1}
                             size='large'
                             onChange={handleRatingChange}
-                            readOnly={!activeUserId || hasRated} // Disable rating if user is not logged in or has already rated
+                            readOnly={!activeUserId || hasRated  || activeUserId === trip.user.id} // Disable rating if user is not logged in or has already rated
                         />
                         <p>Average Rating: {averageRating.toFixed(1)}</p>
                     </Stack> 
@@ -122,7 +122,7 @@ const Trip = () => {
                         <p><strong>{t('trip.country')}:</strong></p><span>{trip.locations.length > 0 ? trip.locations[0].country.name : 'Unknown Country'}</span>
                         <p><strong>{t('trip.destination')}:</strong></p><span>{trip.locations.map(location => location.destination).join(', ')}</span>
                         <p><strong>{t('trip.month')}:</strong></p><span>{trip.tripMonth}</span>
-                        <p><strong>{t('trip.duration')}:</strong></p><span>{trip.lengthInDays} dana</span>
+                        <p><strong>{t('trip.duration')}:</strong></p><span>{trip.lengthInDays} {trip.days}</span>
                         <p><strong>{t('trip.price')}:</strong></p><span>{trip.price} €</span>
                     </div>   
                 </div>             
