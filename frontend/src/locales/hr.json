@@ -75,6 +75,7 @@
         "duration": "Trajanje",
         "price": "Cijena",
         "author": "Autor",
+        "days": "dana",
         "comments": "Komentari"
     },
     "editProfile": {
