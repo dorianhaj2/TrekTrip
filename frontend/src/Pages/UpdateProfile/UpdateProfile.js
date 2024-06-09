@@ -65,7 +65,7 @@ const UpdateProfile = () => {
             localStorage.setItem('username', formData.username);
         }
 
-        // navigate('/profile');
+        navigate('/profil');
     } catch (error) {
         console.error('Error updating user:', error);
     }
