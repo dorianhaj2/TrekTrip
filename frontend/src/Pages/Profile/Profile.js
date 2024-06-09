@@ -51,6 +51,14 @@ const Profile = () => {
         setUser(userResponse.data);
         setLoading(false); 
 
+        /*const imageUrlResponse = await fetch(`/uploads/${userResponse.data.image.url}`);
+        if (imageUrlResponse.ok) {
+          const imageUrl = URL.createObjectURL(await imageUrlResponse.blob());
+          //setUser(prevUser => ({ ...prevUser, imageUrl })); // Update user state with imageUrl
+          user.image.url = imageUrl;
+          console.log(user.image.url);
+        }*/
+
         const tripsResponse = await axiosInstance.get(`/trip/all`);
 
         const userTrips = tripsResponse.data.filter(trip => trip.user.username === activeUser.username);
@@ -70,7 +78,7 @@ const Profile = () => {
       setLoading(false); 
     }
 
-    if(activeUser){
+    /*if(activeUser){
       try {
         const response = await axiosInstance.get(`/userRole/${activeUser.id}`);
         if (response.data) {
@@ -83,14 +91,14 @@ const Profile = () => {
        
         console.error('Error fetching user role:', error);
       }
-    }
+    }*/
   };
 
   useEffect(() => {
     fetchData(); 
   }, [activeUser]); 
 
-  //console.log(user)
+  //console.log(user.image.url)
 
   return (
     <div>
@@ -106,7 +114,7 @@ const Profile = () => {
               <h1>{user.username}</h1>
               <div className='profile-photo'>
                 <img
-                  src={ user.image && user.image.url ? process.env.PUBLIC_URL + `${user.image.url}` : 'https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg'}
+                  src={user.image && user.image.url ? user.image.url : 'https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg'}
                   alt="Profile"
                   className="profile-pic"
                 />
