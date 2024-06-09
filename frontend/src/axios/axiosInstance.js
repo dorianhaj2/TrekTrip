@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+let retryCounter = 0; // Initialize the retry counter
+
 const refreshAccessToken = async () => {
   try {
     const res = await axios.post('http://localhost:8080/auth/refreshToken', {
@@ -17,7 +19,7 @@ const refreshAccessToken = async () => {
 
 // Create Axios instance
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8080', 
+  baseURL: 'http://localhost:8080',
 });
 
 // Request interceptor to attach the token to the request
@@ -39,16 +41,22 @@ axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
     if (error.response && error.response.status === 403) {
-      try {
-        const accessToken = await refreshAccessToken();
-        console.log(accessToken)
-        // Retry the original request with the new access token
-        error.config.headers.Authorization = `Bearer ${accessToken}`;
-        return axiosInstance.request(error.config);
-      } catch (refreshError) {
-        // Handle refresh error
-        console.error('Error refreshing access token:', refreshError);
-        throw refreshError;
+      if (retryCounter < 3) { // Set the maximum number of retries
+        retryCounter++;
+        try {
+          const accessToken = await refreshAccessToken();
+          // Retry the original request with the new access token
+          error.config.headers.Authorization = `Bearer ${accessToken}`;
+          return axiosInstance.request(error.config);
+        } catch (refreshError) {
+          // Handle refresh error
+          console.error('Error refreshing access token:', refreshError);
+          throw refreshError;
+        }
+      } else {
+        // If reached the maximum number of retries, handle the error or log it
+        console.error('Maximum retry attempts reached');
+        return Promise.reject(error);
       }
     }
     // For other errors, just return the error

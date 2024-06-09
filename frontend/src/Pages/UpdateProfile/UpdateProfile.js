@@ -3,17 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../axios/axiosInstance';
 import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
-import './UpdateProfile.css'
+import './UpdateProfile.css';
 
 const UpdateProfile = () => {
   const navigate = useNavigate();
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const [formData, setFormData] = useState({
-    id: '', 
     username: '',
     description: '',
-    image: null
+    image: null,
+    imageId: null
   });
 
   const userId = localStorage.getItem('userId');
@@ -29,34 +29,47 @@ const UpdateProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const formDataToSend = new FormData();
-      if (formData.username) {
-        formDataToSend.append('username', formData.username);
-      }
-      if (formData.description) {
-        formDataToSend.append('description', formData.description);
-      }
-      if (formData.image) {
-        formDataToSend.append('image', formData.image);
-      }
+        let profileData = {};
+        let imageId;
+        if (formData.image) {
+            const imageFormData = new FormData();
+            imageFormData.append('file', formData.image);
 
-      const res = await axiosInstance.put(`/user/${userId}`, formDataToSend, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
+            const imageRes = await axiosInstance.post('/image', imageFormData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            imageId = imageRes.data.id;
+            /*setFormData(prevFormData => ({ ...prevFormData, imageId }));
+
+            profileData.imageId = imageId;*/
+            console.log(imageId)
         }
-      });
 
-      console.log('User updated:', res.data);
+        if (formData.username) {
+            profileData.username = formData.username;
+        }
+        if (formData.description) {
+            profileData.description = formData.description;
+        }
+        const userData = {
+          ...profileData,
+          image: {id: imageId},
+        };
+        const res = await axiosInstance.put(`/user/${userId}`, userData);
+        console.log('User updated:', res.data);
 
-      if (formData.username) {
-        localStorage.setItem('username', formData.username);
-      }
+        if (formData.username) {
+            localStorage.setItem('username', formData.username);
+        }
 
-      navigate('/profil');
+        // navigate('/profile');
     } catch (error) {
-      console.error('Error updating user:', error);
+        console.error('Error updating user:', error);
     }
-  };
+};
 
   return (
     <div>
@@ -65,15 +78,15 @@ const UpdateProfile = () => {
       </Helmet>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <label>
-        {t('editProfile.username')}
+          {t('editProfile.username')}
           <input type="text" name="username" value={formData.username} onChange={handleChange} />
         </label>
         <label>
-        {t('editProfile.description')}
+          {t('editProfile.description')}
           <textarea name="description" value={formData.description} onChange={handleChange} />
         </label>
         <label>
-        {t('editProfile.profile-photo')}
+          {t('editProfile.profile-photo')}
           <input type="file" name="image" onChange={handleImageChange} />
         </label>
         <button type="submit">{t('editProfile.editButton')}</button>
