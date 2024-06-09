@@ -2,6 +2,7 @@ package com.trektrip.controller;
 
 import com.trektrip.model.Image;
 import com.trektrip.model.UserInfo;
+import com.trektrip.repository.ImageRepository;
 import com.trektrip.service.ImageService;
 import com.trektrip.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
@@ -23,6 +24,7 @@ public class UserController {
     private UserService userService;
     private PasswordEncoder passwordEncoder;
     private final ImageService imageService; // Inject ImageService
+    private ImageRepository imageRepository;
 
 
     @GetMapping("/all")
@@ -47,52 +49,16 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserInfo> updateUser(@PathVariable Long id,
-                                               @RequestParam(value = "file", required = false) MultipartFile file,
-                                               @ModelAttribute UserInfo updatedUserInfo,
-                                               @RequestParam(value = "username", required = false) String username,
-                                               @RequestParam(value = "description", required = false) String description) {
+    public ResponseEntity<UserInfo> updateUser(@PathVariable Long id, @RequestBody UserInfo userinfo) {
         try {
-            // Retrieve the existing user data from the database
-            Optional<UserInfo> existingUserOptional = userService.getUserById(id);
-
-            // Check if the user exists
-            if (existingUserOptional.isPresent()) {
-                // Get the UserInfo object from the Optional
-                UserInfo existingUserInfo = existingUserOptional.get();
-
-                // Check if a new file is provided and handle it if necessary
-                if (file != null && !file.isEmpty()) {
-                    // Handle the file upload if needed
-                    // For simplicity, let's assume you have a method in ImageService to handle image uploads
-                    //Image updatedImage = imageService.handleImageUpload(file);
-                    // Associate the updated image with the user
-                    //existingUserInfo.setImage(updatedImage);
-                }
-
-                // Update the user only if the new values are provided
-                if (username != null) {
-                    existingUserInfo.setUsername(username);
-                }
-                if (description != null) {
-                    existingUserInfo.setDescription(description);
-                }
-
-                // Update the user
-                UserInfo updatedUser = userService.updateUser(existingUserInfo, id);
-                return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-            } else {
-                // User with the specified ID does not exist
-                return ResponseEntity.notFound().build();
-            }
+            UserInfo updatedUser = userService.updateUser(userinfo, id);
+            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
-            // Handle other exceptions if necessary
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {

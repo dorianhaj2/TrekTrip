@@ -1,7 +1,9 @@
 package com.trektrip.service;
 
+import com.trektrip.model.Image;
 import com.trektrip.model.UserInfo;
 import com.trektrip.model.UserRole;
+import com.trektrip.repository.ImageRepository;
 import com.trektrip.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
@@ -16,6 +18,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
+    private ImageRepository imageRepository;
 
     @Override
     public List<UserInfo> getAllUsers() {
@@ -36,15 +39,27 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    @Override
-    public UserInfo updateUser(UserInfo user, Long id) {
+    public UserInfo updateUser(UserInfo updatedUserInfo, Long id) {
         Optional<UserInfo> optionalUser = userRepository.findById(id);
 
         if (optionalUser.isPresent()) {
-            user.setId(id);
-            return userRepository.save(user);
+            UserInfo existingUser = optionalUser.get();
+
+            if (updatedUserInfo.getUsername() != null) {
+                existingUser.setUsername(updatedUserInfo.getUsername());
+            }
+            if (updatedUserInfo.getDescription() != null) {
+                existingUser.setDescription(updatedUserInfo.getDescription());
+            }
+            if (updatedUserInfo.getImage() != null) {
+                Image image = imageRepository.findById(updatedUserInfo.getImage().getId())
+                        .orElseThrow(() -> new RuntimeException("Image not found"));
+                existingUser.setImage(image);
+            }
+
+            return userRepository.save(existingUser);
         } else {
-            throw new EntityNotFoundException("UserInfo with ID = '" + id + "' not found!");
+            throw new EntityNotFoundException("User with ID = '" + id + "' not found!");
         }
     }
 

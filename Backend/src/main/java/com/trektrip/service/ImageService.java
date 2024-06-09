@@ -2,7 +2,9 @@ package com.trektrip.service;
 
 import com.trektrip.model.Image;
 import com.trektrip.model.Image;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,5 +15,6 @@ public interface ImageService {
     Image createImage(Image image);
     Image updateImage(Image image, Long id);
     void deleteImage(Long id);
-    
+
+    Image handleImageUpload(MultipartFile file) throws IOException;
 }

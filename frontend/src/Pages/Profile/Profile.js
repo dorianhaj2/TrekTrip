@@ -106,7 +106,7 @@ const Profile = () => {
               <h1>{user.username}</h1>
               <div className='profile-photo'>
                 <img
-                  src={user.image ? user.profilePicture : 'https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg'}
+                  src={ user.image && user.image.url ? process.env.PUBLIC_URL + `${user.image.url}` : 'https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg'}
                   alt="Profile"
                   className="profile-pic"
                 />

@@ -41,6 +41,5 @@ public class UserInfo {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     @JsonBackReference
-    private List<Trip> trips;  // Add this line to include the trips
-
+    private List<Trip> trips;
 }
