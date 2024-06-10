@@ -29,6 +29,7 @@ public class UserInfo {
     @JoinColumn(name = "image_id", referencedColumnName = "id")
     private Image image;
 
+    @Column(length = 1000)
     private String description;
 
     @ManyToMany(fetch = FetchType.EAGER)

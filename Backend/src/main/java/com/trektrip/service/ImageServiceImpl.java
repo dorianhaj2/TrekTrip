@@ -1,7 +1,9 @@
 package com.trektrip.service;
 
 import com.trektrip.model.Image;
+import com.trektrip.model.Trip;
 import com.trektrip.repository.ImageRepository;
+import com.trektrip.repository.TripRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +22,8 @@ import org.springframework.beans.factory.annotation.Value;
 public class ImageServiceImpl implements ImageService {
 
     private final ImageRepository imageRepository;
+    private TripRepository tripRepository;
+
     @Value("${upload.path}")
     private String uploadPath; // Path to directory where images will be stored
 
@@ -72,6 +76,23 @@ public class ImageServiceImpl implements ImageService {
         image.setUrl(imageUrl);
 
         return imageRepository.save(image);
+    }
+
+    @Override
+    public void addImageToTrip(Long tripId, Long imageId) {
+        // Dobavljanje putovanja iz baze podataka
+        Trip trip = tripRepository.findById(tripId)
+                .orElseThrow(() -> new RuntimeException("Trip not found with id: " + tripId));
+
+        // Dobavljanje slike iz baze podataka
+        Image image = imageRepository.findById(imageId)
+                .orElseThrow(() -> new RuntimeException("Image not found with id: " + imageId));
+
+        // Dodavanje slike na listu slika putovanja
+        trip.getImages().add(image);
+
+        // Spremanje ažuriranog putovanja u bazu podataka
+        tripRepository.save(trip);
     }
 
     private String getFileExtension(String filename) {

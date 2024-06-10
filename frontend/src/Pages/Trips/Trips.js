@@ -119,6 +119,14 @@ const Trips = () => {
     ) 
     : trips;
 
+    const ScrollToTopOnMount = () => {
+        React.useEffect(() => {
+          window.scrollTo(0, 0);
+        }, []);
+      
+        return null;
+      };
+
     return (
         <div className="trips">
             <Helmet>

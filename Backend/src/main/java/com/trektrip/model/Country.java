@@ -18,4 +18,6 @@ public class Country {
     private String name;
 
     private String continent;
+
+    private String code;
 }

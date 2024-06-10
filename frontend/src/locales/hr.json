@@ -92,7 +92,10 @@
         "price": "Cijena",
         "month": "Mjesec putovanja",
         "submit": "Dodaj Putovanje",
-        "chooseMonth": "Odaberite Mjesec"
+        "chooseMonth": "Odaberite Mjesec",
+        "country": "Država",
+        "location": "Lokacija",
+        "images": "Dodajte slike"
     },
     "months": [
         "Siječanj",

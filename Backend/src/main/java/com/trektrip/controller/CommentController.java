@@ -1,6 +1,9 @@
 package com.trektrip.controller;
 
+import com.trektrip.dto.CommentRequestDTO;
 import com.trektrip.model.Comment;
+import com.trektrip.model.Trip;
+import com.trektrip.model.UserInfo;
 import com.trektrip.service.CommentService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -33,8 +36,20 @@ public class CommentController {
     }
 
     @PostMapping
-    public ResponseEntity<Comment> createComment(@RequestBody Comment comment) {
-        return new ResponseEntity<>(commentService.createComment(comment), HttpStatus.CREATED);
+    public ResponseEntity<Comment> createComment(@RequestBody CommentRequestDTO commentRequest) {
+        Comment comment = new Comment();
+        comment.setContent(commentRequest.getContent());
+
+        Trip trip = new Trip();
+        trip.setId(commentRequest.getTripId());
+        comment.setTrip(trip);
+
+        UserInfo user = new UserInfo();
+        user.setId(commentRequest.getUserId());
+        comment.setUser(user);
+
+        Comment createdComment = commentService.createComment(comment);
+        return new ResponseEntity<>(createdComment, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

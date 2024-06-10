@@ -15,7 +15,7 @@ function TripCard({ trip }) {
 
   return (
         <div className="card">
-            <img src={trip.image} alt={trip.title} className="card-image" />
+            <img src={trip && trip.images && trip.images.length > 0 ? process.env.PUBLIC_URL + trip.images[0].url : ''} alt={trip.title} className="card-image" />
             <div className="card-content">
                 <h2 className="card-title">{trip.title}</h2>
                 <Stack spacing={1}>

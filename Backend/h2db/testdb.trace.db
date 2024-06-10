@@ -30875,3 +30875,1334 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-06-10 16:00:20.374982+02:00 jdbc[74]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-224]
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:218)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:135)
+	at org.h2.Driver.connect(Driver.java:59)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:121)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:733)
+	at com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:712)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: The connection was not closed by the application and is garbage collected [90018-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 16 more
+2024-06-10 16:24:39.942426+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "COUNTRY_CODE" not found; SQL statement:
+INSERT INTO LOCATION (COUNTRY_CODE)
+VALUES
+('DZ'), ('AO'), ('BJ'), ('BW'), ('BF'), ('BI'), ('CV'), ('CM'), ('CF'), ('TD'), ('KM'), ('CG'), ('CD'), ('DJ'), ('EG'), ('GQ'), ('ER'), ('SZ'), ('ET'), ('GA'), ('GM'), ('GH'), ('GN'), ('GW'), ('CI'), ('KE'), ('LS'), ('LR'), ('LY'), ('MG'), ('MW'), ('ML'), ('MR'), ('MU'), ('MA'), ('MZ'), ('NA'), ('NE'), ('NG'), ('RW'), ('ST'), ('SN'), ('SC'), ('SL'), ('SO'), ('ZA'), ('SS'), ('SD'), ('TZ'), ('TG'), ('TN'), ('UG'), ('ZM'), ('ZW'), ('AG'), ('BS'), ('BB'), ('BZ'), ('CA'), ('CR'), ('CU'), ('DO'), ('SV'), ('GD'), ('GT'), ('HT'), ('HN'), ('JM'), ('MX'), ('NI'), ('PA'), ('KN'), ('LC'), ('VC'), ('TT'), ('US'), ('AR'), ('BO'), ('BR'), ('CL'), ('CO'), ('EC'), ('GY'), ('PY'), ('PE'), ('SR'), ('UY'), ('VE'), ('AF'), ('AM'), ('AZ'), ('BH'), ('BD'), ('BT'), ('BN'), ('KH'), ('CN'), ('CY'), ('GE'), ('IN'), ('ID'), ('IR'), ('IQ'), ('IL'), ('JP'), ('JO'), ('KZ'), ('KW'), ('KG'), ('LA'), ('LB'), ('MY'), ('MV'), ('MN'), ('MM'), ('NP'), ('KP'), ('OM'), ('PK'), ('PS'), ('PH'), ('QA'), ('SA'), ('SG'), ('KR'), ('LK'), ('SY'), ('TW'), ('TJ'), ('TH'), ('TL'), ('TR'), ('TM'), ('AE'), ('UZ'), ('VN'), ('YE'), ('AL'), ('AD'), ('AT'), ('BY'), ('BE'), ('BA'), ('BG'), ('HR'), ('CZ'), ('DK'), ('EE'), ('FI'), ('FR'), ('DE'), ('GR'), ('HU'), ('IS'), ('IE'), ('IT'), ('XK'), ('LV'), ('LI'), ('LT'), ('LU'), ('MT'), ('MD'), ('MC'), ('ME'), ('NL'), ('MK'), ('NO'), ('PL'), ('PT'), ('RO'), ('RU'), ('SM'), ('RS'), ('SK'), ('SI'), ('ES'), ('SE'), ('CH'), ('UA'), ('GB'), ('VA'), ('FJ'), ('KI'), ('MH'), ('FM'), ('NR'), ('PW'), ('PG'), ('WS'), ('SB'), ('TO'), ('TV'), ('VU'), ('AU'), ('NZ') [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.table.Table.getColumn(Table.java:759)
+	at org.h2.command.Parser.parseColumn(Parser.java:1190)
+	at org.h2.command.Parser.parseColumnList(Parser.java:1175)
+	at org.h2.command.Parser.parseInsert(Parser.java:1549)
+	at org.h2.command.Parser.parsePrepared(Parser.java:719)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1345)
+	at org.h2.server.web.WebApp.query(WebApp.java:1143)
+	at org.h2.server.web.WebApp.query(WebApp.java:1119)
+	at org.h2.server.web.WebApp.process(WebApp.java:245)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:177)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.trektrip.filters.JwtAuthFilter.doFilterInternal(JwtAuthFilter.java:36)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2024-06-10 16:24:48.393571+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "CODE" not found; SQL statement:
+INSERT INTO LOCATION (CODE)
+VALUES
+('DZ'), ('AO'), ('BJ'), ('BW'), ('BF'), ('BI'), ('CV'), ('CM'), ('CF'), ('TD'), ('KM'), ('CG'), ('CD'), ('DJ'), ('EG'), ('GQ'), ('ER'), ('SZ'), ('ET'), ('GA'), ('GM'), ('GH'), ('GN'), ('GW'), ('CI'), ('KE'), ('LS'), ('LR'), ('LY'), ('MG'), ('MW'), ('ML'), ('MR'), ('MU'), ('MA'), ('MZ'), ('NA'), ('NE'), ('NG'), ('RW'), ('ST'), ('SN'), ('SC'), ('SL'), ('SO'), ('ZA'), ('SS'), ('SD'), ('TZ'), ('TG'), ('TN'), ('UG'), ('ZM'), ('ZW'), ('AG'), ('BS'), ('BB'), ('BZ'), ('CA'), ('CR'), ('CU'), ('DO'), ('SV'), ('GD'), ('GT'), ('HT'), ('HN'), ('JM'), ('MX'), ('NI'), ('PA'), ('KN'), ('LC'), ('VC'), ('TT'), ('US'), ('AR'), ('BO'), ('BR'), ('CL'), ('CO'), ('EC'), ('GY'), ('PY'), ('PE'), ('SR'), ('UY'), ('VE'), ('AF'), ('AM'), ('AZ'), ('BH'), ('BD'), ('BT'), ('BN'), ('KH'), ('CN'), ('CY'), ('GE'), ('IN'), ('ID'), ('IR'), ('IQ'), ('IL'), ('JP'), ('JO'), ('KZ'), ('KW'), ('KG'), ('LA'), ('LB'), ('MY'), ('MV'), ('MN'), ('MM'), ('NP'), ('KP'), ('OM'), ('PK'), ('PS'), ('PH'), ('QA'), ('SA'), ('SG'), ('KR'), ('LK'), ('SY'), ('TW'), ('TJ'), ('TH'), ('TL'), ('TR'), ('TM'), ('AE'), ('UZ'), ('VN'), ('YE'), ('AL'), ('AD'), ('AT'), ('BY'), ('BE'), ('BA'), ('BG'), ('HR'), ('CZ'), ('DK'), ('EE'), ('FI'), ('FR'), ('DE'), ('GR'), ('HU'), ('IS'), ('IE'), ('IT'), ('XK'), ('LV'), ('LI'), ('LT'), ('LU'), ('MT'), ('MD'), ('MC'), ('ME'), ('NL'), ('MK'), ('NO'), ('PL'), ('PT'), ('RO'), ('RU'), ('SM'), ('RS'), ('SK'), ('SI'), ('ES'), ('SE'), ('CH'), ('UA'), ('GB'), ('VA'), ('FJ'), ('KI'), ('MH'), ('FM'), ('NR'), ('PW'), ('PG'), ('WS'), ('SB'), ('TO'), ('TV'), ('VU'), ('AU'), ('NZ') [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.table.Table.getColumn(Table.java:759)
+	at org.h2.command.Parser.parseColumn(Parser.java:1190)
+	at org.h2.command.Parser.parseColumnList(Parser.java:1175)
+	at org.h2.command.Parser.parseInsert(Parser.java:1549)
+	at org.h2.command.Parser.parsePrepared(Parser.java:719)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1345)
+	at org.h2.server.web.WebApp.query(WebApp.java:1143)
+	at org.h2.server.web.WebApp.query(WebApp.java:1119)
+	at org.h2.server.web.WebApp.process(WebApp.java:245)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:177)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.trektrip.filters.JwtAuthFilter.doFilterInternal(JwtAuthFilter.java:36)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2024-06-10 16:24:54.582549+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "CODE" not found; SQL statement:
+INSERT INTO LOCATION (code)
+VALUES
+('DZ'), ('AO'), ('BJ'), ('BW'), ('BF'), ('BI'), ('CV'), ('CM'), ('CF'), ('TD'), ('KM'), ('CG'), ('CD'), ('DJ'), ('EG'), ('GQ'), ('ER'), ('SZ'), ('ET'), ('GA'), ('GM'), ('GH'), ('GN'), ('GW'), ('CI'), ('KE'), ('LS'), ('LR'), ('LY'), ('MG'), ('MW'), ('ML'), ('MR'), ('MU'), ('MA'), ('MZ'), ('NA'), ('NE'), ('NG'), ('RW'), ('ST'), ('SN'), ('SC'), ('SL'), ('SO'), ('ZA'), ('SS'), ('SD'), ('TZ'), ('TG'), ('TN'), ('UG'), ('ZM'), ('ZW'), ('AG'), ('BS'), ('BB'), ('BZ'), ('CA'), ('CR'), ('CU'), ('DO'), ('SV'), ('GD'), ('GT'), ('HT'), ('HN'), ('JM'), ('MX'), ('NI'), ('PA'), ('KN'), ('LC'), ('VC'), ('TT'), ('US'), ('AR'), ('BO'), ('BR'), ('CL'), ('CO'), ('EC'), ('GY'), ('PY'), ('PE'), ('SR'), ('UY'), ('VE'), ('AF'), ('AM'), ('AZ'), ('BH'), ('BD'), ('BT'), ('BN'), ('KH'), ('CN'), ('CY'), ('GE'), ('IN'), ('ID'), ('IR'), ('IQ'), ('IL'), ('JP'), ('JO'), ('KZ'), ('KW'), ('KG'), ('LA'), ('LB'), ('MY'), ('MV'), ('MN'), ('MM'), ('NP'), ('KP'), ('OM'), ('PK'), ('PS'), ('PH'), ('QA'), ('SA'), ('SG'), ('KR'), ('LK'), ('SY'), ('TW'), ('TJ'), ('TH'), ('TL'), ('TR'), ('TM'), ('AE'), ('UZ'), ('VN'), ('YE'), ('AL'), ('AD'), ('AT'), ('BY'), ('BE'), ('BA'), ('BG'), ('HR'), ('CZ'), ('DK'), ('EE'), ('FI'), ('FR'), ('DE'), ('GR'), ('HU'), ('IS'), ('IE'), ('IT'), ('XK'), ('LV'), ('LI'), ('LT'), ('LU'), ('MT'), ('MD'), ('MC'), ('ME'), ('NL'), ('MK'), ('NO'), ('PL'), ('PT'), ('RO'), ('RU'), ('SM'), ('RS'), ('SK'), ('SI'), ('ES'), ('SE'), ('CH'), ('UA'), ('GB'), ('VA'), ('FJ'), ('KI'), ('MH'), ('FM'), ('NR'), ('PW'), ('PG'), ('WS'), ('SB'), ('TO'), ('TV'), ('VU'), ('AU'), ('NZ') [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.table.Table.getColumn(Table.java:759)
+	at org.h2.command.Parser.parseColumn(Parser.java:1190)
+	at org.h2.command.Parser.parseColumnList(Parser.java:1175)
+	at org.h2.command.Parser.parseInsert(Parser.java:1549)
+	at org.h2.command.Parser.parsePrepared(Parser.java:719)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1345)
+	at org.h2.server.web.WebApp.query(WebApp.java:1143)
+	at org.h2.server.web.WebApp.query(WebApp.java:1119)
+	at org.h2.server.web.WebApp.process(WebApp.java:245)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:177)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.trektrip.filters.JwtAuthFilter.doFilterInternal(JwtAuthFilter.java:36)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2024-06-10 16:26:12.331967+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO countries (code)\000d\000aVALUES\000d\000a('DZ'), ('AO'), ('BJ'), ('BW'), ('BF'), ('BI'), ('CV'), ('CM'), ('CF'), ('TD'), ('KM'), ('CG'), ('CD'), ('DJ'), ('EG'), ('GQ'), ('ER'), ('SZ'), ('ET'), ('GA'), ('GM'), ('GH'), ('GN'), ('GW'), ('CI'), ('KE'), ('LS'), ('LR'), ('LY'), ('MG'), ('MW'), ('ML'), ('MR'), ('MU'), ('MA'), ('MZ'), ('NA'), ('NE'), ('NG'), ('RW'), ('ST'), ('SN'), ('SC'), ('SL'), ('SO'), ('ZA'), ('SS'), ('SD'), ('TZ'), ('TG'), ('TN'), ('UG'), ('ZM'), ('ZW'), ('AG'), ('BS'), ('BB'), ('BZ'), ('CA'), ('CR'), ('CU'), ('DO'), ('SV'), ('GD'), ('GT'), ('HT'), ('HN'), ('JM'), ('MX'), ('NI'), ('PA'), ('KN'), ('LC'), ('VC'), ('TT'), ('US'), ('AR'), ('BO'), ('BR'), ('CL'), ('CO'), ('EC'), ('GY'), ('PY'), ('PE'), ('SR'), ('UY'), ('VE'), ('AF'), ('AM'), ('AZ'), ('BH'), ('BD'), ('BT'), ('BN'), ('KH'), ('CN'), ('CY'), ('GE'), ('IN'), ('ID'), ('IR'), ('IQ'), ('IL'), ('JP'), ('JO'), ('KZ'), ('KW'), ('KG'), ('LA'), ('LB'), ('MY'), ('MV'), ('MN'), ('MM'), ('NP'), ('KP'), ('OM'), ('PK'), ('PS'), ('PH'), ('QA'), ('SA'), ('SG'), ('KR'), ('LK'), ('SY'), ('TW'), ('TJ'), ('TH'), ('TL'), ('TR'), ('TM'), ('AE'), ('UZ'), ('VN'), ('YE'), ('AL'), ('AD'), ('AT'), ('BY'), ('BE'), ('BA'), ('BG'), ('HR'), ('CZ'), ('DK'), ('EE'), ('FI'), ('FR'), ('DE'), ('GR'), ('HU'), ('IS'), ('IE'), ('IT'), ('XK'), ('LV'), ('LI'), ('LT'), ('LU'), ('MT')[*])"; SQL statement:
+INSERT INTO countries (code)
+VALUES
+('DZ'), ('AO'), ('BJ'), ('BW'), ('BF'), ('BI'), ('CV'), ('CM'), ('CF'), ('TD'), ('KM'), ('CG'), ('CD'), ('DJ'), ('EG'), ('GQ'), ('ER'), ('SZ'), ('ET'), ('GA'), ('GM'), ('GH'), ('GN'), ('GW'), ('CI'), ('KE'), ('LS'), ('LR'), ('LY'), ('MG'), ('MW'), ('ML'), ('MR'), ('MU'), ('MA'), ('MZ'), ('NA'), ('NE'), ('NG'), ('RW'), ('ST'), ('SN'), ('SC'), ('SL'), ('SO'), ('ZA'), ('SS'), ('SD'), ('TZ'), ('TG'), ('TN'), ('UG'), ('ZM'), ('ZW'), ('AG'), ('BS'), ('BB'), ('BZ'), ('CA'), ('CR'), ('CU'), ('DO'), ('SV'), ('GD'), ('GT'), ('HT'), ('HN'), ('JM'), ('MX'), ('NI'), ('PA'), ('KN'), ('LC'), ('VC'), ('TT'), ('US'), ('AR'), ('BO'), ('BR'), ('CL'), ('CO'), ('EC'), ('GY'), ('PY'), ('PE'), ('SR'), ('UY'), ('VE'), ('AF'), ('AM'), ('AZ'), ('BH'), ('BD'), ('BT'), ('BN'), ('KH'), ('CN'), ('CY'), ('GE'), ('IN'), ('ID'), ('IR'), ('IQ'), ('IL'), ('JP'), ('JO'), ('KZ'), ('KW'), ('KG'), ('LA'), ('LB'), ('MY'), ('MV'), ('MN'), ('MM'), ('NP'), ('KP'), ('OM'), ('PK'), ('PS'), ('PH'), ('QA'), ('SA'), ('SG'), ('KR'), ('LK'), ('SY'), ('TW'), ('TJ'), ('TH'), ('TL'), ('TR'), ('TM'), ('AE'), ('UZ'), ('VN'), ('YE'), ('AL'), ('AD'), ('AT'), ('BY'), ('BE'), ('BA'), ('BG'), ('HR'), ('CZ'), ('DK'), ('EE'), ('FI'), ('FR'), ('DE'), ('GR'), ('HU'), ('IS'), ('IE'), ('IT'), ('XK'), ('LV'), ('LI'), ('LT'), ('LU'), ('MT')) [42000-224]
+2024-06-10 16:30:19.475495+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "UPDATE COUNTRIES\000d\000aSET code = \000d\000a    CASE \000d\000a        WHEN NAME = 'Alžir' THEN 'DZ'\000d\000a        WHEN NAME = 'Angola' THEN 'AO'\000d\000a        WHEN NAME = 'Benin' THEN 'BJ'\000d\000a        WHEN NAME = 'Bocvana' THEN 'BW'\000d\000a        WHEN NAME = 'Burkina Faso' THEN 'BF'\000d\000a        WHEN NAME = 'Burundi' THEN 'BI'\000d\000a        WHEN NAME = 'Zelenortski Otoci' THEN 'CV'\000d\000a        WHEN NAME = 'Kamerun' THEN 'CM'\000d\000a        WHEN NAME = 'Centralnoafrička Republika' THEN 'CF'\000d\000a        WHEN NAME = 'Čad' THEN 'TD'\000d\000a        WHEN NAME = 'Komori' THEN 'KM'\000d\000a        WHEN NAME = 'Kongo' THEN 'CG'\000d\000a        WHEN NAME = 'Demokratska Republika Kongo' THEN 'CD'\000d\000a        WHEN NAME = 'Džibuti' THEN 'DJ'\000d\000a        WHEN NAME = 'Egipat' THEN 'EG'\000d\000a        WHEN NAME = 'Ekvatorska Gvineja' THEN 'GQ'\000d\000a        WHEN NAME = 'Eritreja' THEN 'ER'\000d\000a        WHEN NAME = 'Svazi' THEN 'SZ'\000d\000a        WHEN NAME = 'Etiopija' THEN 'ET'\000d\000a        WHEN NAME = 'Gabon' THEN 'GA'\000d\000a        WHEN NAME = 'Gambija' THEN 'GM'\000d\000a        WHEN NAME = 'Gana' THEN 'GH'\000d\000a        WHEN NAME = 'Gvineja' THEN 'GN'\000d\000a        WHEN NAME = 'Gvineja-Bissau' THEN 'GW'\000d\000a        WHEN NAME = 'Obala Bjelokosti' THEN 'CI'\000d\000a        WHEN NAME = 'Kenija' THEN 'KE'\000d\000a        WHEN NAME = 'Lesoto' THEN 'LS'\000d\000a        WHEN NAME = 'Liberija' THEN 'LR'\000d\000a        WHEN NAME = 'Libija' THEN 'LY'\000d\000a        WHEN NAME = 'Madagaskar' THEN 'MG'\000d\000a        WHEN NAME = 'Malavi' THEN 'MW'\000d\000a        WHEN NAME = 'Mali' THEN 'ML'\000d\000a        WHEN NAME = 'Mauritanija' THEN 'MR'\000d\000a        WHEN NAME = 'Mauricijus' THEN 'MU'\000d\000a        WHEN NAME = 'Maroko' THEN 'MA'\000d\000a        WHEN NAME = 'Mozambik' THEN 'MZ'\000d\000a        WHEN NAME = 'Namibija' THEN 'NA'\000d\000a        WHEN NAME = 'Niger' THEN 'NE'\000d\000a        WHEN NAME = 'Nigerija' THEN 'NG'\000d\000a        WHEN NAME = 'Ruanda' THEN 'RW'\000d\000a        WHEN NAME = 'Sao Tome i Principe' THEN 'ST'\000d\000a        WHEN NAME = 'Senegal' THEN 'SN'\000d\000a        WHEN NAME = 'Sejšeli' THEN 'SC'\000d\000a        WHEN NAME = 'Sijera Leone' THEN 'SL'\000d\000a        WHEN NAME = 'Somalija' THEN 'SO'\000d\000a        WHEN NAME = 'Južnoafrička Republika' THEN 'ZA'\000d\000a        WHEN NAME = 'Južni Sudan' THEN 'SS'\000d\000a        WHEN NAME = 'Sudan' THEN 'SD'\000d\000a        WHEN NAME = 'Tanzanija' THEN 'TZ'\000d\000a        WHEN NAME = 'Togo' THEN 'TG'\000d\000a        WHEN NAME = 'Tunis' THEN 'TN'\000d\000a        WHEN NAME = 'Uganda' THEN 'UG'\000d\000a        WHEN NAME = 'Zambija' THEN 'ZM'\000d\000a        WHEN NAME = 'Zimbabve' THEN 'ZW'\000d\000a        WHEN NAME = 'Antigva i Barbuda' THEN 'AG'\000d\000a        WHEN NAME = 'Bahami' THEN 'BS'\000d\000a        WHEN NAME = 'Barbados' THEN 'BB'\000d\000a        WHEN NAME = 'Belize' THEN 'BZ'\000d\000a        WHEN NAME = 'Kanada' THEN 'CA'\000d\000a        WHEN NAME = 'Kostarika' THEN 'CR'\000d\000a        WHEN NAME = 'Kuba' THEN 'CU'\000d\000a        WHEN NAME = 'Dominika' THEN 'DM'\000d\000a        WHEN NAME = 'Dominikanska Republika' THEN 'DO'\000d\000a        WHEN NAME = 'Salvador' THEN 'SV'\000d\000a        WHEN NAME = 'Grenada' THEN 'GD'\000d\000a        WHEN NAME = 'Gvatemala' THEN 'GT'\000d\000a        WHEN NAME = 'Haiti' THEN 'HT'\000d\000a        WHEN NAME = 'Honduras' THEN 'HN'\000d\000a        WHEN NAME = 'Jamajka' THEN 'JM'\000d\000a        WHEN NAME = 'Meksiko' THEN 'MX'\000d\000a        WHEN NAME = 'Nikaragva' THEN 'NI'\000d\000a        WHEN NAME = 'Panama' THEN 'PA'\000d\000a        WHEN NAME = 'Sveti Kristofor i Nevis' THEN 'KN\000d\000aWHEN NAME = 'Sveti Lucija' THEN 'LC'\000d\000aWHEN NAME = 'Sveti Vincent i Grenadini' THEN 'VC'\000d\000aWHEN NAME = 'Trinidad i Tobago' THEN 'TT'\000d\000aWHEN NAME = 'Sjedinjene Američke Države' THEN 'US'\000d\000aWHEN NAME = 'Argentina' THEN 'AR'\000d\000aWHEN NAME = 'Bolivija' THEN 'BO'\000d\000aWHEN NAME = 'Brazil' THEN 'BR'\000d\000aWHEN NAME = 'Čile' THEN 'CL'\000d\000aWHEN NAME = 'Kolumbija' THEN 'CO'\000d\000aWHEN NAME = 'Ekvador' THEN 'EC'\000d\000aWHEN NAME = 'Gvajana' THEN 'GY'\000d\000aWHEN NAME = 'Paragvaj' THEN 'PY'\000d\000aWHEN NAME = 'Peru' THEN 'PE'\000d\000aWHEN NAME = 'Surinam' THEN 'SR'\000d\000aWHEN NAME = 'Urugvaj' THEN 'UY'\000d\000aWHEN NAME = 'Venezuela' THEN 'VE'\000d\000aWHEN NAME = 'Afganistan' THEN 'AF'\000d\000aWHEN NAME = 'Armenija' THEN 'AM'\000d\000aWHEN NAME = 'Azerbejdžan' THEN 'AZ'\000d\000aWHEN NAME = 'Bahrein' THEN 'BH'\000d\000aWHEN NAME = 'Bangladeš' THEN 'BD'\000d\000aWHEN NAME = 'Butan' THEN 'BT'\000d\000aWHEN NAME = 'Brunej' THEN 'BN'\000d\000aWHEN NAME = 'Kambodža' THEN 'KH'\000d\000aWHEN NAME = 'Kina' THEN 'CN'\000d\000aWHEN NAME = 'Kipar' THEN 'CY'\000d\000aWHEN NAME = 'Gruzija' THEN 'GE'\000d\000aWHEN NAME = 'Indija' THEN 'IN'\000d\000aWHEN NAME = 'Indonezija' THEN 'ID'\000d\000aWHEN NAME = 'Iran' THEN 'IR'\000d\000aWHEN NAME = 'Irak' THEN 'IQ'\000d\000aWHEN NAME = 'Izrael' THEN 'IL'\000d\000aWHEN NAME = 'Japan' THEN 'JP'\000d\000aWHEN NAME = 'Jordan' THEN 'JO'\000d\000aWHEN NAME = 'Kazahstan' THEN 'KZ'\000d\000aWHEN NAME = 'Kuvajt' THEN 'KW'\000d\000aWHEN NAME = 'Kirgistan' THEN 'KG'\000d\000aWHEN NAME = 'Laos' THEN 'LA'\000d\000aWHEN NAME = 'Libanon' THEN 'LB'\000d\000aWHEN NAME = 'Malezija' THEN 'MY'\000d\000aWHEN NAME = 'Maldivi' THEN 'MV'\000d\000aWHEN NAME = 'Mongolija' THEN 'MN'\000d\000aWHEN NAME = 'Mjanmar' THEN 'MM'\000d\000aWHEN NAME = 'Nepal' THEN 'NP'\000d\000aWHEN NAME = 'Sjeverna Koreja' THEN 'KP'\000d\000aWHEN NAME = 'Oman' THEN 'OM'\000d\000aWHEN NAME = 'Pakistan' THEN 'PK'\000d\000aWHEN NAME = 'Palestina' THEN 'PS'\000d\000aWHEN NAME = 'Filipini' THEN 'PH'\000d\000aWHEN NAME = 'Katar' THEN 'QA'\000d\000aWHEN NAME = 'Saudijska Arabija' THEN 'SA'\000d\000aWHEN NAME = 'Singapur' THEN 'SG'\000d\000aWHEN NAME = 'Južna Koreja' THEN 'KR'\000d\000aWHEN NAME = 'Šri Lanka' THEN 'LK'\000d\000aWHEN NAME = 'Sirija' THEN 'SY'\000d\000aWHEN NAME = 'Tajvan' THEN 'TW'\000d\000aWHEN NAME = 'Tadžikistan' THEN 'TJ'\000d\000aWHEN NAME = 'Tajland' THEN 'TH'\000d\000aWHEN NAME = 'Istočni Timor' THEN 'TL'\000d\000aWHEN NAME = 'Turska' THEN 'TR'\000d\000aWHEN NAME = 'Turkmenistan' THEN 'TM'\000d\000aWHEN NAME = 'Ujedinjeni Arapski Emirati' THEN 'AE'\000d\000aWHEN NAME = 'Uzbekistan' THEN 'UZ'\000d\000aWHEN NAME = 'Vijetnam' THEN 'VN'\000d\000aWHEN NAME = 'Jemen' THEN 'YE'\000d\000aWHEN NAME = 'Albanija' THEN 'AL'\000d\000aWHEN NAME = 'Andora' THEN 'AD'\000d\000aWHEN NAME = 'Austrija' THEN 'AT'\000d\000aWHEN NAME = 'Bjelorusija' THEN 'BY'\000d\000aWHEN NAME = 'Belgija' THEN 'BE'\000d\000aWHEN NAME = 'Bosna i Hercegovina' THEN 'BA'\000d\000aWHEN NAME = 'Bugarska' THEN 'BG'\000d\000aWHEN NAME = 'Hrvatska' THEN 'HR'\000d\000aWHEN NAME = 'Češka' THEN 'CZ'\000d\000aWHEN NAME = 'Danska' THEN 'DK'\000d\000aWHEN NAME = 'Estonija' THEN 'EE'\000d\000aWHEN NAME = 'Finska' THEN 'FI'\000d\000aWHEN NAME = 'Francuska' THEN 'FR'\000d\000aWHEN NAME = 'Njemačka' THEN 'DE'\000d\000aWHEN NAME = 'Grčka' THEN 'GR'\000d\000aWHEN NAME = 'Mađarska' THEN 'HU'\000d\000aWHEN NAME = 'Island' THEN 'IS'\000d\000aWHEN NAME = 'Irska' THEN 'IE'\000d\000aWHEN NAME = 'Italija' THEN 'IT'\000d\000aWHEN NAME = 'Kosovo' THEN 'XK'\000d\000aWHEN NAME = 'Latvija' THEN 'LV'\000d\000aWHEN NAME = 'Lihtenštajn' THEN 'LI'\000d\000aWHEN NAME = 'Litva' THEN 'LT'\000d\000aWHEN NAME = 'Luksemburg' THEN 'LU'\000d\000aWHEN NAME = 'Malta' THEN 'MT'\000d\000aWHEN NAME = 'Moldavija' THEN 'MD'\000d\000aWHEN NAME = 'Monako' THEN 'MC'\000d\000aWHEN NAME = 'Crna Gora' THEN 'ME'\000d\000aWHEN NAME = 'Nizozemska' THEN 'NL'\000d\000aWHEN NAME = 'Sjeverna Makedonija' THEN 'MK'\000d\000aWHEN NAME = 'Norveška' THEN 'NO'\000d\000aWHEN NAME = 'Poljska' THEN 'PL'\000d\000aWHEN NAME = 'Portugal' THEN 'PT'\000d\000aWHEN NAME = 'Rumunjska' THEN 'RO'\000d\000aWHEN NAME = 'Rusija' THEN 'RU'\000d\000aWHEN NAME = 'San Marino' THEN 'SM'\000d\000aWHEN NAME = 'Srbija' THEN 'RS'\000d\000aWHEN NAME = 'Slovačka' THEN 'SK'\000d\000aWHEN NAME = 'Slovenija' THEN 'SI'\000d\000aWHEN NAME = 'Španjolska' THEN 'ES'\000d\000aWHEN NAME = 'Švedska' THEN 'SE'\000d\000aWHEN NAME = 'Švicarska' THEN 'CH'\000d\000aWHEN NAME = 'Ukrajina' THEN 'UA'\000d\000aWHEN NAME = 'Ujedinjeno Kraljevstvo' THEN 'GB'\000d\000aWHEN NAME = 'Vatikan' THEN 'VA'\000d\000aWHEN NAME = 'Fidži' THEN 'FJ'WHEN NAME = 'Kiribati' THEN 'KI'\000d\000a        WHEN NAME = 'Maršalovi Otoci' THEN 'MH'\000d\000a        WHEN NAME = 'Mikronezija' THEN 'FM'\000d\000a        WHEN NAME = 'Nauru' THEN 'NR'\000d\000a        WHEN NAME = 'Palau' THEN 'PW'\000d\000a        WHEN NAME = 'Papua Nova Gvineja' THEN 'PG'\000d\000a        WHEN NAME = 'Samoa' THEN 'WS'\000d\000a        WHEN NAME = 'Solomonski Otoci' THEN 'SB'\000d\000a        WHEN NAME = 'Tonga' THEN 'TO'\000d\000a        WHEN NAME = 'Tuvalu' THEN 'TV'\000d\000a        WHEN NAME = 'Vanuatu' THEN 'VU'\000d\000a        WHEN NAME = 'Australija' THEN 'AU'\000d\000a        WHEN NAME = 'Novi Zeland' THEN 'NZ[*]'\000d\000a    END\000d\000aWHERE code IS NULL;"; SQL statement:
+UPDATE COUNTRIES
+SET code = 
+    CASE 
+        WHEN NAME = 'Alžir' THEN 'DZ'
+        WHEN NAME = 'Angola' THEN 'AO'
+        WHEN NAME = 'Benin' THEN 'BJ'
+        WHEN NAME = 'Bocvana' THEN 'BW'
+        WHEN NAME = 'Burkina Faso' THEN 'BF'
+        WHEN NAME = 'Burundi' THEN 'BI'
+        WHEN NAME = 'Zelenortski Otoci' THEN 'CV'
+        WHEN NAME = 'Kamerun' THEN 'CM'
+        WHEN NAME = 'Centralnoafrička Republika' THEN 'CF'
+        WHEN NAME = 'Čad' THEN 'TD'
+        WHEN NAME = 'Komori' THEN 'KM'
+        WHEN NAME = 'Kongo' THEN 'CG'
+        WHEN NAME = 'Demokratska Republika Kongo' THEN 'CD'
+        WHEN NAME = 'Džibuti' THEN 'DJ'
+        WHEN NAME = 'Egipat' THEN 'EG'
+        WHEN NAME = 'Ekvatorska Gvineja' THEN 'GQ'
+        WHEN NAME = 'Eritreja' THEN 'ER'
+        WHEN NAME = 'Svazi' THEN 'SZ'
+        WHEN NAME = 'Etiopija' THEN 'ET'
+        WHEN NAME = 'Gabon' THEN 'GA'
+        WHEN NAME = 'Gambija' THEN 'GM'
+        WHEN NAME = 'Gana' THEN 'GH'
+        WHEN NAME = 'Gvineja' THEN 'GN'
+        WHEN NAME = 'Gvineja-Bissau' THEN 'GW'
+        WHEN NAME = 'Obala Bjelokosti' THEN 'CI'
+        WHEN NAME = 'Kenija' THEN 'KE'
+        WHEN NAME = 'Lesoto' THEN 'LS'
+        WHEN NAME = 'Liberija' THEN 'LR'
+        WHEN NAME = 'Libija' THEN 'LY'
+        WHEN NAME = 'Madagaskar' THEN 'MG'
+        WHEN NAME = 'Malavi' THEN 'MW'
+        WHEN NAME = 'Mali' THEN 'ML'
+        WHEN NAME = 'Mauritanija' THEN 'MR'
+        WHEN NAME = 'Mauricijus' THEN 'MU'
+        WHEN NAME = 'Maroko' THEN 'MA'
+        WHEN NAME = 'Mozambik' THEN 'MZ'
+        WHEN NAME = 'Namibija' THEN 'NA'
+        WHEN NAME = 'Niger' THEN 'NE'
+        WHEN NAME = 'Nigerija' THEN 'NG'
+        WHEN NAME = 'Ruanda' THEN 'RW'
+        WHEN NAME = 'Sao Tome i Principe' THEN 'ST'
+        WHEN NAME = 'Senegal' THEN 'SN'
+        WHEN NAME = 'Sejšeli' THEN 'SC'
+        WHEN NAME = 'Sijera Leone' THEN 'SL'
+        WHEN NAME = 'Somalija' THEN 'SO'
+        WHEN NAME = 'Južnoafrička Republika' THEN 'ZA'
+        WHEN NAME = 'Južni Sudan' THEN 'SS'
+        WHEN NAME = 'Sudan' THEN 'SD'
+        WHEN NAME = 'Tanzanija' THEN 'TZ'
+        WHEN NAME = 'Togo' THEN 'TG'
+        WHEN NAME = 'Tunis' THEN 'TN'
+        WHEN NAME = 'Uganda' THEN 'UG'
+        WHEN NAME = 'Zambija' THEN 'ZM'
+        WHEN NAME = 'Zimbabve' THEN 'ZW'
+        WHEN NAME = 'Antigva i Barbuda' THEN 'AG'
+        WHEN NAME = 'Bahami' THEN 'BS'
+        WHEN NAME = 'Barbados' THEN 'BB'
+        WHEN NAME = 'Belize' THEN 'BZ'
+        WHEN NAME = 'Kanada' THEN 'CA'
+        WHEN NAME = 'Kostarika' THEN 'CR'
+        WHEN NAME = 'Kuba' THEN 'CU'
+        WHEN NAME = 'Dominika' THEN 'DM'
+        WHEN NAME = 'Dominikanska Republika' THEN 'DO'
+        WHEN NAME = 'Salvador' THEN 'SV'
+        WHEN NAME = 'Grenada' THEN 'GD'
+        WHEN NAME = 'Gvatemala' THEN 'GT'
+        WHEN NAME = 'Haiti' THEN 'HT'
+        WHEN NAME = 'Honduras' THEN 'HN'
+        WHEN NAME = 'Jamajka' THEN 'JM'
+        WHEN NAME = 'Meksiko' THEN 'MX'
+        WHEN NAME = 'Nikaragva' THEN 'NI'
+        WHEN NAME = 'Panama' THEN 'PA'
+        WHEN NAME = 'Sveti Kristofor i Nevis' THEN 'KN
+WHEN NAME = 'Sveti Lucija' THEN 'LC'
+WHEN NAME = 'Sveti Vincent i Grenadini' THEN 'VC'
+WHEN NAME = 'Trinidad i Tobago' THEN 'TT'
+WHEN NAME = 'Sjedinjene Američke Države' THEN 'US'
+WHEN NAME = 'Argentina' THEN 'AR'
+WHEN NAME = 'Bolivija' THEN 'BO'
+WHEN NAME = 'Brazil' THEN 'BR'
+WHEN NAME = 'Čile' THEN 'CL'
+WHEN NAME = 'Kolumbija' THEN 'CO'
+WHEN NAME = 'Ekvador' THEN 'EC'
+WHEN NAME = 'Gvajana' THEN 'GY'
+WHEN NAME = 'Paragvaj' THEN 'PY'
+WHEN NAME = 'Peru' THEN 'PE'
+WHEN NAME = 'Surinam' THEN 'SR'
+WHEN NAME = 'Urugvaj' THEN 'UY'
+WHEN NAME = 'Venezuela' THEN 'VE'
+WHEN NAME = 'Afganistan' THEN 'AF'
+WHEN NAME = 'Armenija' THEN 'AM'
+WHEN NAME = 'Azerbejdžan' THEN 'AZ'
+WHEN NAME = 'Bahrein' THEN 'BH'
+WHEN NAME = 'Bangladeš' THEN 'BD'
+WHEN NAME = 'Butan' THEN 'BT'
+WHEN NAME = 'Brunej' THEN 'BN'
+WHEN NAME = 'Kambodža' THEN 'KH'
+WHEN NAME = 'Kina' THEN 'CN'
+WHEN NAME = 'Kipar' THEN 'CY'
+WHEN NAME = 'Gruzija' THEN 'GE'
+WHEN NAME = 'Indija' THEN 'IN'
+WHEN NAME = 'Indonezija' THEN 'ID'
+WHEN NAME = 'Iran' THEN 'IR'
+WHEN NAME = 'Irak' THEN 'IQ'
+WHEN NAME = 'Izrael' THEN 'IL'
+WHEN NAME = 'Japan' THEN 'JP'
+WHEN NAME = 'Jordan' THEN 'JO'
+WHEN NAME = 'Kazahstan' THEN 'KZ'
+WHEN NAME = 'Kuvajt' THEN 'KW'
+WHEN NAME = 'Kirgistan' THEN 'KG'
+WHEN NAME = 'Laos' THEN 'LA'
+WHEN NAME = 'Libanon' THEN 'LB'
+WHEN NAME = 'Malezija' THEN 'MY'
+WHEN NAME = 'Maldivi' THEN 'MV'
+WHEN NAME = 'Mongolija' THEN 'MN'
+WHEN NAME = 'Mjanmar' THEN 'MM'
+WHEN NAME = 'Nepal' THEN 'NP'
+WHEN NAME = 'Sjeverna Koreja' THEN 'KP'
+WHEN NAME = 'Oman' THEN 'OM'
+WHEN NAME = 'Pakistan' THEN 'PK'
+WHEN NAME = 'Palestina' THEN 'PS'
+WHEN NAME = 'Filipini' THEN 'PH'
+WHEN NAME = 'Katar' THEN 'QA'
+WHEN NAME = 'Saudijska Arabija' THEN 'SA'
+WHEN NAME = 'Singapur' THEN 'SG'
+WHEN NAME = 'Južna Koreja' THEN 'KR'
+WHEN NAME = 'Šri Lanka' THEN 'LK'
+WHEN NAME = 'Sirija' THEN 'SY'
+WHEN NAME = 'Tajvan' THEN 'TW'
+WHEN NAME = 'Tadžikistan' THEN 'TJ'
+WHEN NAME = 'Tajland' THEN 'TH'
+WHEN NAME = 'Istočni Timor' THEN 'TL'
+WHEN NAME = 'Turska' THEN 'TR'
+WHEN NAME = 'Turkmenistan' THEN 'TM'
+WHEN NAME = 'Ujedinjeni Arapski Emirati' THEN 'AE'
+WHEN NAME = 'Uzbekistan' THEN 'UZ'
+WHEN NAME = 'Vijetnam' THEN 'VN'
+WHEN NAME = 'Jemen' THEN 'YE'
+WHEN NAME = 'Albanija' THEN 'AL'
+WHEN NAME = 'Andora' THEN 'AD'
+WHEN NAME = 'Austrija' THEN 'AT'
+WHEN NAME = 'Bjelorusija' THEN 'BY'
+WHEN NAME = 'Belgija' THEN 'BE'
+WHEN NAME = 'Bosna i Hercegovina' THEN 'BA'
+WHEN NAME = 'Bugarska' THEN 'BG'
+WHEN NAME = 'Hrvatska' THEN 'HR'
+WHEN NAME = 'Češka' THEN 'CZ'
+WHEN NAME = 'Danska' THEN 'DK'
+WHEN NAME = 'Estonija' THEN 'EE'
+WHEN NAME = 'Finska' THEN 'FI'
+WHEN NAME = 'Francuska' THEN 'FR'
+WHEN NAME = 'Njemačka' THEN 'DE'
+WHEN NAME = 'Grčka' THEN 'GR'
+WHEN NAME = 'Mađarska' THEN 'HU'
+WHEN NAME = 'Island' THEN 'IS'
+WHEN NAME = 'Irska' THEN 'IE'
+WHEN NAME = 'Italija' THEN 'IT'
+WHEN NAME = 'Kosovo' THEN 'XK'
+WHEN NAME = 'Latvija' THEN 'LV'
+WHEN NAME = 'Lihtenštajn' THEN 'LI'
+WHEN NAME = 'Litva' THEN 'LT'
+WHEN NAME = 'Luksemburg' THEN 'LU'
+WHEN NAME = 'Malta' THEN 'MT'
+WHEN NAME = 'Moldavija' THEN 'MD'
+WHEN NAME = 'Monako' THEN 'MC'
+WHEN NAME = 'Crna Gora' THEN 'ME'
+WHEN NAME = 'Nizozemska' THEN 'NL'
+WHEN NAME = 'Sjeverna Makedonija' THEN 'MK'
+WHEN NAME = 'Norveška' THEN 'NO'
+WHEN NAME = 'Poljska' THEN 'PL'
+WHEN NAME = 'Portugal' THEN 'PT'
+WHEN NAME = 'Rumunjska' THEN 'RO'
+WHEN NAME = 'Rusija' THEN 'RU'
+WHEN NAME = 'San Marino' THEN 'SM'
+WHEN NAME = 'Srbija' THEN 'RS'
+WHEN NAME = 'Slovačka' THEN 'SK'
+WHEN NAME = 'Slovenija' THEN 'SI'
+WHEN NAME = 'Španjolska' THEN 'ES'
+WHEN NAME = 'Švedska' THEN 'SE'
+WHEN NAME = 'Švicarska' THEN 'CH'
+WHEN NAME = 'Ukrajina' THEN 'UA'
+WHEN NAME = 'Ujedinjeno Kraljevstvo' THEN 'GB'
+WHEN NAME = 'Vatikan' THEN 'VA'
+WHEN NAME = 'Fidži' THEN 'FJ'WHEN NAME = 'Kiribati' THEN 'KI'
+        WHEN NAME = 'Maršalovi Otoci' THEN 'MH'
+        WHEN NAME = 'Mikronezija' THEN 'FM'
+        WHEN NAME = 'Nauru' THEN 'NR'
+        WHEN NAME = 'Palau' THEN 'PW'
+        WHEN NAME = 'Papua Nova Gvineja' THEN 'PG'
+        WHEN NAME = 'Samoa' THEN 'WS'
+        WHEN NAME = 'Solomonski Otoci' THEN 'SB'
+        WHEN NAME = 'Tonga' THEN 'TO'
+        WHEN NAME = 'Tuvalu' THEN 'TV'
+        WHEN NAME = 'Vanuatu' THEN 'VU'
+        WHEN NAME = 'Australija' THEN 'AU'
+        WHEN NAME = 'Novi Zeland' THEN 'NZ'
+    END
+WHERE code IS NULL; [42000-224]
+2024-06-10 16:31:21.345714+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "UPDATE COUNTRIES\000d\000aSET code = \000d\000a    CASE \000d\000a        WHEN NAME = 'Alžir' THEN 'DZ'\000d\000a        WHEN NAME = 'Angola' THEN 'AO'\000d\000a        WHEN NAME = 'Benin' THEN 'BJ'\000d\000a        WHEN NAME = 'Bocvana' THEN 'BW'\000d\000a        WHEN NAME = 'Burkina Faso' THEN 'BF'\000d\000a        WHEN NAME = 'Burundi' THEN 'BI'\000d\000a        WHEN NAME = 'Zelenortski Otoci' THEN 'CV'\000d\000a        WHEN NAME = 'Kamerun' THEN 'CM'\000d\000a        WHEN NAME = 'Centralnoafrička Republika' THEN 'CF'\000d\000a        WHEN NAME = 'Čad' THEN 'TD'\000d\000a        WHEN NAME = 'Komori' THEN 'KM'\000d\000a        WHEN NAME = 'Kongo' THEN 'CG'\000d\000a        WHEN NAME = 'Demokratska Republika Kongo' THEN 'CD'\000d\000a        WHEN NAME = 'Džibuti' THEN 'DJ'\000d\000a        WHEN NAME = 'Egipat' THEN 'EG'\000d\000a        WHEN NAME = 'Ekvatorska Gvineja' THEN 'GQ'\000d\000a        WHEN NAME = 'Eritreja' THEN 'ER'\000d\000a        WHEN NAME = 'Svazi' THEN 'SZ'\000d\000a        WHEN NAME = 'Etiopija' THEN 'ET'\000d\000a        WHEN NAME = 'Gabon' THEN 'GA'\000d\000a        WHEN NAME = 'Gambija' THEN 'GM'\000d\000a        WHEN NAME = 'Gana' THEN 'GH'\000d\000a        WHEN NAME = 'Gvineja' THEN 'GN'\000d\000a        WHEN NAME = 'Gvineja-Bissau' THEN 'GW'\000d\000a        WHEN NAME = 'Obala Bjelokosti' THEN 'CI'\000d\000a        WHEN NAME = 'Kenija' THEN 'KE'\000d\000a        WHEN NAME = 'Lesoto' THEN 'LS'\000d\000a        WHEN NAME = 'Liberija' THEN 'LR'\000d\000a        WHEN NAME = 'Libija' THEN 'LY'\000d\000a        WHEN NAME = 'Madagaskar' THEN 'MG'\000d\000a        WHEN NAME = 'Malavi' THEN 'MW'\000d\000a        WHEN NAME = 'Mali' THEN 'ML'\000d\000a        WHEN NAME = 'Mauritanija' THEN 'MR'\000d\000a        WHEN NAME = 'Mauricijus' THEN 'MU'\000d\000a        WHEN NAME = 'Maroko' THEN 'MA'\000d\000a        WHEN NAME = 'Mozambik' THEN 'MZ'\000d\000a        WHEN NAME = 'Namibija' THEN 'NA'\000d\000a        WHEN NAME = 'Niger' THEN 'NE'\000d\000a        WHEN NAME = 'Nigerija' THEN 'NG'\000d\000a        WHEN NAME = 'Ruanda' THEN 'RW'\000d\000a        WHEN NAME = 'Sao Tome i Principe' THEN 'ST'\000d\000a        WHEN NAME = 'Senegal' THEN 'SN'\000d\000a        WHEN NAME = 'Sejšeli' THEN 'SC'\000d\000a        WHEN NAME = 'Sijera Leone' THEN 'SL'\000d\000a        WHEN NAME = 'Somalija' THEN 'SO'\000d\000a        WHEN NAME = 'Južnoafrička Republika' THEN 'ZA'\000d\000a        WHEN NAME = 'Južni Sudan' THEN 'SS'\000d\000a        WHEN NAME = 'Sudan' THEN 'SD'\000d\000a        WHEN NAME = 'Tanzanija' THEN 'TZ'\000d\000a        WHEN NAME = 'Togo' THEN 'TG'\000d\000a        WHEN NAME = 'Tunis' THEN 'TN'\000d\000a        WHEN NAME = 'Uganda' THEN 'UG'\000d\000a        WHEN NAME = 'Zambija' THEN 'ZM'\000d\000a        WHEN NAME = 'Zimbabve' THEN 'ZW'\000d\000a        WHEN NAME = 'Antigva i Barbuda' THEN 'AG'\000d\000a        WHEN NAME = 'Bahami' THEN 'BS'\000d\000a        WHEN NAME = 'Barbados' THEN 'BB'\000d\000a        WHEN NAME = 'Belize' THEN 'BZ'\000d\000a        WHEN NAME = 'Kanada' THEN 'CA'\000d\000a        WHEN NAME = 'Kostarika' THEN 'CR'\000d\000a        WHEN NAME = 'Kuba' THEN 'CU'\000d\000a        WHEN NAME = 'Dominika' THEN 'DM'\000d\000a        WHEN NAME = 'Dominikanska Republika' THEN 'DO'\000d\000a        WHEN NAME = 'Salvador' THEN 'SV'\000d\000a        WHEN NAME = 'Grenada' THEN 'GD'\000d\000a        WHEN NAME = 'Gvatemala' THEN 'GT'\000d\000a        WHEN NAME = 'Haiti' THEN 'HT'\000d\000a        WHEN NAME = 'Honduras' THEN 'HN'\000d\000a        WHEN NAME = 'Jamajka' THEN 'JM'\000d\000a        WHEN NAME = 'Meksiko' THEN 'MX'\000d\000a        WHEN NAME = 'Nikaragva' THEN 'NI'\000d\000a        WHEN NAME = 'Panama' THEN 'PA'\000d\000a        WHEN NAME = 'Sveti Kristofor i Nevis' THEN [*]'KN\000d\000a    END\000d\000aWHERE code IS NULL;"; SQL statement:
+UPDATE COUNTRIES
+SET code = 
+    CASE 
+        WHEN NAME = 'Alžir' THEN 'DZ'
+        WHEN NAME = 'Angola' THEN 'AO'
+        WHEN NAME = 'Benin' THEN 'BJ'
+        WHEN NAME = 'Bocvana' THEN 'BW'
+        WHEN NAME = 'Burkina Faso' THEN 'BF'
+        WHEN NAME = 'Burundi' THEN 'BI'
+        WHEN NAME = 'Zelenortski Otoci' THEN 'CV'
+        WHEN NAME = 'Kamerun' THEN 'CM'
+        WHEN NAME = 'Centralnoafrička Republika' THEN 'CF'
+        WHEN NAME = 'Čad' THEN 'TD'
+        WHEN NAME = 'Komori' THEN 'KM'
+        WHEN NAME = 'Kongo' THEN 'CG'
+        WHEN NAME = 'Demokratska Republika Kongo' THEN 'CD'
+        WHEN NAME = 'Džibuti' THEN 'DJ'
+        WHEN NAME = 'Egipat' THEN 'EG'
+        WHEN NAME = 'Ekvatorska Gvineja' THEN 'GQ'
+        WHEN NAME = 'Eritreja' THEN 'ER'
+        WHEN NAME = 'Svazi' THEN 'SZ'
+        WHEN NAME = 'Etiopija' THEN 'ET'
+        WHEN NAME = 'Gabon' THEN 'GA'
+        WHEN NAME = 'Gambija' THEN 'GM'
+        WHEN NAME = 'Gana' THEN 'GH'
+        WHEN NAME = 'Gvineja' THEN 'GN'
+        WHEN NAME = 'Gvineja-Bissau' THEN 'GW'
+        WHEN NAME = 'Obala Bjelokosti' THEN 'CI'
+        WHEN NAME = 'Kenija' THEN 'KE'
+        WHEN NAME = 'Lesoto' THEN 'LS'
+        WHEN NAME = 'Liberija' THEN 'LR'
+        WHEN NAME = 'Libija' THEN 'LY'
+        WHEN NAME = 'Madagaskar' THEN 'MG'
+        WHEN NAME = 'Malavi' THEN 'MW'
+        WHEN NAME = 'Mali' THEN 'ML'
+        WHEN NAME = 'Mauritanija' THEN 'MR'
+        WHEN NAME = 'Mauricijus' THEN 'MU'
+        WHEN NAME = 'Maroko' THEN 'MA'
+        WHEN NAME = 'Mozambik' THEN 'MZ'
+        WHEN NAME = 'Namibija' THEN 'NA'
+        WHEN NAME = 'Niger' THEN 'NE'
+        WHEN NAME = 'Nigerija' THEN 'NG'
+        WHEN NAME = 'Ruanda' THEN 'RW'
+        WHEN NAME = 'Sao Tome i Principe' THEN 'ST'
+        WHEN NAME = 'Senegal' THEN 'SN'
+        WHEN NAME = 'Sejšeli' THEN 'SC'
+        WHEN NAME = 'Sijera Leone' THEN 'SL'
+        WHEN NAME = 'Somalija' THEN 'SO'
+        WHEN NAME = 'Južnoafrička Republika' THEN 'ZA'
+        WHEN NAME = 'Južni Sudan' THEN 'SS'
+        WHEN NAME = 'Sudan' THEN 'SD'
+        WHEN NAME = 'Tanzanija' THEN 'TZ'
+        WHEN NAME = 'Togo' THEN 'TG'
+        WHEN NAME = 'Tunis' THEN 'TN'
+        WHEN NAME = 'Uganda' THEN 'UG'
+        WHEN NAME = 'Zambija' THEN 'ZM'
+        WHEN NAME = 'Zimbabve' THEN 'ZW'
+        WHEN NAME = 'Antigva i Barbuda' THEN 'AG'
+        WHEN NAME = 'Bahami' THEN 'BS'
+        WHEN NAME = 'Barbados' THEN 'BB'
+        WHEN NAME = 'Belize' THEN 'BZ'
+        WHEN NAME = 'Kanada' THEN 'CA'
+        WHEN NAME = 'Kostarika' THEN 'CR'
+        WHEN NAME = 'Kuba' THEN 'CU'
+        WHEN NAME = 'Dominika' THEN 'DM'
+        WHEN NAME = 'Dominikanska Republika' THEN 'DO'
+        WHEN NAME = 'Salvador' THEN 'SV'
+        WHEN NAME = 'Grenada' THEN 'GD'
+        WHEN NAME = 'Gvatemala' THEN 'GT'
+        WHEN NAME = 'Haiti' THEN 'HT'
+        WHEN NAME = 'Honduras' THEN 'HN'
+        WHEN NAME = 'Jamajka' THEN 'JM'
+        WHEN NAME = 'Meksiko' THEN 'MX'
+        WHEN NAME = 'Nikaragva' THEN 'NI'
+        WHEN NAME = 'Panama' THEN 'PA'
+        WHEN NAME = 'Sveti Kristofor i Nevis' THEN 'KN
+    END
+WHERE code IS NULL; [42000-224]
+2024-06-10 16:38:23.553258+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO countries (ID, CONTINENT, NAME, CODE) VALUES\000d\000a(1, 'Afrika', 'Alžir', 'DZ'),\000d\000a(2, 'Afrika', 'Angola', 'AO'),\000d\000a(3, 'Afrika', 'Benin', 'BJ'),\000d\000a(4, 'Afrika', 'Bocvana', 'BW'),\000d\000a(5, 'Afrika', 'Burkina Faso', 'BF'),\000d\000a(6, 'Afrika', 'Burundi', 'BI'),\000d\000a(7, 'Afrika', 'Zelenortski Otoci', 'CV'),\000d\000a(8, 'Afrika', 'Kamerun', 'CM'),\000d\000a(9, 'Afrika', 'Centralnoafrička Republika', 'CF'),\000d\000a(10, 'Afrika', 'Čad', 'TD'),\000d\000a(11, 'Afrika', 'Komori', 'KM'),\000d\000a(12, 'Afrika', 'Kongo', 'CG'),\000d\000a(13, 'Afrika', 'Demokratska Republika Kongo', 'CD'),\000d\000a(14, 'Afrika', 'Džibuti', 'DJ'),\000d\000a(15, 'Afrika', 'Egipat', 'EG'),\000d\000a(16, 'Afrika', 'Ekvatorska Gvineja', 'GQ'),\000d\000a(17, 'Afrika', 'Eritreja', 'ER'),\000d\000a(18, 'Afrika', 'Svazi', 'SZ'),\000d\000a(19, 'Afrika', 'Etiopija', 'ET'),\000d\000a(20, 'Afrika', 'Gabon', 'GA'),\000d\000a(21, 'Afrika', 'Gambija', 'GM'),\000d\000a(22, 'Afrika', 'Gana', 'GH'),\000d\000a(23, 'Afrika', 'Gvineja', 'GN'),\000d\000a(24, 'Afrika', 'Gvineja-Bissau', 'GW'),\000d\000a(25, 'Afrika', 'Obala Bjelokosti', 'CI'),\000d\000a(26, 'Afrika', 'Kenija', 'KE'),\000d\000a(27, 'Afrika', 'Lesoto', 'LS'),\000d\000a(28, 'Afrika', 'Liberija', 'LR'),\000d\000a(29, 'Afrika', 'Libija', 'LY'),\000d\000a(30, 'Afrika', 'Madagaskar', 'MG'),\000d\000a(31, 'Afrika', 'Malavi', 'MW'),\000d\000a(32, 'Afrika', 'Mali', 'ML'),\000d\000a(33, 'Afrika', 'Mauritanija', 'MR'),\000d\000a(34, 'Afrika', 'Mauricijus', 'MU'),\000d\000a(35, 'Afrika', 'Maroko', 'MA'),\000d\000a(36, 'Afrika', 'Mozambik', 'MZ'),\000d\000a(37, 'Afrika', 'Namibija', 'NA'),\000d\000a(38, 'Afrika', 'Niger', 'NE'),\000d\000a(39, 'Afrika', 'Nigerija', 'NG'),\000d\000a(40, 'Afrika', 'Ruanda', 'RW'),\000d\000a(41, 'Afrika', 'Sao Tome i Principe', 'ST'),\000d\000a(42, 'Afrika', 'Senegal', 'SN'),\000d\000a(43, 'Afrika', 'Sejšeli', 'SC'),\000d\000a(44, 'Afrika', 'Sijera Leone', 'SL'),\000d\000a(45, 'Afrika', 'Somalija', 'SO'),\000d\000a(46, 'Afrika', 'Južnoafrička Republika', 'ZA'),\000d\000a(47, 'Afrika', 'Južni Sudan', 'SS'),\000d\000a(48, 'Afrika', 'Sudan', 'SD'),\000d\000a(49, 'Afrika', 'Tanzanija', 'TZ'),\000d\000a(50, 'Afrika', 'Togo', 'TG'),\000d\000a(51, 'Afrika', 'Tunis', 'TN'),\000d\000a(52, 'Afrika', 'Uganda', 'UG'),\000d\000a(53, 'Afrika', 'Zambija', 'ZM'),\000d\000a(54, 'Afrika', 'Zimbabve', 'ZW'),\000d\000a(55, 'Sjeverna Amerika', 'Antigva i Barbuda', 'AG'),\000d\000a(56, 'Sjeverna Amerika', 'Bahami', 'BS'),\000d\000a(57, 'Sjeverna Amerika', 'Barbados', 'BB'),\000d\000a(58, 'Sjeverna Amerika', 'Belize', 'BZ'),\000d\000a(59, 'Sjeverna Amerika', 'Kanada', 'CA'),\000d\000a(60, 'Sjeverna Amerika', 'Kostarika', 'CR'),\000d\000a(61, 'Sjeverna Amerika', 'Kuba', 'CU'),\000d\000a(62, 'Sjeverna Amerika', 'Dominika', 'DM'),\000d\000a(63, 'Sjeverna Amerika', 'Dominikanska Republika', 'DO'),\000d\000a(64, 'Sjeverna Amerika', 'Salvador', 'SV'),\000d\000a(65, 'Sjeverna Amerika', 'Grenada', 'GD'),\000d\000a(66, 'Sjeverna Amerika', 'Gvatemala', 'GT'),\000d\000a(67, 'Sjeverna Amerika', 'Haiti', 'HT'),\000d\000a(68, 'Sjeverna Amerika', 'Honduras', 'HN'),\000d\000a(69, 'Sjeverna Amerika', 'Jamajka', 'JM'),\000d\000a(70, 'Sjeverna Amerika', 'Meksiko', 'MX'),\000d\000a(71, 'Sjeverna Amerika', 'Nikaragva', 'NI'),\000d\000a(72, 'Sjeverna Amerika', 'Panama', 'PA'),\000d\000a(73, 'Sjeverna Amerika', 'Sveti Kristofor i Nevis', 'KN'),\000d\000a(74, 'Sjeverna Amerika', 'Sveti Lucija', 'LC'),\000d\000a(75, 'Sjeverna Amerika', 'Sveti Vincent i Grenadini', 'VC'),\000d\000a(76, 'Sjeverna Amerika', 'Trinidad i Tobago', 'TT'),\000d\000a(77, 'Sjeverna Amerika', 'Sjedinjene Američke Države', 'US'),\000d\000a(78, 'Južna Amerika', 'Argentina', 'AR'),\000d\000a(79, 'Južna Amerika', 'Bolivija', 'BO'),\000d\000a(80, 'Južna Amerika', 'Brazila', 'BR'),\000d\000a(81, 'Južna Amerika', 'Čile', 'CL'),\000d\000a(82, 'Južna Amerika', 'Kolumbija', 'CO'),\000d\000a(83, 'Južna Amerika', 'Ekvador', 'EC'),\000d\000a(84, 'Južna Amerika', 'Gvajana', 'GY'),\000d\000a(85, 'Južna Amerika', 'Paragvaj', 'PY'),\000d\000a(86, 'Južna Amerika', 'Peru', 'PE'),\000d\000a(87, 'Južna Amerika', 'Surinam', 'SR'),\000d\000a(88, 'Južna Amerika', 'Urugvaj', 'UY'),\000d\000a(89, 'Južna Amerika', 'Venezuela', 'VE'),\000d\000a(90, 'Azija', 'Afganistan', 'AF'),\000d\000a(91, 'Azija', 'Armenija', 'AM'),\000d\000a(92, 'Azija', 'Azerbejdžan', 'AZ'),\000d\000a(93, 'Azija', 'Bahrein', 'BH'),\000d\000a(94, 'Azija', 'Bangladeš', 'BD'),\000d\000a(95, 'Azija', 'Butan', 'BT'),\000d\000a(96, 'Azija', 'Brunej', 'BN'),\000d\000a(97, 'Azija', 'Kambodža', 'KH'),\000d\000a(98, 'Azija', 'Kina', 'CN'),\000d\000a(99, 'Azija', 'Cipar', 'CY'),\000d\000a(100, 'Azija', 'Gruzija', 'GE'),\000d\000a(101, 'Azija', 'Indija', 'IN'),\000d\000a(102, 'Azija', 'Indonezija', 'ID'),\000d\000a(103, 'Azija', 'Iran', 'IR'),\000d\000a(104, 'Azija', 'Irak', 'IQ'),\000d\000a(105, 'Azija', 'Izrael', 'IL'),\000d\000a(106, 'Azija', 'Japan', 'JP'),\000d\000a(107, 'Azija', 'Jordan', 'JO'),\000d\000a(108, 'Azija', 'Kazahstan', 'KZ'),\000d\000a(109, 'Azija', 'Kuvajt', 'KW'),\000d\000a(110, 'Azija', 'Kirgistan', 'KG'),\000d\000a(111, 'Azija', 'Laos', 'LA'),\000d\000a(112, 'Azija', 'Libanon', 'LB'),\000d\000a(113, 'Azija', 'Malezija', 'MY'),\000d\000a(114, 'Azija', 'Maldivi', 'MV'),\000d\000a(115, 'Azija', 'Mongolija', 'MN'),\000d\000a(116, 'Azija', 'Mjanmar', 'MM'),\000d\000a(117, 'Azija', 'Nepal', 'NP'),\000d\000a(118, 'Azija', 'Sjeverna Koreja', 'KP'),\000d\000a(119, 'Azija', 'Oman', 'OM'),\000d\000a(120, 'Azija', 'Pakistan', 'PK'),\000d\000a(121, 'Azija', 'Palestina', 'PS'),\000d\000a(122, 'Azija', 'Filipini', 'PH'),\000d\000a(123, 'Azija', 'Katar', 'QA'),\000d\000a(124, 'Azija', 'Saudijska Arabija', 'SA'),\000d\000a(125, 'Azija', 'Singapur', 'SG'),\000d\000a(126, 'Azija', 'Južna Koreja', 'KR'),\000d\000a(127, 'Azija', 'Šri Lanka', 'LK'),\000d\000a(128, 'Azija', 'Sirija', 'SY'),\000d\000a(129, 'Azija', 'Tajvan', 'TW'),\000d\000a(130, 'Azija', 'Tadžikistan', 'TJ'),\000d\000a(131, 'Azija', 'Tajland', 'TH'),\000d\000a(132, 'Azija', 'Istočni Timor', 'TL'),\000d\000a(133, 'Azija', 'Turska', 'TR'),\000d\000a(134, 'Azija', 'Turkmenistan', 'TM'),\000d\000a(135, 'Azija', 'Ujedinjeni Arapski Emirati', 'AE'),\000d\000a(136, 'Azija', 'Uzbekistan', 'UZ'),\000d\000a(137, 'Azija', 'Vijetnam', 'VN'),\000d\000a(138, 'Azija', 'Jemen', 'YE'),\000d\000a(139, 'Europa', 'Albanija', 'AL'),\000d\000a(140, 'Europa', 'Andora', 'AD'),\000d\000a(141, 'Europa', 'Austrija', 'AT'),\000d\000a(142, 'Europa', 'Bjelorusija', 'BY'),\000d\000a(143, 'Europa', 'Belgija', 'BE'),\000d\000a(144, 'Europa', 'Bosna i Hercegovina', 'BA'),\000d\000a(145, 'Europa', 'Bugarska', 'BG'),\000d\000a(146, 'Europa', 'Hrvatska', 'HR'),\000d\000a(147, 'Europa', 'Češka', 'CZ'),\000d\000a(148, 'Europa', 'Danska', 'DK'),\000d\000a(149, 'Europa', 'Estonija', 'EE'),\000d\000a(150, 'Europa', 'Finska', 'FI'),\000d\000a(151, 'Europa', 'Francuska', 'FR'),\000d\000a(152, 'Europa', 'Njemačka', 'DE'),\000d\000a(153, 'Europa', 'Grčka', 'GR'),\000d\000a(154, 'Europa', 'Mađarska', 'HU'),\000d\000a(155, 'Europa', 'Island', 'IS'),\000d\000a(156, 'Europa', 'Irska', 'IE),\000d\000a(157, 'Europa', 'Italija', 'IT'),\000d\000a(158, 'Europa', 'Kosovo', 'XK'),\000d\000a(159, 'Europa', 'Latvija', 'LV'),\000d\000a(160, 'Europa', 'Lihtenštajn', 'LI'),\000d\000a(161, 'Europa', 'Litva', 'LT'),\000d\000a(162, 'Europa', 'Luksemburg', 'LU'),\000d\000a(163, 'Europa', 'Malta', 'MT'),\000d\000a(164, 'Europa', 'Moldavija', 'MD'),\000d\000a(165, 'Europa', 'Monako', 'MC'),\000d\000a(166, 'Europa', 'Crna Gora', 'ME'),\000d\000a(167, 'Europa', 'Nizozemska', 'NL'),\000d\000a(168, 'Europa', 'Sjeverna Makedonija', 'MK'),\000d\000a(169, 'Europa', 'Norveška', 'NO'),\000d\000a(170, 'Europa', 'Poljska', 'PL'),\000d\000a(171, 'Europa', 'Portugal', 'PT'),\000d\000a(172, 'Europa', 'Rumunjska', 'RO'),\000d\000a(173, 'Europa', 'Rusija', 'RU'),\000d\000a(174, 'Europa', 'San Marino', 'SM'),\000d\000a(175, 'Europa', 'Srbija', 'RS'),\000d\000a(176, 'Europa', 'Slovačka', 'SK'),\000d\000a(177, 'Europa', 'Slovenija', 'SI'),\000d\000a(178, 'Europa', 'Španjolska', 'ES'),\000d\000a(179, 'Europa', 'Švedska', 'SE'),\000d\000a(180, 'Europa', 'Švicarska', 'CH'),\000d\000a(181, 'Europa', 'Ukrajina', 'UA'),\000d\000a(182, 'Europa', 'Ujedinjeno Kraljevstvo', 'GB'),\000d\000a(183, 'Europa', 'Vatikan', 'VA'),\000d\000a(184, 'Australija', 'Fidži', 'FJ'),\000d\000a(185, 'Australija', 'Kiribati', 'KI'),\000d\000a(186, 'Australija', 'Maršalovi Otoci', 'MH'),\000d\000a(187, 'Australija', 'Mikronezija', 'FM'),\000d\000a(188, 'Australija', 'Nauru', 'NR'),\000d\000a(189, 'Australija', 'Palau', 'PW'),\000d\000a(190, 'Australija', 'Papua Nova Gvineja', 'PG'),\000d\000a(191, 'Australija', 'Samoa', 'WS'),\000d\000a(192, 'Australija', 'Solomonski Otoci', 'SB'),\000d\000a(193, 'Australija', 'Tonga', 'TO'),\000d\000a(194, 'Australija', 'Tuvalu', 'TV'),\000d\000a(195, 'Australija', 'Vanuatu', 'VU'),\000d\000a(196, 'Australija', 'Australija', 'AU'),\000d\000a(197, 'Australija', 'Novi Zeland', 'NZ[*]');"; SQL statement:
+INSERT INTO countries (ID, CONTINENT, NAME, CODE) VALUES
+(1, 'Afrika', 'Alžir', 'DZ'),
+(2, 'Afrika', 'Angola', 'AO'),
+(3, 'Afrika', 'Benin', 'BJ'),
+(4, 'Afrika', 'Bocvana', 'BW'),
+(5, 'Afrika', 'Burkina Faso', 'BF'),
+(6, 'Afrika', 'Burundi', 'BI'),
+(7, 'Afrika', 'Zelenortski Otoci', 'CV'),
+(8, 'Afrika', 'Kamerun', 'CM'),
+(9, 'Afrika', 'Centralnoafrička Republika', 'CF'),
+(10, 'Afrika', 'Čad', 'TD'),
+(11, 'Afrika', 'Komori', 'KM'),
+(12, 'Afrika', 'Kongo', 'CG'),
+(13, 'Afrika', 'Demokratska Republika Kongo', 'CD'),
+(14, 'Afrika', 'Džibuti', 'DJ'),
+(15, 'Afrika', 'Egipat', 'EG'),
+(16, 'Afrika', 'Ekvatorska Gvineja', 'GQ'),
+(17, 'Afrika', 'Eritreja', 'ER'),
+(18, 'Afrika', 'Svazi', 'SZ'),
+(19, 'Afrika', 'Etiopija', 'ET'),
+(20, 'Afrika', 'Gabon', 'GA'),
+(21, 'Afrika', 'Gambija', 'GM'),
+(22, 'Afrika', 'Gana', 'GH'),
+(23, 'Afrika', 'Gvineja', 'GN'),
+(24, 'Afrika', 'Gvineja-Bissau', 'GW'),
+(25, 'Afrika', 'Obala Bjelokosti', 'CI'),
+(26, 'Afrika', 'Kenija', 'KE'),
+(27, 'Afrika', 'Lesoto', 'LS'),
+(28, 'Afrika', 'Liberija', 'LR'),
+(29, 'Afrika', 'Libija', 'LY'),
+(30, 'Afrika', 'Madagaskar', 'MG'),
+(31, 'Afrika', 'Malavi', 'MW'),
+(32, 'Afrika', 'Mali', 'ML'),
+(33, 'Afrika', 'Mauritanija', 'MR'),
+(34, 'Afrika', 'Mauricijus', 'MU'),
+(35, 'Afrika', 'Maroko', 'MA'),
+(36, 'Afrika', 'Mozambik', 'MZ'),
+(37, 'Afrika', 'Namibija', 'NA'),
+(38, 'Afrika', 'Niger', 'NE'),
+(39, 'Afrika', 'Nigerija', 'NG'),
+(40, 'Afrika', 'Ruanda', 'RW'),
+(41, 'Afrika', 'Sao Tome i Principe', 'ST'),
+(42, 'Afrika', 'Senegal', 'SN'),
+(43, 'Afrika', 'Sejšeli', 'SC'),
+(44, 'Afrika', 'Sijera Leone', 'SL'),
+(45, 'Afrika', 'Somalija', 'SO'),
+(46, 'Afrika', 'Južnoafrička Republika', 'ZA'),
+(47, 'Afrika', 'Južni Sudan', 'SS'),
+(48, 'Afrika', 'Sudan', 'SD'),
+(49, 'Afrika', 'Tanzanija', 'TZ'),
+(50, 'Afrika', 'Togo', 'TG'),
+(51, 'Afrika', 'Tunis', 'TN'),
+(52, 'Afrika', 'Uganda', 'UG'),
+(53, 'Afrika', 'Zambija', 'ZM'),
+(54, 'Afrika', 'Zimbabve', 'ZW'),
+(55, 'Sjeverna Amerika', 'Antigva i Barbuda', 'AG'),
+(56, 'Sjeverna Amerika', 'Bahami', 'BS'),
+(57, 'Sjeverna Amerika', 'Barbados', 'BB'),
+(58, 'Sjeverna Amerika', 'Belize', 'BZ'),
+(59, 'Sjeverna Amerika', 'Kanada', 'CA'),
+(60, 'Sjeverna Amerika', 'Kostarika', 'CR'),
+(61, 'Sjeverna Amerika', 'Kuba', 'CU'),
+(62, 'Sjeverna Amerika', 'Dominika', 'DM'),
+(63, 'Sjeverna Amerika', 'Dominikanska Republika', 'DO'),
+(64, 'Sjeverna Amerika', 'Salvador', 'SV'),
+(65, 'Sjeverna Amerika', 'Grenada', 'GD'),
+(66, 'Sjeverna Amerika', 'Gvatemala', 'GT'),
+(67, 'Sjeverna Amerika', 'Haiti', 'HT'),
+(68, 'Sjeverna Amerika', 'Honduras', 'HN'),
+(69, 'Sjeverna Amerika', 'Jamajka', 'JM'),
+(70, 'Sjeverna Amerika', 'Meksiko', 'MX'),
+(71, 'Sjeverna Amerika', 'Nikaragva', 'NI'),
+(72, 'Sjeverna Amerika', 'Panama', 'PA'),
+(73, 'Sjeverna Amerika', 'Sveti Kristofor i Nevis', 'KN'),
+(74, 'Sjeverna Amerika', 'Sveti Lucija', 'LC'),
+(75, 'Sjeverna Amerika', 'Sveti Vincent i Grenadini', 'VC'),
+(76, 'Sjeverna Amerika', 'Trinidad i Tobago', 'TT'),
+(77, 'Sjeverna Amerika', 'Sjedinjene Američke Države', 'US'),
+(78, 'Južna Amerika', 'Argentina', 'AR'),
+(79, 'Južna Amerika', 'Bolivija', 'BO'),
+(80, 'Južna Amerika', 'Brazila', 'BR'),
+(81, 'Južna Amerika', 'Čile', 'CL'),
+(82, 'Južna Amerika', 'Kolumbija', 'CO'),
+(83, 'Južna Amerika', 'Ekvador', 'EC'),
+(84, 'Južna Amerika', 'Gvajana', 'GY'),
+(85, 'Južna Amerika', 'Paragvaj', 'PY'),
+(86, 'Južna Amerika', 'Peru', 'PE'),
+(87, 'Južna Amerika', 'Surinam', 'SR'),
+(88, 'Južna Amerika', 'Urugvaj', 'UY'),
+(89, 'Južna Amerika', 'Venezuela', 'VE'),
+(90, 'Azija', 'Afganistan', 'AF'),
+(91, 'Azija', 'Armenija', 'AM'),
+(92, 'Azija', 'Azerbejdžan', 'AZ'),
+(93, 'Azija', 'Bahrein', 'BH'),
+(94, 'Azija', 'Bangladeš', 'BD'),
+(95, 'Azija', 'Butan', 'BT'),
+(96, 'Azija', 'Brunej', 'BN'),
+(97, 'Azija', 'Kambodža', 'KH'),
+(98, 'Azija', 'Kina', 'CN'),
+(99, 'Azija', 'Cipar', 'CY'),
+(100, 'Azija', 'Gruzija', 'GE'),
+(101, 'Azija', 'Indija', 'IN'),
+(102, 'Azija', 'Indonezija', 'ID'),
+(103, 'Azija', 'Iran', 'IR'),
+(104, 'Azija', 'Irak', 'IQ'),
+(105, 'Azija', 'Izrael', 'IL'),
+(106, 'Azija', 'Japan', 'JP'),
+(107, 'Azija', 'Jordan', 'JO'),
+(108, 'Azija', 'Kazahstan', 'KZ'),
+(109, 'Azija', 'Kuvajt', 'KW'),
+(110, 'Azija', 'Kirgistan', 'KG'),
+(111, 'Azija', 'Laos', 'LA'),
+(112, 'Azija', 'Libanon', 'LB'),
+(113, 'Azija', 'Malezija', 'MY'),
+(114, 'Azija', 'Maldivi', 'MV'),
+(115, 'Azija', 'Mongolija', 'MN'),
+(116, 'Azija', 'Mjanmar', 'MM'),
+(117, 'Azija', 'Nepal', 'NP'),
+(118, 'Azija', 'Sjeverna Koreja', 'KP'),
+(119, 'Azija', 'Oman', 'OM'),
+(120, 'Azija', 'Pakistan', 'PK'),
+(121, 'Azija', 'Palestina', 'PS'),
+(122, 'Azija', 'Filipini', 'PH'),
+(123, 'Azija', 'Katar', 'QA'),
+(124, 'Azija', 'Saudijska Arabija', 'SA'),
+(125, 'Azija', 'Singapur', 'SG'),
+(126, 'Azija', 'Južna Koreja', 'KR'),
+(127, 'Azija', 'Šri Lanka', 'LK'),
+(128, 'Azija', 'Sirija', 'SY'),
+(129, 'Azija', 'Tajvan', 'TW'),
+(130, 'Azija', 'Tadžikistan', 'TJ'),
+(131, 'Azija', 'Tajland', 'TH'),
+(132, 'Azija', 'Istočni Timor', 'TL'),
+(133, 'Azija', 'Turska', 'TR'),
+(134, 'Azija', 'Turkmenistan', 'TM'),
+(135, 'Azija', 'Ujedinjeni Arapski Emirati', 'AE'),
+(136, 'Azija', 'Uzbekistan', 'UZ'),
+(137, 'Azija', 'Vijetnam', 'VN'),
+(138, 'Azija', 'Jemen', 'YE'),
+(139, 'Europa', 'Albanija', 'AL'),
+(140, 'Europa', 'Andora', 'AD'),
+(141, 'Europa', 'Austrija', 'AT'),
+(142, 'Europa', 'Bjelorusija', 'BY'),
+(143, 'Europa', 'Belgija', 'BE'),
+(144, 'Europa', 'Bosna i Hercegovina', 'BA'),
+(145, 'Europa', 'Bugarska', 'BG'),
+(146, 'Europa', 'Hrvatska', 'HR'),
+(147, 'Europa', 'Češka', 'CZ'),
+(148, 'Europa', 'Danska', 'DK'),
+(149, 'Europa', 'Estonija', 'EE'),
+(150, 'Europa', 'Finska', 'FI'),
+(151, 'Europa', 'Francuska', 'FR'),
+(152, 'Europa', 'Njemačka', 'DE'),
+(153, 'Europa', 'Grčka', 'GR'),
+(154, 'Europa', 'Mađarska', 'HU'),
+(155, 'Europa', 'Island', 'IS'),
+(156, 'Europa', 'Irska', 'IE),
+(157, 'Europa', 'Italija', 'IT'),
+(158, 'Europa', 'Kosovo', 'XK'),
+(159, 'Europa', 'Latvija', 'LV'),
+(160, 'Europa', 'Lihtenštajn', 'LI'),
+(161, 'Europa', 'Litva', 'LT'),
+(162, 'Europa', 'Luksemburg', 'LU'),
+(163, 'Europa', 'Malta', 'MT'),
+(164, 'Europa', 'Moldavija', 'MD'),
+(165, 'Europa', 'Monako', 'MC'),
+(166, 'Europa', 'Crna Gora', 'ME'),
+(167, 'Europa', 'Nizozemska', 'NL'),
+(168, 'Europa', 'Sjeverna Makedonija', 'MK'),
+(169, 'Europa', 'Norveška', 'NO'),
+(170, 'Europa', 'Poljska', 'PL'),
+(171, 'Europa', 'Portugal', 'PT'),
+(172, 'Europa', 'Rumunjska', 'RO'),
+(173, 'Europa', 'Rusija', 'RU'),
+(174, 'Europa', 'San Marino', 'SM'),
+(175, 'Europa', 'Srbija', 'RS'),
+(176, 'Europa', 'Slovačka', 'SK'),
+(177, 'Europa', 'Slovenija', 'SI'),
+(178, 'Europa', 'Španjolska', 'ES'),
+(179, 'Europa', 'Švedska', 'SE'),
+(180, 'Europa', 'Švicarska', 'CH'),
+(181, 'Europa', 'Ukrajina', 'UA'),
+(182, 'Europa', 'Ujedinjeno Kraljevstvo', 'GB'),
+(183, 'Europa', 'Vatikan', 'VA'),
+(184, 'Australija', 'Fidži', 'FJ'),
+(185, 'Australija', 'Kiribati', 'KI'),
+(186, 'Australija', 'Maršalovi Otoci', 'MH'),
+(187, 'Australija', 'Mikronezija', 'FM'),
+(188, 'Australija', 'Nauru', 'NR'),
+(189, 'Australija', 'Palau', 'PW'),
+(190, 'Australija', 'Papua Nova Gvineja', 'PG'),
+(191, 'Australija', 'Samoa', 'WS'),
+(192, 'Australija', 'Solomonski Otoci', 'SB'),
+(193, 'Australija', 'Tonga', 'TO'),
+(194, 'Australija', 'Tuvalu', 'TV'),
+(195, 'Australija', 'Vanuatu', 'VU'),
+(196, 'Australija', 'Australija', 'AU'),
+(197, 'Australija', 'Novi Zeland', 'NZ'); [42000-224]
+2024-06-10 16:38:36.711526+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO countries (ID, CONTINENT, NAME, CODE) VALUES\000d\000a(1, 'Afrika', 'Alžir', 'DZ'),\000d\000a(2, 'Afrika', 'Angola', 'AO'),\000d\000a(3, 'Afrika', 'Benin', 'BJ'),\000d\000a(4, 'Afrika', 'Bocvana', 'BW'),\000d\000a(5, 'Afrika', 'Burkina Faso', 'BF'),\000d\000a(6, 'Afrika', 'Burundi', 'BI'),\000d\000a(7, 'Afrika', 'Zelenortski Otoci', 'CV'),\000d\000a(8, 'Afrika', 'Kamerun', 'CM'),\000d\000a(9, 'Afrika', 'Centralnoafrička Republika', 'CF'),\000d\000a(10, 'Afrika', 'Čad', 'TD'),\000d\000a(11, 'Afrika', 'Komori', 'KM'),\000d\000a(12, 'Afrika', 'Kongo', 'CG'),\000d\000a(13, 'Afrika', 'Demokratska Republika Kongo', 'CD'),\000d\000a(14, 'Afrika', 'Džibuti', 'DJ'),\000d\000a(15, 'Afrika', 'Egipat', 'EG'),\000d\000a(16, 'Afrika', 'Ekvatorska Gvineja', 'GQ'),\000d\000a(17, 'Afrika', 'Eritreja', 'ER'),\000d\000a(18, 'Afrika', 'Svazi', 'SZ'),\000d\000a(19, 'Afrika', 'Etiopija', 'ET'),\000d\000a(20, 'Afrika', 'Gabon', 'GA'),\000d\000a(21, 'Afrika', 'Gambija', 'GM'),\000d\000a(22, 'Afrika', 'Gana', 'GH'),\000d\000a(23, 'Afrika', 'Gvineja', 'GN'),\000d\000a(24, 'Afrika', 'Gvineja-Bissau', 'GW'),\000d\000a(25, 'Afrika', 'Obala Bjelokosti', 'CI'),\000d\000a(26, 'Afrika', 'Kenija', 'KE'),\000d\000a(27, 'Afrika', 'Lesoto', 'LS'),\000d\000a(28, 'Afrika', 'Liberija', 'LR'),\000d\000a(29, 'Afrika', 'Libija', 'LY'),\000d\000a(30, 'Afrika', 'Madagaskar', 'MG'),\000d\000a(31, 'Afrika', 'Malavi', 'MW'),\000d\000a(32, 'Afrika', 'Mali', 'ML'),\000d\000a(33, 'Afrika', 'Mauritanija', 'MR'),\000d\000a(34, 'Afrika', 'Mauricijus', 'MU'),\000d\000a(35, 'Afrika', 'Maroko', 'MA'),\000d\000a(36, 'Afrika', 'Mozambik', 'MZ'),\000d\000a(37, 'Afrika', 'Namibija', 'NA'),\000d\000a(38, 'Afrika', 'Niger', 'NE'),\000d\000a(39, 'Afrika', 'Nigerija', 'NG'),\000d\000a(40, 'Afrika', 'Ruanda', 'RW'),\000d\000a(41, 'Afrika', 'Sao Tome i Principe', 'ST'),\000d\000a(42, 'Afrika', 'Senegal', 'SN'),\000d\000a(43, 'Afrika', 'Sejšeli', 'SC'),\000d\000a(44, 'Afrika', 'Sijera Leone', 'SL'),\000d\000a(45, 'Afrika', 'Somalija', 'SO'),\000d\000a(46, 'Afrika', 'Južnoafrička Republika', 'ZA'),\000d\000a(47, 'Afrika', 'Južni Sudan', 'SS'),\000d\000a(48, 'Afrika', 'Sudan', 'SD'),\000d\000a(49, 'Afrika', 'Tanzanija', 'TZ'),\000d\000a(50, 'Afrika', 'Togo', 'TG'),\000d\000a(51, 'Afrika', 'Tunis', 'TN'),\000d\000a(52, 'Afrika', 'Uganda', 'UG'),\000d\000a(53, 'Afrika', 'Zambija', 'ZM'),\000d\000a(54, 'Afrika', 'Zimbabve', 'ZW'),\000d\000a(55, 'Sjeverna Amerika', 'Antigva i Barbuda', 'AG'),\000d\000a(56, 'Sjeverna Amerika', 'Bahami', 'BS'),\000d\000a(57, 'Sjeverna Amerika', 'Barbados', 'BB'),\000d\000a(58, 'Sjeverna Amerika', 'Belize', 'BZ'),\000d\000a(59, 'Sjeverna Amerika', 'Kanada', 'CA'),\000d\000a(60, 'Sjeverna Amerika', 'Kostarika', 'CR'),\000d\000a(61, 'Sjeverna Amerika', 'Kuba', 'CU'),\000d\000a(62, 'Sjeverna Amerika', 'Dominika', 'DM'),\000d\000a(63, 'Sjeverna Amerika', 'Dominikanska Republika', 'DO'),\000d\000a(64, 'Sjeverna Amerika', 'Salvador', 'SV'),\000d\000a(65, 'Sjeverna Amerika', 'Grenada', 'GD'),\000d\000a(66, 'Sjeverna Amerika', 'Gvatemala', 'GT'),\000d\000a(67, 'Sjeverna Amerika', 'Haiti', 'HT'),\000d\000a(68, 'Sjeverna Amerika', 'Honduras', 'HN'),\000d\000a(69, 'Sjeverna Amerika', 'Jamajka', 'JM'),\000d\000a(70, 'Sjeverna Amerika', 'Meksiko', 'MX'),\000d\000a(71, 'Sjeverna Amerika', 'Nikaragva', 'NI'),\000d\000a(72, 'Sjeverna Amerika', 'Panama', 'PA'),\000d\000a(73, 'Sjeverna Amerika', 'Sveti Kristofor i Nevis', 'KN'),\000d\000a(74, 'Sjeverna Amerika', 'Sveti Lucija', 'LC'),\000d\000a(75, 'Sjeverna Amerika', 'Sveti Vincent i Grenadini', 'VC'),\000d\000a(76, 'Sjeverna Amerika', 'Trinidad i Tobago', 'TT'),\000d\000a(77, 'Sjeverna Amerika', 'Sjedinjene Američke Države', 'US'),\000d\000a(78, 'Južna Amerika', 'Argentina', 'AR'),\000d\000a(79, 'Južna Amerika', 'Bolivija', 'BO'),\000d\000a(80, 'Južna Amerika', 'Brazila', 'BR'),\000d\000a(81, 'Južna Amerika', 'Čile', 'CL'),\000d\000a(82, 'Južna Amerika', 'Kolumbija', 'CO'),\000d\000a(83, 'Južna Amerika', 'Ekvador', 'EC'),\000d\000a(84, 'Južna Amerika', 'Gvajana', 'GY'),\000d\000a(85, 'Južna Amerika', 'Paragvaj', 'PY'),\000d\000a(86, 'Južna Amerika', 'Peru', 'PE'),\000d\000a(87, 'Južna Amerika', 'Surinam', 'SR'),\000d\000a(88, 'Južna Amerika', 'Urugvaj', 'UY'),\000d\000a(89, 'Južna Amerika', 'Venezuela', 'VE'),\000d\000a(90, 'Azija', 'Afganistan', 'AF'),\000d\000a(91, 'Azija', 'Armenija', 'AM'),\000d\000a(92, 'Azija', 'Azerbejdžan', 'AZ'),\000d\000a(93, 'Azija', 'Bahrein', 'BH'),\000d\000a(94, 'Azija', 'Bangladeš', 'BD'),\000d\000a(95, 'Azija', 'Butan', 'BT'),\000d\000a(96, 'Azija', 'Brunej', 'BN'),\000d\000a(97, 'Azija', 'Kambodža', 'KH'),\000d\000a(98, 'Azija', 'Kina', 'CN'),\000d\000a(99, 'Azija', 'Cipar', 'CY'),\000d\000a(100, 'Azija', 'Gruzija', 'GE'),\000d\000a(101, 'Azija', 'Indija', 'IN'),\000d\000a(102, 'Azija', 'Indonezija', 'ID'),\000d\000a(103, 'Azija', 'Iran', 'IR'),\000d\000a(104, 'Azija', 'Irak', 'IQ'),\000d\000a(105, 'Azija', 'Izrael', 'IL'),\000d\000a(106, 'Azija', 'Japan', 'JP'),\000d\000a(107, 'Azija', 'Jordan', 'JO'),\000d\000a(108, 'Azija', 'Kazahstan', 'KZ'),\000d\000a(109, 'Azija', 'Kuvajt', 'KW'),\000d\000a(110, 'Azija', 'Kirgistan', 'KG'),\000d\000a(111, 'Azija', 'Laos', 'LA'),\000d\000a(112, 'Azija', 'Libanon', 'LB'),\000d\000a(113, 'Azija', 'Malezija', 'MY'),\000d\000a(114, 'Azija', 'Maldivi', 'MV'),\000d\000a(115, 'Azija', 'Mongolija', 'MN'),\000d\000a(116, 'Azija', 'Mjanmar', 'MM'),\000d\000a(117, 'Azija', 'Nepal', 'NP'),\000d\000a(118, 'Azija', 'Sjeverna Koreja', 'KP'),\000d\000a(119, 'Azija', 'Oman', 'OM'),\000d\000a(120, 'Azija', 'Pakistan', 'PK'),\000d\000a(121, 'Azija', 'Palestina', 'PS'),\000d\000a(122, 'Azija', 'Filipini', 'PH'),\000d\000a(123, 'Azija', 'Katar', 'QA'),\000d\000a(124, 'Azija', 'Saudijska Arabija', 'SA'),\000d\000a(125, 'Azija', 'Singapur', 'SG'),\000d\000a(126, 'Azija', 'Južna Koreja', 'KR'),\000d\000a(127, 'Azija', 'Šri Lanka', 'LK'),\000d\000a(128, 'Azija', 'Sirija', 'SY'),\000d\000a(129, 'Azija', 'Tajvan', 'TW'),\000d\000a(130, 'Azija', 'Tadžikistan', 'TJ'),\000d\000a(131, 'Azija', 'Tajland', 'TH'),\000d\000a(132, 'Azija', 'Istočni Timor', 'TL'),\000d\000a(133, 'Azija', 'Turska', 'TR'),\000d\000a(134, 'Azija', 'Turkmenistan', 'TM'),\000d\000a(135, 'Azija', 'Ujedinjeni Arapski Emirati', 'AE'),\000d\000a(136, 'Azija', 'Uzbekistan', 'UZ'),\000d\000a(137, 'Azija', 'Vijetnam', 'VN'),\000d\000a(138, 'Azija', 'Jemen', 'YE'),\000d\000a(139, 'Europa', 'Albanija', 'AL'),\000d\000a(140, 'Europa', 'Andora', 'AD'),\000d\000a(141, 'Europa', 'Austrija', 'AT'),\000d\000a(142, 'Europa', 'Bjelorusija', 'BY'),\000d\000a(143, 'Europa', 'Belgija', 'BE'),\000d\000a(144, 'Europa', 'Bosna i Hercegovina', 'BA'),\000d\000a(145, 'Europa', 'Bugarska', 'BG'),\000d\000a(146, 'Europa', 'Hrvatska', 'HR'),\000d\000a(147, 'Europa', 'Češka', 'CZ'),\000d\000a(148, 'Europa', 'Danska', 'DK'),\000d\000a(149, 'Europa', 'Estonija', 'EE'),\000d\000a(150, 'Europa', 'Finska', 'FI'),\000d\000a(151, 'Europa', 'Francuska', 'FR'),\000d\000a(152, 'Europa', 'Njemačka', 'DE'),\000d\000a(153, 'Europa', 'Grčka', 'GR'),\000d\000a(154, 'Europa', 'Mađarska', 'HU'),\000d\000a(155, 'Europa', 'Island', 'IS'),\000d\000a(156, 'Europa', 'Irska', 'IE),\000d\000a(157, 'Europa', 'Italija', 'IT'),\000d\000a(158, 'Europa', 'Kosovo', 'XK'),\000d\000a(159, 'Europa', 'Latvija', 'LV'),\000d\000a(160, 'Europa', 'Lihtenštajn', 'LI'),\000d\000a(161, 'Europa', 'Litva', 'LT'),\000d\000a(162, 'Europa', 'Luksemburg', 'LU'),\000d\000a(163, 'Europa', 'Malta', 'MT'),\000d\000a(164, 'Europa', 'Moldavija', 'MD'),\000d\000a(165, 'Europa', 'Monako', 'MC'),\000d\000a(166, 'Europa', 'Crna Gora', 'ME'),\000d\000a(167, 'Europa', 'Nizozemska', 'NL'),\000d\000a(168, 'Europa', 'Sjeverna Makedonija', 'MK'),\000d\000a(169, 'Europa', 'Norveška', 'NO'),\000d\000a(170, 'Europa', 'Poljska', 'PL'),\000d\000a(171, 'Europa', 'Portugal', 'PT'),\000d\000a(172, 'Europa', 'Rumunjska', 'RO'),\000d\000a(173, 'Europa', 'Rusija', 'RU'),\000d\000a(174, 'Europa', 'San Marino', 'SM'),\000d\000a(175, 'Europa', 'Srbija', 'RS'),\000d\000a(176, 'Europa', 'Slovačka', 'SK'),\000d\000a(177, 'Europa', 'Slovenija', 'SI'),\000d\000a(178, 'Europa', 'Španjolska', 'ES'),\000d\000a(179, 'Europa', 'Švedska', 'SE'),\000d\000a(180, 'Europa', 'Švicarska', 'CH'),\000d\000a(181, 'Europa', 'Ukrajina', 'UA'),\000d\000a(182, 'Europa', 'Ujedinjeno Kraljevstvo', 'GB'),\000d\000a(183, 'Europa', 'Vatikan', 'VA'),\000d\000a(184, 'Australija', 'Fidži', 'FJ'),\000d\000a(185, 'Australija', 'Kiribati', 'KI'),\000d\000a(186, 'Australija', 'Maršalovi Otoci', 'MH'),\000d\000a(187, 'Australija', 'Mikronezija', 'FM'),\000d\000a(188, 'Australija', 'Nauru', 'NR'),\000d\000a(189, 'Australija', 'Palau', 'PW'),\000d\000a(190, 'Australija', 'Papua Nova Gvineja', 'PG'),\000d\000a(191, 'Australija', 'Samoa', 'WS'),\000d\000a(192, 'Australija', 'Solomonski Otoci', 'SB'),\000d\000a(193, 'Australija', 'Tonga', 'TO'),\000d\000a(194, 'Australija', 'Tuvalu', 'TV'),\000d\000a(195, 'Australija', 'Vanuatu', 'VU'),\000d\000a(196, 'Australija', 'Australija', 'AU'),\000d\000a(197, 'Australija', 'Novi Zeland', 'NZ[*]');"; SQL statement:
+INSERT INTO countries (ID, CONTINENT, NAME, CODE) VALUES
+(1, 'Afrika', 'Alžir', 'DZ'),
+(2, 'Afrika', 'Angola', 'AO'),
+(3, 'Afrika', 'Benin', 'BJ'),
+(4, 'Afrika', 'Bocvana', 'BW'),
+(5, 'Afrika', 'Burkina Faso', 'BF'),
+(6, 'Afrika', 'Burundi', 'BI'),
+(7, 'Afrika', 'Zelenortski Otoci', 'CV'),
+(8, 'Afrika', 'Kamerun', 'CM'),
+(9, 'Afrika', 'Centralnoafrička Republika', 'CF'),
+(10, 'Afrika', 'Čad', 'TD'),
+(11, 'Afrika', 'Komori', 'KM'),
+(12, 'Afrika', 'Kongo', 'CG'),
+(13, 'Afrika', 'Demokratska Republika Kongo', 'CD'),
+(14, 'Afrika', 'Džibuti', 'DJ'),
+(15, 'Afrika', 'Egipat', 'EG'),
+(16, 'Afrika', 'Ekvatorska Gvineja', 'GQ'),
+(17, 'Afrika', 'Eritreja', 'ER'),
+(18, 'Afrika', 'Svazi', 'SZ'),
+(19, 'Afrika', 'Etiopija', 'ET'),
+(20, 'Afrika', 'Gabon', 'GA'),
+(21, 'Afrika', 'Gambija', 'GM'),
+(22, 'Afrika', 'Gana', 'GH'),
+(23, 'Afrika', 'Gvineja', 'GN'),
+(24, 'Afrika', 'Gvineja-Bissau', 'GW'),
+(25, 'Afrika', 'Obala Bjelokosti', 'CI'),
+(26, 'Afrika', 'Kenija', 'KE'),
+(27, 'Afrika', 'Lesoto', 'LS'),
+(28, 'Afrika', 'Liberija', 'LR'),
+(29, 'Afrika', 'Libija', 'LY'),
+(30, 'Afrika', 'Madagaskar', 'MG'),
+(31, 'Afrika', 'Malavi', 'MW'),
+(32, 'Afrika', 'Mali', 'ML'),
+(33, 'Afrika', 'Mauritanija', 'MR'),
+(34, 'Afrika', 'Mauricijus', 'MU'),
+(35, 'Afrika', 'Maroko', 'MA'),
+(36, 'Afrika', 'Mozambik', 'MZ'),
+(37, 'Afrika', 'Namibija', 'NA'),
+(38, 'Afrika', 'Niger', 'NE'),
+(39, 'Afrika', 'Nigerija', 'NG'),
+(40, 'Afrika', 'Ruanda', 'RW'),
+(41, 'Afrika', 'Sao Tome i Principe', 'ST'),
+(42, 'Afrika', 'Senegal', 'SN'),
+(43, 'Afrika', 'Sejšeli', 'SC'),
+(44, 'Afrika', 'Sijera Leone', 'SL'),
+(45, 'Afrika', 'Somalija', 'SO'),
+(46, 'Afrika', 'Južnoafrička Republika', 'ZA'),
+(47, 'Afrika', 'Južni Sudan', 'SS'),
+(48, 'Afrika', 'Sudan', 'SD'),
+(49, 'Afrika', 'Tanzanija', 'TZ'),
+(50, 'Afrika', 'Togo', 'TG'),
+(51, 'Afrika', 'Tunis', 'TN'),
+(52, 'Afrika', 'Uganda', 'UG'),
+(53, 'Afrika', 'Zambija', 'ZM'),
+(54, 'Afrika', 'Zimbabve', 'ZW'),
+(55, 'Sjeverna Amerika', 'Antigva i Barbuda', 'AG'),
+(56, 'Sjeverna Amerika', 'Bahami', 'BS'),
+(57, 'Sjeverna Amerika', 'Barbados', 'BB'),
+(58, 'Sjeverna Amerika', 'Belize', 'BZ'),
+(59, 'Sjeverna Amerika', 'Kanada', 'CA'),
+(60, 'Sjeverna Amerika', 'Kostarika', 'CR'),
+(61, 'Sjeverna Amerika', 'Kuba', 'CU'),
+(62, 'Sjeverna Amerika', 'Dominika', 'DM'),
+(63, 'Sjeverna Amerika', 'Dominikanska Republika', 'DO'),
+(64, 'Sjeverna Amerika', 'Salvador', 'SV'),
+(65, 'Sjeverna Amerika', 'Grenada', 'GD'),
+(66, 'Sjeverna Amerika', 'Gvatemala', 'GT'),
+(67, 'Sjeverna Amerika', 'Haiti', 'HT'),
+(68, 'Sjeverna Amerika', 'Honduras', 'HN'),
+(69, 'Sjeverna Amerika', 'Jamajka', 'JM'),
+(70, 'Sjeverna Amerika', 'Meksiko', 'MX'),
+(71, 'Sjeverna Amerika', 'Nikaragva', 'NI'),
+(72, 'Sjeverna Amerika', 'Panama', 'PA'),
+(73, 'Sjeverna Amerika', 'Sveti Kristofor i Nevis', 'KN'),
+(74, 'Sjeverna Amerika', 'Sveti Lucija', 'LC'),
+(75, 'Sjeverna Amerika', 'Sveti Vincent i Grenadini', 'VC'),
+(76, 'Sjeverna Amerika', 'Trinidad i Tobago', 'TT'),
+(77, 'Sjeverna Amerika', 'Sjedinjene Američke Države', 'US'),
+(78, 'Južna Amerika', 'Argentina', 'AR'),
+(79, 'Južna Amerika', 'Bolivija', 'BO'),
+(80, 'Južna Amerika', 'Brazila', 'BR'),
+(81, 'Južna Amerika', 'Čile', 'CL'),
+(82, 'Južna Amerika', 'Kolumbija', 'CO'),
+(83, 'Južna Amerika', 'Ekvador', 'EC'),
+(84, 'Južna Amerika', 'Gvajana', 'GY'),
+(85, 'Južna Amerika', 'Paragvaj', 'PY'),
+(86, 'Južna Amerika', 'Peru', 'PE'),
+(87, 'Južna Amerika', 'Surinam', 'SR'),
+(88, 'Južna Amerika', 'Urugvaj', 'UY'),
+(89, 'Južna Amerika', 'Venezuela', 'VE'),
+(90, 'Azija', 'Afganistan', 'AF'),
+(91, 'Azija', 'Armenija', 'AM'),
+(92, 'Azija', 'Azerbejdžan', 'AZ'),
+(93, 'Azija', 'Bahrein', 'BH'),
+(94, 'Azija', 'Bangladeš', 'BD'),
+(95, 'Azija', 'Butan', 'BT'),
+(96, 'Azija', 'Brunej', 'BN'),
+(97, 'Azija', 'Kambodža', 'KH'),
+(98, 'Azija', 'Kina', 'CN'),
+(99, 'Azija', 'Cipar', 'CY'),
+(100, 'Azija', 'Gruzija', 'GE'),
+(101, 'Azija', 'Indija', 'IN'),
+(102, 'Azija', 'Indonezija', 'ID'),
+(103, 'Azija', 'Iran', 'IR'),
+(104, 'Azija', 'Irak', 'IQ'),
+(105, 'Azija', 'Izrael', 'IL'),
+(106, 'Azija', 'Japan', 'JP'),
+(107, 'Azija', 'Jordan', 'JO'),
+(108, 'Azija', 'Kazahstan', 'KZ'),
+(109, 'Azija', 'Kuvajt', 'KW'),
+(110, 'Azija', 'Kirgistan', 'KG'),
+(111, 'Azija', 'Laos', 'LA'),
+(112, 'Azija', 'Libanon', 'LB'),
+(113, 'Azija', 'Malezija', 'MY'),
+(114, 'Azija', 'Maldivi', 'MV'),
+(115, 'Azija', 'Mongolija', 'MN'),
+(116, 'Azija', 'Mjanmar', 'MM'),
+(117, 'Azija', 'Nepal', 'NP'),
+(118, 'Azija', 'Sjeverna Koreja', 'KP'),
+(119, 'Azija', 'Oman', 'OM'),
+(120, 'Azija', 'Pakistan', 'PK'),
+(121, 'Azija', 'Palestina', 'PS'),
+(122, 'Azija', 'Filipini', 'PH'),
+(123, 'Azija', 'Katar', 'QA'),
+(124, 'Azija', 'Saudijska Arabija', 'SA'),
+(125, 'Azija', 'Singapur', 'SG'),
+(126, 'Azija', 'Južna Koreja', 'KR'),
+(127, 'Azija', 'Šri Lanka', 'LK'),
+(128, 'Azija', 'Sirija', 'SY'),
+(129, 'Azija', 'Tajvan', 'TW'),
+(130, 'Azija', 'Tadžikistan', 'TJ'),
+(131, 'Azija', 'Tajland', 'TH'),
+(132, 'Azija', 'Istočni Timor', 'TL'),
+(133, 'Azija', 'Turska', 'TR'),
+(134, 'Azija', 'Turkmenistan', 'TM'),
+(135, 'Azija', 'Ujedinjeni Arapski Emirati', 'AE'),
+(136, 'Azija', 'Uzbekistan', 'UZ'),
+(137, 'Azija', 'Vijetnam', 'VN'),
+(138, 'Azija', 'Jemen', 'YE'),
+(139, 'Europa', 'Albanija', 'AL'),
+(140, 'Europa', 'Andora', 'AD'),
+(141, 'Europa', 'Austrija', 'AT'),
+(142, 'Europa', 'Bjelorusija', 'BY'),
+(143, 'Europa', 'Belgija', 'BE'),
+(144, 'Europa', 'Bosna i Hercegovina', 'BA'),
+(145, 'Europa', 'Bugarska', 'BG'),
+(146, 'Europa', 'Hrvatska', 'HR'),
+(147, 'Europa', 'Češka', 'CZ'),
+(148, 'Europa', 'Danska', 'DK'),
+(149, 'Europa', 'Estonija', 'EE'),
+(150, 'Europa', 'Finska', 'FI'),
+(151, 'Europa', 'Francuska', 'FR'),
+(152, 'Europa', 'Njemačka', 'DE'),
+(153, 'Europa', 'Grčka', 'GR'),
+(154, 'Europa', 'Mađarska', 'HU'),
+(155, 'Europa', 'Island', 'IS'),
+(156, 'Europa', 'Irska', 'IE),
+(157, 'Europa', 'Italija', 'IT'),
+(158, 'Europa', 'Kosovo', 'XK'),
+(159, 'Europa', 'Latvija', 'LV'),
+(160, 'Europa', 'Lihtenštajn', 'LI'),
+(161, 'Europa', 'Litva', 'LT'),
+(162, 'Europa', 'Luksemburg', 'LU'),
+(163, 'Europa', 'Malta', 'MT'),
+(164, 'Europa', 'Moldavija', 'MD'),
+(165, 'Europa', 'Monako', 'MC'),
+(166, 'Europa', 'Crna Gora', 'ME'),
+(167, 'Europa', 'Nizozemska', 'NL'),
+(168, 'Europa', 'Sjeverna Makedonija', 'MK'),
+(169, 'Europa', 'Norveška', 'NO'),
+(170, 'Europa', 'Poljska', 'PL'),
+(171, 'Europa', 'Portugal', 'PT'),
+(172, 'Europa', 'Rumunjska', 'RO'),
+(173, 'Europa', 'Rusija', 'RU'),
+(174, 'Europa', 'San Marino', 'SM'),
+(175, 'Europa', 'Srbija', 'RS'),
+(176, 'Europa', 'Slovačka', 'SK'),
+(177, 'Europa', 'Slovenija', 'SI'),
+(178, 'Europa', 'Španjolska', 'ES'),
+(179, 'Europa', 'Švedska', 'SE'),
+(180, 'Europa', 'Švicarska', 'CH'),
+(181, 'Europa', 'Ukrajina', 'UA'),
+(182, 'Europa', 'Ujedinjeno Kraljevstvo', 'GB'),
+(183, 'Europa', 'Vatikan', 'VA'),
+(184, 'Australija', 'Fidži', 'FJ'),
+(185, 'Australija', 'Kiribati', 'KI'),
+(186, 'Australija', 'Maršalovi Otoci', 'MH'),
+(187, 'Australija', 'Mikronezija', 'FM'),
+(188, 'Australija', 'Nauru', 'NR'),
+(189, 'Australija', 'Palau', 'PW'),
+(190, 'Australija', 'Papua Nova Gvineja', 'PG'),
+(191, 'Australija', 'Samoa', 'WS'),
+(192, 'Australija', 'Solomonski Otoci', 'SB'),
+(193, 'Australija', 'Tonga', 'TO'),
+(194, 'Australija', 'Tuvalu', 'TV'),
+(195, 'Australija', 'Vanuatu', 'VU'),
+(196, 'Australija', 'Australija', 'AU'),
+(197, 'Australija', 'Novi Zeland', 'NZ'); [42000-224]
+2024-06-10 16:40:09.024326+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO countries (ID, CONTINENT, NAME, CODE) VALUES\000d\000a(1, 'Afrika', 'Alžir', 'DZ'),\000d\000a(2, 'Afrika', 'Angola', 'AO'),\000d\000a(3, 'Afrika', 'Benin', 'BJ'),\000d\000a(4, 'Afrika', 'Bocvana', 'BW'),\000d\000a(5, 'Afrika', 'Burkina Faso', 'BF'),\000d\000a(6, 'Afrika', 'Burundi', 'BI'),\000d\000a(7, 'Afrika', 'Zelenortski Otoci', 'CV'),\000d\000a(8, 'Afrika', 'Kamerun', 'CM'),\000d\000a(9, 'Afrika', 'Centralnoafrička Republika', 'CF'),\000d\000a(10, 'Afrika', 'Čad', 'TD'),\000d\000a(11, 'Afrika', 'Komori', 'KM'),\000d\000a(12, 'Afrika', 'Kongo', 'CG'),\000d\000a(13, 'Afrika', 'Demokratska Republika Kongo', 'CD'),\000d\000a(14, 'Afrika', 'Džibuti', 'DJ'),\000d\000a(15, 'Afrika', 'Egipat', 'EG'),\000d\000a(16, 'Afrika', 'Ekvatorska Gvineja', 'GQ'),\000d\000a(17, 'Afrika', 'Eritreja', 'ER'),\000d\000a(18, 'Afrika', 'Svazi', 'SZ'),\000d\000a(19, 'Afrika', 'Etiopija', 'ET'),\000d\000a(20, 'Afrika', 'Gabon', 'GA'),\000d\000a(21, 'Afrika', 'Gambija', 'GM'),\000d\000a(22, 'Afrika', 'Gana', 'GH'),\000d\000a(23, 'Afrika', 'Gvineja', 'GN'),\000d\000a(24, 'Afrika', 'Gvineja-Bissau', 'GW'),\000d\000a(25, 'Afrika', 'Obala Bjelokosti', 'CI'),\000d\000a(26, 'Afrika', 'Kenija', 'KE'),\000d\000a(27, 'Afrika', 'Lesoto', 'LS'),\000d\000a(28, 'Afrika', 'Liberija', 'LR'),\000d\000a(29, 'Afrika', 'Libija', 'LY'),\000d\000a(30, 'Afrika', 'Madagaskar', 'MG'),\000d\000a(31, 'Afrika', 'Malavi', 'MW'),\000d\000a(32, 'Afrika', 'Mali', 'ML'),\000d\000a(33, 'Afrika', 'Mauritanija', 'MR'),\000d\000a(34, 'Afrika', 'Mauricijus', 'MU'),\000d\000a(35, 'Afrika', 'Maroko', 'MA'),\000d\000a(36, 'Afrika', 'Mozambik', 'MZ'),\000d\000a(37, 'Afrika', 'Namibija', 'NA'),\000d\000a(38, 'Afrika', 'Niger', 'NE'),\000d\000a(39, 'Afrika', 'Nigerija', 'NG'),\000d\000a(40, 'Afrika', 'Ruanda', 'RW'),\000d\000a(41, 'Afrika', 'Sao Tome i Principe', 'ST'),\000d\000a(42, 'Afrika', 'Senegal', 'SN'),\000d\000a(43, 'Afrika', 'Sejšeli', 'SC'),\000d\000a(44, 'Afrika', 'Sijera Leone', 'SL'),\000d\000a(45, 'Afrika', 'Somalija', 'SO'),\000d\000a(46, 'Afrika', 'Južnoafrička Republika', 'ZA'),\000d\000a(47, 'Afrika', 'Južni Sudan', 'SS'),\000d\000a(48, 'Afrika', 'Sudan', 'SD'),\000d\000a(49, 'Afrika', 'Tanzanija', 'TZ'),\000d\000a(50, 'Afrika', 'Togo', 'TG'),\000d\000a(51, 'Afrika', 'Tunis', 'TN'),\000d\000a(52, 'Afrika', 'Uganda', 'UG'),\000d\000a(53, 'Afrika', 'Zambija', 'ZM'),\000d\000a(54, 'Afrika', 'Zimbabve', 'ZW'),\000d\000a(55, 'Sjeverna Amerika', 'Antigva i Barbuda', 'AG'),\000d\000a(56, 'Sjeverna Amerika', 'Bahami', 'BS'),\000d\000a(57, 'Sjeverna Amerika', 'Barbados', 'BB'),\000d\000a(58, 'Sjeverna Amerika', 'Belize', 'BZ'),\000d\000a(59, 'Sjeverna Amerika', 'Kanada', 'CA'),\000d\000a(60, 'Sjeverna Amerika', 'Kostarika', 'CR'),\000d\000a(61, 'Sjeverna Amerika', 'Kuba', 'CU'),\000d\000a(62, 'Sjeverna Amerika', 'Dominika', 'DM'),\000d\000a(63, 'Sjeverna Amerika', 'Dominikanska Republika', 'DO'),\000d\000a(64, 'Sjeverna Amerika', 'Salvador', 'SV'),\000d\000a(65, 'Sjeverna Amerika', 'Grenada', 'GD'),\000d\000a(66, 'Sjeverna Amerika', 'Gvatemala', 'GT'),\000d\000a(67, 'Sjeverna Amerika', 'Haiti', 'HT'),\000d\000a(68, 'Sjeverna Amerika', 'Honduras', 'HN'),\000d\000a(69, 'Sjeverna Amerika', 'Jamajka', 'JM'),\000d\000a(70, 'Sjeverna Amerika', 'Meksiko', 'MX'),\000d\000a(71, 'Sjeverna Amerika', 'Nikaragva', 'NI'),\000d\000a(72, 'Sjeverna Amerika', 'Panama', 'PA'),\000d\000a(73, 'Sjeverna Amerika', 'Sveti Kristofor i Nevis', 'KN'),\000d\000a(74, 'Sjeverna Amerika', 'Sveti Lucija', 'LC'),\000d\000a(75, 'Sjeverna Amerika', 'Sveti Vincent i Grenadini', 'VC'),\000d\000a(76, 'Sjeverna Amerika', 'Trinidad i Tobago', 'TT'),\000d\000a(77, 'Sjeverna Amerika', 'Sjedinjene Američke Države', 'US'),\000d\000a(78, 'Južna Amerika', 'Argentina', 'AR'),\000d\000a(79, 'Južna Amerika', 'Bolivija', 'BO'),\000d\000a(80, 'Južna Amerika', 'Brazila', 'BR'),\000d\000a(81, 'Južna Amerika', 'Čile', 'CL'),\000d\000a(82, 'Južna Amerika', 'Kolumbija', 'CO'),\000d\000a(83, 'Južna Amerika', 'Ekvador', 'EC'),\000d\000a(84, 'Južna Amerika', 'Gvajana', 'GY'),\000d\000a(85, 'Južna Amerika', 'Paragvaj', 'PY'),\000d\000a(86, 'Južna Amerika', 'Peru', 'PE'),\000d\000a(87, 'Južna Amerika', 'Surinam', 'SR'),\000d\000a(88, 'Južna Amerika', 'Urugvaj', 'UY'),\000d\000a(89, 'Južna Amerika', 'Venezuela', 'VE'),\000d\000a(90, 'Azija', 'Afganistan', 'AF'),\000d\000a(91, 'Azija', 'Armenija', 'AM'),\000d\000a(92, 'Azija', 'Azerbejdžan', 'AZ'),\000d\000a(93, 'Azija', 'Bahrein', 'BH'),\000d\000a(94, 'Azija', 'Bangladeš', 'BD'),\000d\000a(95, 'Azija', 'Butan', 'BT'),\000d\000a(96, 'Azija', 'Brunej', 'BN'),\000d\000a(97, 'Azija', 'Kambodža', 'KH'),\000d\000a(98, 'Azija', 'Kina', 'CN'),\000d\000a(99, 'Azija', 'Cipar', 'CY'),\000d\000a(100, 'Azija', 'Gruzija', 'GE'),\000d\000a(101, 'Azija', 'Indija', 'IN'),\000d\000a(102, 'Azija', 'Indonezija', 'ID'),\000d\000a(103, 'Azija', 'Iran', 'IR'),\000d\000a(104, 'Azija', 'Irak', 'IQ'),\000d\000a(105, 'Azija', 'Izrael', 'IL'),\000d\000a(106, 'Azija', 'Japan', 'JP'),\000d\000a(107, 'Azija', 'Jordan', 'JO'),\000d\000a(108, 'Azija', 'Kazahstan', 'KZ'),\000d\000a(109, 'Azija', 'Kuvajt', 'KW'),\000d\000a(110, 'Azija', 'Kirgistan', 'KG'),\000d\000a(111, 'Azija', 'Laos', 'LA'),\000d\000a(112, 'Azija', 'Libanon', 'LB'),\000d\000a(113, 'Azija', 'Malezija', 'MY'),\000d\000a(114, 'Azija', 'Maldivi', 'MV'),\000d\000a(115, 'Azija', 'Mongolija', 'MN'),\000d\000a(116, 'Azija', 'Mjanmar', 'MM'),\000d\000a(117, 'Azija', 'Nepal', 'NP'),\000d\000a(118, 'Azija', 'Sjeverna Koreja', 'KP'),\000d\000a(119, 'Azija', 'Oman', 'OM'),\000d\000a(120, 'Azija', 'Pakistan', 'PK'),\000d\000a(121, 'Azija', 'Palestina', 'PS'),\000d\000a(122, 'Azija', 'Filipini', 'PH'),\000d\000a(123, 'Azija', 'Katar', 'QA'),\000d\000a(124, 'Azija', 'Saudijska Arabija', 'SA'),\000d\000a(125, 'Azija', 'Singapur', 'SG'),\000d\000a(126, 'Azija', 'Južna Koreja', 'KR'),\000d\000a(127, 'Azija', 'Šri Lanka', 'LK'),\000d\000a(128, 'Azija', 'Sirija', 'SY'),\000d\000a(129, 'Azija', 'Tajvan', 'TW'),\000d\000a(130, 'Azija', 'Tadžikistan', 'TJ'),\000d\000a(131, 'Azija', 'Tajland', 'TH'),\000d\000a(132, 'Azija', 'Istočni Timor', 'TL'),\000d\000a(133, 'Azija', 'Turska', 'TR'),\000d\000a(134, 'Azija', 'Turkmenistan', 'TM'),\000d\000a(135, 'Azija', 'Ujedinjeni Arapski Emirati', 'AE'),\000d\000a(136, 'Azija', 'Uzbekistan', 'UZ'),\000d\000a(137, 'Azija', 'Vijetnam', 'VN'),\000d\000a(138, 'Azija', 'Jemen', 'YE'),\000d\000a(139, 'Europa', 'Albanija', 'AL'),\000d\000a(140, 'Europa', 'Andora', 'AD'),\000d\000a(141, 'Europa', 'Austrija', 'AT'),\000d\000a(142, 'Europa', 'Bjelorusija', 'BY'),\000d\000a(143, 'Europa', 'Belgija', 'BE'),\000d\000a(144, 'Europa', 'Bosna i Hercegovina', 'BA'),\000d\000a(145, 'Europa', 'Bugarska', 'BG'),\000d\000a(146, 'Europa', 'Hrvatska', 'HR'),\000d\000a(147, 'Europa', 'Češka', 'CZ'),\000d\000a(148, 'Europa', 'Danska', 'DK'),\000d\000a(149, 'Europa', 'Estonija', 'EE'),\000d\000a(150, 'Europa', 'Finska', 'FI'),\000d\000a(151, 'Europa', 'Francuska', 'FR'),\000d\000a(152, 'Europa', 'Njemačka', 'DE'),\000d\000a(153, 'Europa', 'Grčka', 'GR'),\000d\000a(154, 'Europa', 'Mađarska', 'HU'),\000d\000a(155, 'Europa', 'Island', 'IS'),\000d\000a(156, 'Europa', 'Irska', 'IE),\000d\000a(157, 'Europa', 'Italija', 'IT'),\000d\000a(158, 'Europa', 'Kosovo', 'XK'),\000d\000a(159, 'Europa', 'Latvija', 'LV'),\000d\000a(160, 'Europa', 'Lihtenštajn', 'LI'),\000d\000a(161, 'Europa', 'Litva', 'LT'),\000d\000a(162, 'Europa', 'Luksemburg', 'LU'),\000d\000a(163, 'Europa', 'Malta', 'MT'),\000d\000a(164, 'Europa', 'Moldavija', 'MD'),\000d\000a(165, 'Europa', 'Monako', 'MC'),\000d\000a(166, 'Europa', 'Crna Gora', 'ME'),\000d\000a(167, 'Europa', 'Nizozemska', 'NL'),\000d\000a(168, 'Europa', 'Sjeverna Makedonija', 'MK'),\000d\000a(169, 'Europa', 'Norveška', 'NO'),\000d\000a(170, 'Europa', 'Poljska', 'PL'),\000d\000a(171, 'Europa', 'Portugal', 'PT'),\000d\000a(172, 'Europa', 'Rumunjska', 'RO'),\000d\000a(173, 'Europa', 'Rusija', 'RU'),\000d\000a(174, 'Europa', 'San Marino', 'SM'),\000d\000a(175, 'Europa', 'Srbija', 'RS'),\000d\000a(176, 'Europa', 'Slovačka', 'SK'),\000d\000a(177, 'Europa', 'Slovenija', 'SI'),\000d\000a(178, 'Europa', 'Španjolska', 'ES'),\000d\000a(179, 'Europa', 'Švedska', 'SE'),\000d\000a(180, 'Europa', 'Švicarska', 'CH'),\000d\000a(181, 'Europa', 'Ukrajina', 'UA'),\000d\000a(182, 'Europa', 'Ujedinjeno Kraljevstvo', 'GB'),\000d\000a(183, 'Europa', 'Vatikan', 'VA'),\000d\000a(184, 'Australija', 'Fidži', 'FJ'),\000d\000a(185, 'Australija', 'Kiribati', 'KI'),\000d\000a(186, 'Australija', 'Maršalovi Otoci', 'MH'),\000d\000a(187, 'Australija', 'Mikronezija', 'FM'),\000d\000a(188, 'Australija', 'Nauru', 'NR'),\000d\000a(189, 'Australija', 'Palau', 'PW'),\000d\000a(190, 'Australija', 'Papua Nova Gvineja', 'PG'),\000d\000a(191, 'Australija', 'Samoa', 'WS'),\000d\000a(192, 'Australija', 'Solomonski Otoci', 'SB'),\000d\000a(193, 'Australija', 'Tonga', 'TO'),\000d\000a(194, 'Australija', 'Tuvalu', 'TV'),\000d\000a(195, 'Australija', 'Vanuatu', 'VU'),\000d\000a(196, 'Australija', 'Australija', 'AU'),\000d\000a(197, 'Australija', 'Novi Zeland', 'NZ[*]');"; SQL statement:
+INSERT INTO countries (ID, CONTINENT, NAME, CODE) VALUES
+(1, 'Afrika', 'Alžir', 'DZ'),
+(2, 'Afrika', 'Angola', 'AO'),
+(3, 'Afrika', 'Benin', 'BJ'),
+(4, 'Afrika', 'Bocvana', 'BW'),
+(5, 'Afrika', 'Burkina Faso', 'BF'),
+(6, 'Afrika', 'Burundi', 'BI'),
+(7, 'Afrika', 'Zelenortski Otoci', 'CV'),
+(8, 'Afrika', 'Kamerun', 'CM'),
+(9, 'Afrika', 'Centralnoafrička Republika', 'CF'),
+(10, 'Afrika', 'Čad', 'TD'),
+(11, 'Afrika', 'Komori', 'KM'),
+(12, 'Afrika', 'Kongo', 'CG'),
+(13, 'Afrika', 'Demokratska Republika Kongo', 'CD'),
+(14, 'Afrika', 'Džibuti', 'DJ'),
+(15, 'Afrika', 'Egipat', 'EG'),
+(16, 'Afrika', 'Ekvatorska Gvineja', 'GQ'),
+(17, 'Afrika', 'Eritreja', 'ER'),
+(18, 'Afrika', 'Svazi', 'SZ'),
+(19, 'Afrika', 'Etiopija', 'ET'),
+(20, 'Afrika', 'Gabon', 'GA'),
+(21, 'Afrika', 'Gambija', 'GM'),
+(22, 'Afrika', 'Gana', 'GH'),
+(23, 'Afrika', 'Gvineja', 'GN'),
+(24, 'Afrika', 'Gvineja-Bissau', 'GW'),
+(25, 'Afrika', 'Obala Bjelokosti', 'CI'),
+(26, 'Afrika', 'Kenija', 'KE'),
+(27, 'Afrika', 'Lesoto', 'LS'),
+(28, 'Afrika', 'Liberija', 'LR'),
+(29, 'Afrika', 'Libija', 'LY'),
+(30, 'Afrika', 'Madagaskar', 'MG'),
+(31, 'Afrika', 'Malavi', 'MW'),
+(32, 'Afrika', 'Mali', 'ML'),
+(33, 'Afrika', 'Mauritanija', 'MR'),
+(34, 'Afrika', 'Mauricijus', 'MU'),
+(35, 'Afrika', 'Maroko', 'MA'),
+(36, 'Afrika', 'Mozambik', 'MZ'),
+(37, 'Afrika', 'Namibija', 'NA'),
+(38, 'Afrika', 'Niger', 'NE'),
+(39, 'Afrika', 'Nigerija', 'NG'),
+(40, 'Afrika', 'Ruanda', 'RW'),
+(41, 'Afrika', 'Sao Tome i Principe', 'ST'),
+(42, 'Afrika', 'Senegal', 'SN'),
+(43, 'Afrika', 'Sejšeli', 'SC'),
+(44, 'Afrika', 'Sijera Leone', 'SL'),
+(45, 'Afrika', 'Somalija', 'SO'),
+(46, 'Afrika', 'Južnoafrička Republika', 'ZA'),
+(47, 'Afrika', 'Južni Sudan', 'SS'),
+(48, 'Afrika', 'Sudan', 'SD'),
+(49, 'Afrika', 'Tanzanija', 'TZ'),
+(50, 'Afrika', 'Togo', 'TG'),
+(51, 'Afrika', 'Tunis', 'TN'),
+(52, 'Afrika', 'Uganda', 'UG'),
+(53, 'Afrika', 'Zambija', 'ZM'),
+(54, 'Afrika', 'Zimbabve', 'ZW'),
+(55, 'Sjeverna Amerika', 'Antigva i Barbuda', 'AG'),
+(56, 'Sjeverna Amerika', 'Bahami', 'BS'),
+(57, 'Sjeverna Amerika', 'Barbados', 'BB'),
+(58, 'Sjeverna Amerika', 'Belize', 'BZ'),
+(59, 'Sjeverna Amerika', 'Kanada', 'CA'),
+(60, 'Sjeverna Amerika', 'Kostarika', 'CR'),
+(61, 'Sjeverna Amerika', 'Kuba', 'CU'),
+(62, 'Sjeverna Amerika', 'Dominika', 'DM'),
+(63, 'Sjeverna Amerika', 'Dominikanska Republika', 'DO'),
+(64, 'Sjeverna Amerika', 'Salvador', 'SV'),
+(65, 'Sjeverna Amerika', 'Grenada', 'GD'),
+(66, 'Sjeverna Amerika', 'Gvatemala', 'GT'),
+(67, 'Sjeverna Amerika', 'Haiti', 'HT'),
+(68, 'Sjeverna Amerika', 'Honduras', 'HN'),
+(69, 'Sjeverna Amerika', 'Jamajka', 'JM'),
+(70, 'Sjeverna Amerika', 'Meksiko', 'MX'),
+(71, 'Sjeverna Amerika', 'Nikaragva', 'NI'),
+(72, 'Sjeverna Amerika', 'Panama', 'PA'),
+(73, 'Sjeverna Amerika', 'Sveti Kristofor i Nevis', 'KN'),
+(74, 'Sjeverna Amerika', 'Sveti Lucija', 'LC'),
+(75, 'Sjeverna Amerika', 'Sveti Vincent i Grenadini', 'VC'),
+(76, 'Sjeverna Amerika', 'Trinidad i Tobago', 'TT'),
+(77, 'Sjeverna Amerika', 'Sjedinjene Američke Države', 'US'),
+(78, 'Južna Amerika', 'Argentina', 'AR'),
+(79, 'Južna Amerika', 'Bolivija', 'BO'),
+(80, 'Južna Amerika', 'Brazila', 'BR'),
+(81, 'Južna Amerika', 'Čile', 'CL'),
+(82, 'Južna Amerika', 'Kolumbija', 'CO'),
+(83, 'Južna Amerika', 'Ekvador', 'EC'),
+(84, 'Južna Amerika', 'Gvajana', 'GY'),
+(85, 'Južna Amerika', 'Paragvaj', 'PY'),
+(86, 'Južna Amerika', 'Peru', 'PE'),
+(87, 'Južna Amerika', 'Surinam', 'SR'),
+(88, 'Južna Amerika', 'Urugvaj', 'UY'),
+(89, 'Južna Amerika', 'Venezuela', 'VE'),
+(90, 'Azija', 'Afganistan', 'AF'),
+(91, 'Azija', 'Armenija', 'AM'),
+(92, 'Azija', 'Azerbejdžan', 'AZ'),
+(93, 'Azija', 'Bahrein', 'BH'),
+(94, 'Azija', 'Bangladeš', 'BD'),
+(95, 'Azija', 'Butan', 'BT'),
+(96, 'Azija', 'Brunej', 'BN'),
+(97, 'Azija', 'Kambodža', 'KH'),
+(98, 'Azija', 'Kina', 'CN'),
+(99, 'Azija', 'Cipar', 'CY'),
+(100, 'Azija', 'Gruzija', 'GE'),
+(101, 'Azija', 'Indija', 'IN'),
+(102, 'Azija', 'Indonezija', 'ID'),
+(103, 'Azija', 'Iran', 'IR'),
+(104, 'Azija', 'Irak', 'IQ'),
+(105, 'Azija', 'Izrael', 'IL'),
+(106, 'Azija', 'Japan', 'JP'),
+(107, 'Azija', 'Jordan', 'JO'),
+(108, 'Azija', 'Kazahstan', 'KZ'),
+(109, 'Azija', 'Kuvajt', 'KW'),
+(110, 'Azija', 'Kirgistan', 'KG'),
+(111, 'Azija', 'Laos', 'LA'),
+(112, 'Azija', 'Libanon', 'LB'),
+(113, 'Azija', 'Malezija', 'MY'),
+(114, 'Azija', 'Maldivi', 'MV'),
+(115, 'Azija', 'Mongolija', 'MN'),
+(116, 'Azija', 'Mjanmar', 'MM'),
+(117, 'Azija', 'Nepal', 'NP'),
+(118, 'Azija', 'Sjeverna Koreja', 'KP'),
+(119, 'Azija', 'Oman', 'OM'),
+(120, 'Azija', 'Pakistan', 'PK'),
+(121, 'Azija', 'Palestina', 'PS'),
+(122, 'Azija', 'Filipini', 'PH'),
+(123, 'Azija', 'Katar', 'QA'),
+(124, 'Azija', 'Saudijska Arabija', 'SA'),
+(125, 'Azija', 'Singapur', 'SG'),
+(126, 'Azija', 'Južna Koreja', 'KR'),
+(127, 'Azija', 'Šri Lanka', 'LK'),
+(128, 'Azija', 'Sirija', 'SY'),
+(129, 'Azija', 'Tajvan', 'TW'),
+(130, 'Azija', 'Tadžikistan', 'TJ'),
+(131, 'Azija', 'Tajland', 'TH'),
+(132, 'Azija', 'Istočni Timor', 'TL'),
+(133, 'Azija', 'Turska', 'TR'),
+(134, 'Azija', 'Turkmenistan', 'TM'),
+(135, 'Azija', 'Ujedinjeni Arapski Emirati', 'AE'),
+(136, 'Azija', 'Uzbekistan', 'UZ'),
+(137, 'Azija', 'Vijetnam', 'VN'),
+(138, 'Azija', 'Jemen', 'YE'),
+(139, 'Europa', 'Albanija', 'AL'),
+(140, 'Europa', 'Andora', 'AD'),
+(141, 'Europa', 'Austrija', 'AT'),
+(142, 'Europa', 'Bjelorusija', 'BY'),
+(143, 'Europa', 'Belgija', 'BE'),
+(144, 'Europa', 'Bosna i Hercegovina', 'BA'),
+(145, 'Europa', 'Bugarska', 'BG'),
+(146, 'Europa', 'Hrvatska', 'HR'),
+(147, 'Europa', 'Češka', 'CZ'),
+(148, 'Europa', 'Danska', 'DK'),
+(149, 'Europa', 'Estonija', 'EE'),
+(150, 'Europa', 'Finska', 'FI'),
+(151, 'Europa', 'Francuska', 'FR'),
+(152, 'Europa', 'Njemačka', 'DE'),
+(153, 'Europa', 'Grčka', 'GR'),
+(154, 'Europa', 'Mađarska', 'HU'),
+(155, 'Europa', 'Island', 'IS'),
+(156, 'Europa', 'Irska', 'IE),
+(157, 'Europa', 'Italija', 'IT'),
+(158, 'Europa', 'Kosovo', 'XK'),
+(159, 'Europa', 'Latvija', 'LV'),
+(160, 'Europa', 'Lihtenštajn', 'LI'),
+(161, 'Europa', 'Litva', 'LT'),
+(162, 'Europa', 'Luksemburg', 'LU'),
+(163, 'Europa', 'Malta', 'MT'),
+(164, 'Europa', 'Moldavija', 'MD'),
+(165, 'Europa', 'Monako', 'MC'),
+(166, 'Europa', 'Crna Gora', 'ME'),
+(167, 'Europa', 'Nizozemska', 'NL'),
+(168, 'Europa', 'Sjeverna Makedonija', 'MK'),
+(169, 'Europa', 'Norveška', 'NO'),
+(170, 'Europa', 'Poljska', 'PL'),
+(171, 'Europa', 'Portugal', 'PT'),
+(172, 'Europa', 'Rumunjska', 'RO'),
+(173, 'Europa', 'Rusija', 'RU'),
+(174, 'Europa', 'San Marino', 'SM'),
+(175, 'Europa', 'Srbija', 'RS'),
+(176, 'Europa', 'Slovačka', 'SK'),
+(177, 'Europa', 'Slovenija', 'SI'),
+(178, 'Europa', 'Španjolska', 'ES'),
+(179, 'Europa', 'Švedska', 'SE'),
+(180, 'Europa', 'Švicarska', 'CH'),
+(181, 'Europa', 'Ukrajina', 'UA'),
+(182, 'Europa', 'Ujedinjeno Kraljevstvo', 'GB'),
+(183, 'Europa', 'Vatikan', 'VA'),
+(184, 'Australija', 'Fidži', 'FJ'),
+(185, 'Australija', 'Kiribati', 'KI'),
+(186, 'Australija', 'Maršalovi Otoci', 'MH'),
+(187, 'Australija', 'Mikronezija', 'FM'),
+(188, 'Australija', 'Nauru', 'NR'),
+(189, 'Australija', 'Palau', 'PW'),
+(190, 'Australija', 'Papua Nova Gvineja', 'PG'),
+(191, 'Australija', 'Samoa', 'WS'),
+(192, 'Australija', 'Solomonski Otoci', 'SB'),
+(193, 'Australija', 'Tonga', 'TO'),
+(194, 'Australija', 'Tuvalu', 'TV'),
+(195, 'Australija', 'Vanuatu', 'VU'),
+(196, 'Australija', 'Australija', 'AU'),
+(197, 'Australija', 'Novi Zeland', 'NZ'); [42000-224]
+2024-06-10 16:40:51.377382+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO countries (ID, CONTINENT, NAME, CODE) VALUES\000d\000a(87, 'Južna Amerika', 'Surinam', 'SR'),\000d\000a(88, 'Južna Amerika', 'Urugvaj', 'UY'),\000d\000a(89, 'Južna Amerika', 'Venezuela', 'VE'),\000d\000a(90, 'Azija', 'Afganistan', 'AF'),\000d\000a(91, 'Azija', 'Armenija', 'AM'),\000d\000a(92, 'Azija', 'Azerbejdžan', 'AZ'),\000d\000a(93, 'Azija', 'Bahrein', 'BH'),\000d\000a(94, 'Azija', 'Bangladeš', 'BD'),\000d\000a(95, 'Azija', 'Butan', 'BT'),\000d\000a(96, 'Azija', 'Brunej', 'BN'),\000d\000a(97, 'Azija', 'Kambodža', 'KH'),\000d\000a(98, 'Azija', 'Kina', 'CN'),\000d\000a(99, 'Azija', 'Cipar', 'CY'),\000d\000a(100, 'Azija', 'Gruzija', 'GE'),\000d\000a(101, 'Azija', 'Indija', 'IN'),\000d\000a(102, 'Azija', 'Indonezija', 'ID'),\000d\000a(103, 'Azija', 'Iran', 'IR'),\000d\000a(104, 'Azija', 'Irak', 'IQ'),\000d\000a(105, 'Azija', 'Izrael', 'IL'),\000d\000a(106, 'Azija', 'Japan', 'JP'),\000d\000a(107, 'Azija', 'Jordan', 'JO'),\000d\000a(108, 'Azija', 'Kazahstan', 'KZ'),\000d\000a(109, 'Azija', 'Kuvajt', 'KW'),\000d\000a(110, 'Azija', 'Kirgistan', 'KG'),\000d\000a(111, 'Azija', 'Laos', 'LA'),\000d\000a(112, 'Azija', 'Libanon', 'LB'),\000d\000a(113, 'Azija', 'Malezija', 'MY'),\000d\000a(114, 'Azija', 'Maldivi', 'MV'),\000d\000a(115, 'Azija', 'Mongolija', 'MN'),\000d\000a(116, 'Azija', 'Mjanmar', 'MM'),\000d\000a(117, 'Azija', 'Nepal', 'NP'),\000d\000a(118, 'Azija', 'Sjeverna Koreja', 'KP'),\000d\000a(119, 'Azija', 'Oman', 'OM'),\000d\000a(120, 'Azija', 'Pakistan', 'PK'),\000d\000a(121, 'Azija', 'Palestina', 'PS'),\000d\000a(122, 'Azija', 'Filipini', 'PH'),\000d\000a(123, 'Azija', 'Katar', 'QA'),\000d\000a(124, 'Azija', 'Saudijska Arabija', 'SA'),\000d\000a(125, 'Azija', 'Singapur', 'SG'),\000d\000a(126, 'Azija', 'Južna Koreja', 'KR'),\000d\000a(127, 'Azija', 'Šri Lanka', 'LK'),\000d\000a(128, 'Azija', 'Sirija', 'SY'),\000d\000a(129, 'Azija', 'Tajvan', 'TW'),\000d\000a(130, 'Azija', 'Tadžikistan', 'TJ'),\000d\000a(131, 'Azija', 'Tajland', 'TH'),\000d\000a(132, 'Azija', 'Istočni Timor', 'TL'),\000d\000a(133, 'Azija', 'Turska', 'TR'),\000d\000a(134, 'Azija', 'Turkmenistan', 'TM'),\000d\000a(135, 'Azija', 'Ujedinjeni Arapski Emirati', 'AE'),\000d\000a(136, 'Azija', 'Uzbekistan', 'UZ'),\000d\000a(137, 'Azija', 'Vijetnam', 'VN'),\000d\000a(138, 'Azija', 'Jemen', 'YE'),\000d\000a(139, 'Europa', 'Albanija', 'AL'),\000d\000a(140, 'Europa', 'Andora', 'AD'),\000d\000a(141, 'Europa', 'Austrija', 'AT'),\000d\000a(142, 'Europa', 'Bjelorusija', 'BY'),\000d\000a(143, 'Europa', 'Belgija', 'BE'),\000d\000a(144, 'Europa', 'Bosna i Hercegovina', 'BA'),\000d\000a(145, 'Europa', 'Bugarska', 'BG'),\000d\000a(146, 'Europa', 'Hrvatska', 'HR'),\000d\000a(147, 'Europa', 'Češka', 'CZ'),\000d\000a(148, 'Europa', 'Danska', 'DK'),\000d\000a(149, 'Europa', 'Estonija', 'EE'),\000d\000a(150, 'Europa', 'Finska', 'FI'),\000d\000a(151, 'Europa', 'Francuska', 'FR'),\000d\000a(152, 'Europa', 'Njemačka', 'DE'),\000d\000a(153, 'Europa', 'Grčka', 'GR'),\000d\000a(154, 'Europa', 'Mađarska', 'HU'),\000d\000a(155, 'Europa', 'Island', 'IS'),\000d\000a(156, 'Europa', 'Irska', [*]'IE)"; SQL statement:
+INSERT INTO countries (ID, CONTINENT, NAME, CODE) VALUES
+(87, 'Južna Amerika', 'Surinam', 'SR'),
+(88, 'Južna Amerika', 'Urugvaj', 'UY'),
+(89, 'Južna Amerika', 'Venezuela', 'VE'),
+(90, 'Azija', 'Afganistan', 'AF'),
+(91, 'Azija', 'Armenija', 'AM'),
+(92, 'Azija', 'Azerbejdžan', 'AZ'),
+(93, 'Azija', 'Bahrein', 'BH'),
+(94, 'Azija', 'Bangladeš', 'BD'),
+(95, 'Azija', 'Butan', 'BT'),
+(96, 'Azija', 'Brunej', 'BN'),
+(97, 'Azija', 'Kambodža', 'KH'),
+(98, 'Azija', 'Kina', 'CN'),
+(99, 'Azija', 'Cipar', 'CY'),
+(100, 'Azija', 'Gruzija', 'GE'),
+(101, 'Azija', 'Indija', 'IN'),
+(102, 'Azija', 'Indonezija', 'ID'),
+(103, 'Azija', 'Iran', 'IR'),
+(104, 'Azija', 'Irak', 'IQ'),
+(105, 'Azija', 'Izrael', 'IL'),
+(106, 'Azija', 'Japan', 'JP'),
+(107, 'Azija', 'Jordan', 'JO'),
+(108, 'Azija', 'Kazahstan', 'KZ'),
+(109, 'Azija', 'Kuvajt', 'KW'),
+(110, 'Azija', 'Kirgistan', 'KG'),
+(111, 'Azija', 'Laos', 'LA'),
+(112, 'Azija', 'Libanon', 'LB'),
+(113, 'Azija', 'Malezija', 'MY'),
+(114, 'Azija', 'Maldivi', 'MV'),
+(115, 'Azija', 'Mongolija', 'MN'),
+(116, 'Azija', 'Mjanmar', 'MM'),
+(117, 'Azija', 'Nepal', 'NP'),
+(118, 'Azija', 'Sjeverna Koreja', 'KP'),
+(119, 'Azija', 'Oman', 'OM'),
+(120, 'Azija', 'Pakistan', 'PK'),
+(121, 'Azija', 'Palestina', 'PS'),
+(122, 'Azija', 'Filipini', 'PH'),
+(123, 'Azija', 'Katar', 'QA'),
+(124, 'Azija', 'Saudijska Arabija', 'SA'),
+(125, 'Azija', 'Singapur', 'SG'),
+(126, 'Azija', 'Južna Koreja', 'KR'),
+(127, 'Azija', 'Šri Lanka', 'LK'),
+(128, 'Azija', 'Sirija', 'SY'),
+(129, 'Azija', 'Tajvan', 'TW'),
+(130, 'Azija', 'Tadžikistan', 'TJ'),
+(131, 'Azija', 'Tajland', 'TH'),
+(132, 'Azija', 'Istočni Timor', 'TL'),
+(133, 'Azija', 'Turska', 'TR'),
+(134, 'Azija', 'Turkmenistan', 'TM'),
+(135, 'Azija', 'Ujedinjeni Arapski Emirati', 'AE'),
+(136, 'Azija', 'Uzbekistan', 'UZ'),
+(137, 'Azija', 'Vijetnam', 'VN'),
+(138, 'Azija', 'Jemen', 'YE'),
+(139, 'Europa', 'Albanija', 'AL'),
+(140, 'Europa', 'Andora', 'AD'),
+(141, 'Europa', 'Austrija', 'AT'),
+(142, 'Europa', 'Bjelorusija', 'BY'),
+(143, 'Europa', 'Belgija', 'BE'),
+(144, 'Europa', 'Bosna i Hercegovina', 'BA'),
+(145, 'Europa', 'Bugarska', 'BG'),
+(146, 'Europa', 'Hrvatska', 'HR'),
+(147, 'Europa', 'Češka', 'CZ'),
+(148, 'Europa', 'Danska', 'DK'),
+(149, 'Europa', 'Estonija', 'EE'),
+(150, 'Europa', 'Finska', 'FI'),
+(151, 'Europa', 'Francuska', 'FR'),
+(152, 'Europa', 'Njemačka', 'DE'),
+(153, 'Europa', 'Grčka', 'GR'),
+(154, 'Europa', 'Mađarska', 'HU'),
+(155, 'Europa', 'Island', 'IS'),
+(156, 'Europa', 'Irska', 'IE) [42000-224]
+2024-06-10 17:49:06.043267+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]LOCATION SELECT * FROM COUNTRIES"; SQL statement:
+LOCATION SELECT * FROM COUNTRIES [42000-224]
+2024-06-10 23:04:50.585168+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "TEXT CHARACTER VARYING(255)": "U&'Dobro jutro svijete! Dana\\0161nji dan zapo\\010deo je uzbudljivom avanturom u ... (788)"; SQL statement:
+insert into days (text,title,trip_id,id) values (?,?,?,default) [22001-224]

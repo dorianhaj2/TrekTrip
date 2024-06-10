@@ -1,5 +1,6 @@
 package com.trektrip.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -51,6 +52,8 @@ public class Trip {
     @JsonManagedReference
     private List<Rating> ratings;
 
+    @OneToMany(mappedBy = "trip", fetch = FetchType.EAGER)
+    private List<Comment> comments;
 
     private boolean isPublic;
 

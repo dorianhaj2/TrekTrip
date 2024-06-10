@@ -92,7 +92,10 @@
       "price": "Price",
       "month": "Travel Month",
       "submit": "Add Trip",
-      "chooseMonth": "Choose a Month"
+      "chooseMonth": "Choose a Month",
+      "country": "Country",
+      "location": "Location",
+      "images": "Add images"
     },
     "months": [
       "January",

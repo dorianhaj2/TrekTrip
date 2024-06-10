@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../axios/axiosInstance';
 import { Helmet } from 'react-helmet';
@@ -12,11 +12,28 @@ const UpdateProfile = () => {
   const [formData, setFormData] = useState({
     username: '',
     description: '',
-    image: null,
-    imageId: null
+    image: null
   });
 
   const userId = localStorage.getItem('userId');
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axiosInstance.get(`/user/${userId}`);
+        const user = response.data;
+        setFormData({
+          username: user.username || '',
+          description: user.description || '',
+          image: null // We don't set the image here
+        });
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, [userId]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -29,47 +46,36 @@ const UpdateProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        let profileData = {};
-        let imageId;
-        if (formData.image) {
-            const imageFormData = new FormData();
-            imageFormData.append('file', formData.image);
+      let profileData = {
+        username: formData.username,
+        description: formData.description
+      };
 
-            const imageRes = await axiosInstance.post('/image', imageFormData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
+      if (formData.image) {
+        const imageFormData = new FormData();
+        imageFormData.append('file', formData.image);
 
-            imageId = imageRes.data.id;
-            /*setFormData(prevFormData => ({ ...prevFormData, imageId }));
+        const imageRes = await axiosInstance.post('/image', imageFormData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
 
-            profileData.imageId = imageId;*/
-            console.log(imageId)
-        }
+        profileData.imageId = imageRes.data.id;
+      }
 
-        if (formData.username) {
-            profileData.username = formData.username;
-        }
-        if (formData.description) {
-            profileData.description = formData.description;
-        }
-        const userData = {
-          ...profileData,
-          image: {id: imageId},
-        };
-        const res = await axiosInstance.put(`/user/${userId}`, userData);
-        console.log('User updated:', res.data);
+      const res = await axiosInstance.put(`/user/${userId}`, profileData);
+      console.log('User updated:', res.data);
 
-        if (formData.username) {
-            localStorage.setItem('username', formData.username);
-        }
+      if (formData.username) {
+        localStorage.setItem('username', formData.username);
+      }
 
-        navigate('/profil');
+      navigate('/profil');
     } catch (error) {
-        console.error('Error updating user:', error);
+      console.error('Error updating user:', error);
     }
-};
+  };
 
   return (
     <div>
