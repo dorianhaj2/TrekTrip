@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
+
 import { Link } from 'react-router-dom';
-import HighlightedTripCard from '../../Components/HighlightedTripCard/HighlightedTripCard';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import axiosInstance from '../../axios/axiosInstance';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
+
 import './Profile.css';
+
+import HighlightedTripCard from '../../Components/HighlightedTripCard/HighlightedTripCard';
 
 const Profile = () => {
   const {t} = useTranslation();
@@ -16,18 +19,13 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
-  const [userRole, setUserRole] = useState(null);
   const [topTrips, setTopTrips] = useState([]);
-
-  const calculateAverageRating = (ratings) => {
-    if (!ratings.length) return 0;
-    const total = ratings.reduce((sum, rating) => sum + rating.rating, 0);
-    return total / ratings.length;
-};
 
   useEffect(() => {
     if (!isLoggedIn) {
-      navigate('/prijava');
+      navigate('/prijava'); // Redirect if not logged in
+    } else {
+      fetchData(); // Fetch user data if logged in
     }
   }, [isLoggedIn, navigate]);
 
@@ -38,7 +36,7 @@ const Profile = () => {
       const response = await axiosInstance.get(`/user/all`);
       
       const users = response.data;
-      const activeUser = users.find(user => user.username === username);
+      const activeUser = users && Array.isArray(users) ? users.find(user => user.username === username) : null;
 
       if (activeUser) {
         setActiveUser(activeUser);
@@ -50,14 +48,6 @@ const Profile = () => {
 
         setUser(userResponse.data);
         setLoading(false); 
-
-        /*const imageUrlResponse = await fetch(`/uploads/${userResponse.data.image.url}`);
-        if (imageUrlResponse.ok) {
-          const imageUrl = URL.createObjectURL(await imageUrlResponse.blob());
-          //setUser(prevUser => ({ ...prevUser, imageUrl })); // Update user state with imageUrl
-          user.image.url = imageUrl;
-          console.log(user.image.url);
-        }*/
 
         const tripsResponse = await axiosInstance.get(`/trip/all`);
 
@@ -72,33 +62,21 @@ const Profile = () => {
       setTopTrips(sortedTrips);
       } else {
         console.error('Logged-in user not found');
+        setLoading(false);
       }
     } catch (error) {
       console.error('Error fetching user:', error);
       setLoading(false); 
     }
-
-    /*if(activeUser){
-      try {
-        const response = await axiosInstance.get(`/userRole/${activeUser.id}`);
-        if (response.data) {
-          setUserRole(response.data);
-          //console.log(response.data)
-        } else {
-          setUserRole(null);
-        }
-      } catch (error) {
-       
-        console.error('Error fetching user role:', error);
-      }
-    }*/
   };
 
-  useEffect(() => {
-    fetchData(); 
-  }, [activeUser]); 
-
   //console.log(user.image.url)
+
+  const calculateAverageRating = (ratings) => {
+    if (!ratings.length) return 0;
+    const total = ratings.reduce((sum, rating) => sum + rating.rating, 0);
+    return total / ratings.length;
+  };
 
   return (
     <div>

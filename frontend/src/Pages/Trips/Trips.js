@@ -31,7 +31,7 @@ const Trips = () => {
                 console.log(response.data);
             } catch (error) {
                 console.error('Error fetching trips:', error);
-                setError(error.message);
+                setError('Failed to fetch trips. Please try again later.');
                 setLoading(false);
             }
         };
@@ -45,6 +45,7 @@ const Trips = () => {
                 setCountries(sortedCountries);
             } catch (error) {
                 console.error('Error fetching countries:', error);
+                setError('Failed to fetch countries. Please try again later.');
             }
         };
 
@@ -118,14 +119,6 @@ const Trips = () => {
         sortCriteria
     ) 
     : trips;
-
-    const ScrollToTopOnMount = () => {
-        React.useEffect(() => {
-          window.scrollTo(0, 0);
-        }, []);
-      
-        return null;
-      };
 
     return (
         <div className="trips">
