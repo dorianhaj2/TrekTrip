@@ -41,6 +41,13 @@ public class Trip {
 
     private boolean isPublic;
 
+    public Trip(Long id, String title, String description, int lengthInDays, boolean isPublic) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.lengthInDays = lengthInDays;
+        this.isPublic = isPublic;
+    }
 
     @Override
     public String toString() {

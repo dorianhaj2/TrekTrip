@@ -28,17 +28,9 @@ public class Rating {
 
     private int rating;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Rating rating1 = (Rating) o;
-        return rating == rating1.rating && Objects.equals(id, rating1.id) && Objects.equals(user, rating1.user) && Objects.equals(trip, rating1.trip);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, user, trip, rating);
+    public Rating(Long id, int rating) {
+        this.id = id;
+        this.rating = rating;
     }
 
     public int compareTo(Rating rating2) {
