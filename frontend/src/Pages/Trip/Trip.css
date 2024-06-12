@@ -1,0 +1,89 @@
+.trip-page {
+    font-family: Arial, sans-serif;
+  }
+  
+  .trip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .nav-links a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .main-image {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+  }
+  
+  .trip-info {
+    padding: 20px;
+  }
+  
+  .trip-info h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  .author, .rating, .trip-summary {
+    margin-bottom: 10px;
+  }
+  
+  .trip-summary p {
+    margin: 0;
+  }
+  
+  .trip-detail {
+    margin-bottom: 20px;
+  }
+  
+  .trip-detail h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .comments-section {
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-top: 1px solid #ddd;
+  }
+  
+  .comment {
+    margin-bottom: 15px;
+  }
+  
+  .trip-footer {
+    padding: 20px;
+    background-color: #f8f8f8;
+    text-align: center;
+    border-top: 1px solid #ddd;
+  }
+  
+  .footer-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #007bff;
+  }
+  
