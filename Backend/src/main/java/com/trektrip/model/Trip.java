@@ -41,4 +41,9 @@ public class Trip {
 
     private boolean isPublic;
 
+
+    @Override
+    public String toString() {
+        return "Trip: " + "id=" + id + ", " + title;
+    }
 }

@@ -39,8 +39,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(toH2Console()).permitAll();
                     auth.requestMatchers("/auth/login", "auth/refreshToken",
-                            "user/register", "userRole").permitAll();
-                    auth.requestMatchers("/trip*", "/auth/logout").hasRole("USER");
+                            "user/register", "userRole", "/trip", "/trip/**", "/comment", "/country", "/image", "/pin", "/rating", "/location", "/image/all").permitAll();
+                    auth.requestMatchers("/auth/logout").hasRole("USER");
                     auth.anyRequest().authenticated();
                 })
                 .authenticationProvider(authenticationProvider())

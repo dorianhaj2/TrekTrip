@@ -638,6 +638,32 @@
             <requestState>
               <option name="auth">
                 <authState>
+                  <option name="type" value="BEARER" />
+                </authState>
+              </option>
+              <option name="body">
+                <bodyState>
+                  <option name="raw" value="{&#10;  &quot;token&quot;: &quot;97ea90ed-00f4-432e-ae62-5360c57ff0ef&quot;&#10;}" />
+                  <option name="type" value="JSON" />
+                </bodyState>
+              </option>
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="3ab0109f-646d-472b-ad9d-7f4d9b10958a" />
+              <option name="method" value="POST" />
+              <option name="name" value="Refresh Token" />
+              <option name="sortWeight" value="32500000" />
+              <option name="url" value="http://localhost:8080/auth/refreshToken" />
+            </requestState>
+            <requestState>
+              <option name="auth">
+                <authState>
                   <option name="type" value="BASIC" />
                 </authState>
               </option>
@@ -658,7 +684,7 @@
               <option name="id" value="7eee7e98-df9d-47ed-bbf9-32330fdd1761" />
               <option name="method" value="POST" />
               <option name="name" value="Save user role 1" />
-              <option name="sortWeight" value="32000000" />
+              <option name="sortWeight" value="32750000" />
               <option name="url" value="http://localhost:8080/userRole" />
             </requestState>
             <requestState>
@@ -738,32 +764,6 @@
               <option name="name" value="Logout" />
               <option name="sortWeight" value="35000000" />
               <option name="url" value="http://localhost:8080/auth/logout" />
-            </requestState>
-            <requestState>
-              <option name="auth">
-                <authState>
-                  <option name="type" value="BEARER" />
-                </authState>
-              </option>
-              <option name="body">
-                <bodyState>
-                  <option name="raw" value="{&#10;  &quot;token&quot;: &quot;97ea90ed-00f4-432e-ae62-5360c57ff0ef&quot;&#10;}" />
-                  <option name="type" value="JSON" />
-                </bodyState>
-              </option>
-              <option name="headers">
-                <list>
-                  <headerState>
-                    <option name="key" value="Content-Type" />
-                    <option name="value" value="application/json" />
-                  </headerState>
-                </list>
-              </option>
-              <option name="id" value="3ab0109f-646d-472b-ad9d-7f4d9b10958a" />
-              <option name="method" value="POST" />
-              <option name="name" value="Refresh Token" />
-              <option name="sortWeight" value="36000000" />
-              <option name="url" value="http://localhost:8080/auth/refreshToken" />
             </requestState>
           </list>
         </option>
