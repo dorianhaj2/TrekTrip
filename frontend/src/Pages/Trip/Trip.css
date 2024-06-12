@@ -24,6 +24,7 @@
   .trip-intro {
     display: flex;
     flex-direction: column;
+    width: 50%;
   }
 
   .trip h1 {
@@ -68,11 +69,15 @@
     padding: 20px;
     background-color: #f8f8f8;
     border-top: 1px solid #ddd;
+    width: 80%;
+    margin: 0 auto;
   }
   
   .comment {
     margin-bottom: 15px;
   }
-  
+  .comment-name {
+    font-weight:500;
+  }
   
   

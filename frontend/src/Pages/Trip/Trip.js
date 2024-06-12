@@ -144,7 +144,7 @@ const Trip = () => {
                         <h1>{trip.title}</h1>
                         <p className="author">{t('trip.author')}: {trip.user.username}</p>
                     </div>
-                    <div className='trip-intro'>
+                    <div className='trip-description'>
                         <p className="intro">{trip.description}</p>
                     </div>
                     <div className='trip-days'>
@@ -185,7 +185,7 @@ const Trip = () => {
                 <ul>
                     {trip.comments.map(comment => (
                         <div>
-                            <p>{comment.user.username}</p>
+                            <p className='comment-name'>{comment.user.username}</p>
                             <p key={comment.id}>{comment.content} - {comment.timeOfPosting}</p>
                         </div> 
                     ))}
