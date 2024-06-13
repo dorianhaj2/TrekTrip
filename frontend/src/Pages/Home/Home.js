@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
+//import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 import { Link } from 'react-router-dom';
 import HighlightedTripCard from '../../Components/HighlightedTripCard/HighlightedTripCard';
 import axiosInstance from '../../axios/axiosInstance';
@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
 import './Home.css';
 
-const geoUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-continents.json";
+//const geoUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-continents.json";
 
 const Home = () => {
   const {t} = useTranslation();
@@ -22,7 +22,7 @@ const Home = () => {
               const response = await axiosInstance.get(`/trip/all`);
               setTrips(response.data); 
               setLoading(false);
-              //console.log(response.data)
+              console.log("Fetch trips")
           } catch (error) {
               console.error('Error fetching trips:', error);
               setError(error.message);
@@ -32,7 +32,7 @@ const Home = () => {
 
       fetchTrips();
 
-  }, [trips]);
+  }, []);
 
   useEffect(() => {
     const calculateAverageRating = (ratings) => {
@@ -74,7 +74,7 @@ const Home = () => {
       <header className="homepage-header">
         <h1>{t('home.title')}</h1>
         <p>{t('home.subtitle')}</p>
-        <ComposableMap
+  {/* <ComposableMap
           width={800}
           height={300}
         >
@@ -94,7 +94,7 @@ const Home = () => {
               ))
             }
           </Geographies>
-        </ComposableMap>
+        </ComposableMap>*/}
       </header>
       <section className="featured-trips">
         <h2>{t('home.tripsTitle')}</h2>
