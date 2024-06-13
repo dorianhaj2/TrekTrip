@@ -6,111 +6,143 @@ import com.trektrip.model.Comment;
 import com.trektrip.model.Trip;
 import com.trektrip.model.UserInfo;
 import com.trektrip.service.CommentService;
+import com.trektrip.service.JwtService;
+import com.trektrip.service.UserDetailsServiceImpl;
+import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
-@WebMvcTest(CommentController.class)
-public class CommentControllerTest {
-
+@WebMvcTest(controllers = CommentController.class)
+@AutoConfigureMockMvc(addFilters = false)
+@ExtendWith(MockitoExtension.class)
+class CommentControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
     private CommentService commentService;
 
+    @MockBean
+    private JwtService jwtService;
+    @MockBean
+    private UserDetailsServiceImpl userDetailsService;
+
     @Autowired
     private ObjectMapper objectMapper;
 
+    private Comment comment1;
+    private Comment comment2;
+
     @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
+    public void init() {
+        UserInfo user = new UserInfo();
+        user.setId(1L);
+        
+        Trip trip = new Trip();
+        trip.setId(1L);
+
+        comment1 = new Comment(1L, user, trip, "Great trip!", LocalDateTime.now());
+        comment2 = new Comment(2L, user, trip, "Amazing experience!", LocalDateTime.now());
     }
 
     @Test
-    public void testGetAllComments() throws Exception {
-        List<Comment> comments = new ArrayList<>();
-        // populate comments list
-
-        when(commentService.getAllComments()).thenReturn(comments);
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/comment/all"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$").isArray());
-    }
-
-    @Test
-    public void testGetCommentById() throws Exception {
-        Long commentId = 1L;
-        Comment comment = new Comment();
-        // set comment properties
-
-        when(commentService.getCommentById(commentId)).thenReturn(Optional.of(comment));
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/comment/{id}", commentId))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(commentId));
-    }
-
-    @Test
+    @WithMockUser
     public void testCreateComment() throws Exception {
-        CommentRequestDTO requestDTO = new CommentRequestDTO();
-        // set requestDTO properties
+        CommentRequestDTO commentRequest = new CommentRequestDTO(1L, 1L, "Great trip!");
+        given(commentService.createComment(ArgumentMatchers.any())).willAnswer((invocationOnMock -> invocationOnMock.getArgument(0)));
 
-        Comment createdComment = new Comment();
-        // set createdComment properties
+        ResultActions response = mockMvc.perform(post("/comment")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(commentRequest)));
 
-        when(commentService.createComment(any(Comment.class))).thenReturn(createdComment);
-
-        mockMvc.perform(MockMvcRequestBuilders.post("/comment")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(requestDTO)))
-                .andExpect(MockMvcResultMatchers.status().isCreated())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.content").value(requestDTO.getContent()));
+        response.andExpect(MockMvcResultMatchers.status().isCreated())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.content", CoreMatchers.is(comment1.getContent())));
     }
 
     @Test
+    @WithMockUser
+    public void testGetAllComments() throws Exception {
+        List<Comment> allComments = List.of(comment1, comment2);
+        when(commentService.getAllComments()).thenReturn(allComments);
+
+        ResultActions response = mockMvc.perform(get("/comment/all")
+                .contentType(MediaType.APPLICATION_JSON));
+
+        response.andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.size()", CoreMatchers.is(allComments.size())));
+    }
+
+    @Test
+    @WithMockUser
+    public void testGetCommentByIdIfExists() throws Exception {
+        Long id = 1L;
+        when(commentService.getCommentById(id)).thenReturn(Optional.of(comment1));
+
+        ResultActions response = mockMvc.perform(get("/comment/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(comment1)));
+
+        response.andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.content", CoreMatchers.is(comment1.getContent())));
+    }
+
+    @Test
+    @WithMockUser
+    public void testGetCommentByIdDoesntExist() throws Exception {
+        Long id = 3L;
+        when(commentService.getCommentById(id)).thenReturn(Optional.empty());
+
+        ResultActions response = mockMvc.perform(get("/comment/3")
+                .contentType(MediaType.APPLICATION_JSON));
+
+        response.andExpect(MockMvcResultMatchers.status().isNoContent());
+    }
+
+    @Test
+    @WithMockUser
     public void testUpdateComment() throws Exception {
-        Long commentId = 1L;
-        Comment updatedComment = new Comment();
-        // set updatedComment properties
+        Long id = 1L;
+        when(commentService.updateComment(comment2, id)).thenReturn(comment2);
 
-        when(commentService.updateComment(any(Comment.class), any(Long.class))).thenReturn(updatedComment);
+        ResultActions response = mockMvc.perform(put("/comment/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(comment2)));
 
-        mockMvc.perform(MockMvcRequestBuilders.put("/comment/{id}", commentId)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(updatedComment)))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(commentId));
+        response.andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.content", CoreMatchers.is(comment2.getContent())));
     }
 
     @Test
+    @WithMockUser
     public void testDeleteComment() throws Exception {
-        Long commentId = 1L;
+        Long id = 1L;
+        doNothing().when(commentService).deleteComment(id);
 
-        mockMvc.perform(MockMvcRequestBuilders.delete("/comment/{id}", commentId))
-                .andExpect(MockMvcResultMatchers.status().isNoContent());
+        ResultActions response = mockMvc.perform(delete("/comment/1")
+                .contentType(MediaType.APPLICATION_JSON));
+
+        response.andExpect(MockMvcResultMatchers.status().isNoContent());
     }
+
 }
