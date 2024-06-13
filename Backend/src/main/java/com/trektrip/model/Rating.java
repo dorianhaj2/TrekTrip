@@ -39,5 +39,6 @@ public class Rating {
     public int compareTo(Rating rating2) {
         return Double.compare(getRating(), rating2.getRating());
     }
+}
 
 
