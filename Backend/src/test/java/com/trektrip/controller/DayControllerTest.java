@@ -3,7 +3,6 @@ package com.trektrip.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trektrip.dto.DayRequestDTO;
 import com.trektrip.model.Day;
-import com.trektrip.model.Trip;
 import com.trektrip.service.DayService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,8 +42,8 @@ public class DayControllerTest {
     @Test
     public void testGetAllDays() throws Exception {
         List<Day> days = new ArrayList<>();
-        days.add(new Day(1L, "Title1", "Text1", new Trip()));
-        days.add(new Day(2L, "Title2", "Text2", new Trip()));
+        days.add(new Day(1L, "Title1", "Text1"));
+        days.add(new Day(2L, "Title2", "Text2"));
 
         when(dayService.getDays()).thenReturn(days);
 
@@ -57,7 +56,7 @@ public class DayControllerTest {
     @Test
     public void testGetDayById() throws Exception {
         Long dayId = 1L;
-        Day day = new Day(dayId, "Title1", "Text1", new Trip());
+        Day day = new Day(dayId, "Title1", "Text1");
 
         when(dayService.getDay(dayId)).thenReturn(Optional.of(day));
 
@@ -74,7 +73,7 @@ public class DayControllerTest {
         dayRequestDTO.setText("Text1");
         dayRequestDTO.setTripId(1L);
 
-        Day createdDay = new Day(1L, "Title1", "Text1", new Trip());
+        Day createdDay = new Day(1L, "Title1", "Text1");
 
         when(dayService.createDay(any(Day.class))).thenReturn(createdDay);
 
@@ -90,7 +89,7 @@ public class DayControllerTest {
     @Test
     public void testUpdateDay() throws Exception {
         Long dayId = 1L;
-        Day updatedDay = new Day(dayId, "UpdatedTitle", "UpdatedText", new Trip());
+        Day updatedDay = new Day(dayId, "UpdatedTitle", "UpdatedText");
 
         when(dayService.updateDay(any(Day.class), any(Long.class))).thenReturn(updatedDay);
 
