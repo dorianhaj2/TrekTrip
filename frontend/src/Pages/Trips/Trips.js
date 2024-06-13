@@ -5,10 +5,9 @@ import tripsData from './tripsData';
 import './Trips.css'
 
 const Trips = () => {
-
     
   return (
-    <div className="App">
+    <div className="trips">
         <div className="filters">
             <button>Trajanje</button>
             <button>Ocjena</button>
@@ -19,7 +18,6 @@ const Trips = () => {
                 <Link key={trip.id} to={`/putovanja/${trip.id}`}>
                     <TripCard trip={trip} />
                 </Link>
-                
             ))}
         </div>
     </div>

@@ -1,5 +1,5 @@
 import { HashRouter, Route, Routes} from 'react-router-dom';
-import { Container } from '@mui/system';
+import { Box } from '@mui/system';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import Home from './Pages/Home/Home';
@@ -16,7 +16,12 @@ function App() {
      
         <Header></Header>
         <div className="app">
-          <Container maxWidth="xl">
+          <Box 
+            sx={{ 
+              minHeight: '100vh', 
+              width: '100%',  
+              backgroundColor: '#f0f0f0',
+            }}>
             <Routes>
               <Route path='/' element={<Home/>} exact/>
               <Route path='/profil' element={<Profile/>}/>
@@ -24,9 +29,8 @@ function App() {
               <Route exact path="/putovanja/:id" element={<Trip/>} />
               <Route path='/prijava' element={<Login/>}/>
               <Route path='/registracija' element={<Register/>}/>
-
             </Routes>
-          </Container>
+          </Box>
         </div>
         <Footer></Footer>
      
