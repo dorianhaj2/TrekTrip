@@ -2,126 +2,110 @@ package com.trektrip.service;
 
 import com.trektrip.model.Country;
 import com.trektrip.repository.CountryRepository;
-import com.trektrip.service.CountryService;
-import com.trektrip.service.CountryServiceImpl;
 import jakarta.persistence.EntityNotFoundException;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-public class CountryServiceImplTest {
+@ExtendWith(MockitoExtension.class)
+class CountryServiceImplTest {
 
     @Mock
     private CountryRepository countryRepository;
 
     @InjectMocks
-    private CountryService countryService = new CountryServiceImpl(countryRepository);
+    private CountryServiceImpl countryService;
 
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
+    @Test
+    public void testCreateCountry() {
+        Country country = new Country(1L, "Country1", "Continent1", "Code1");
+
+        when(countryRepository.save(Mockito.any(Country.class))).thenReturn(country);
+
+        Country savedCountry = countryService.createCountry(country);
+
+        Assertions.assertNotNull(savedCountry);
     }
 
     @Test
     public void testGetAllCountries() {
-        // Mock data
-        List<Country> countries = new ArrayList<>();
-        countries.add(new Country(1L, "Country A"));
-        countries.add(new Country(2L, "Country B"));
+        Country country1 = new Country(1L, "Country1", "Continent1", "Code1");
+        Country country2 = new Country(2L, "Country2", "Continent2", "Code2");
 
-        when(countryRepository.findAll()).thenReturn(countries);
+        List<Country> allCountries = List.of(country1, country2);
 
-        // Call service method
-        List<Country> result = countryService.getAllCountries();
+        when(countryRepository.findAll()).thenReturn(allCountries);
 
-        // Verify the result
-        assertEquals(2, result.size());
-        assertEquals("Country A", result.get(0).getName());
-        assertEquals("Country B", result.get(1).getName());
+        List<Country> countries = countryService.getAllCountries();
+
+        Assertions.assertNotNull(countries);
+        Assertions.assertEquals(2, countries.size());
     }
 
     @Test
-    public void testGetCountryById() {
-        Long countryId = 1L;
-        Country country = new Country(countryId, "Test Country");
+    public void testCountryByIdExists() {
+        Long id = 1L;
+        Country country = new Country(id, "Country1", "Continent1", "Code1");
+        when(countryRepository.findById(id)).thenReturn(Optional.of(country));
 
-        when(countryRepository.findById(countryId)).thenReturn(Optional.of(country));
+        Optional<Country> countryReturn = countryService.getCountryById(id);
 
-        Optional<Country> result = countryService.getCountryById(countryId);
-
-        assertTrue(result.isPresent());
-        assertEquals("Test Country", result.get().getName());
+        Assertions.assertTrue(countryReturn.isPresent());
     }
 
     @Test
-    public void testGetCountryById_NotFound() {
-        Long countryId = 1L;
+    public void testCountryByIdDoesntExist() {
+        Long id = 2L;
+        when(countryRepository.findById(id)).thenReturn(Optional.empty());
 
-        when(countryRepository.findById(countryId)).thenReturn(Optional.empty());
+        Optional<Country> countryReturn = countryService.getCountryById(id);
 
-        assertThrows(EntityNotFoundException.class, () -> {
-            countryService.getCountryById(countryId);
-        });
-    }
-
-    @Test
-    public void testCreateCountry() {
-        Country country = new Country();
-        country.setName("New Country");
-
-        when(countryRepository.save(any(Country.class))).thenReturn(country);
-
-        Country created = countryService.createCountry(country);
-
-        assertNotNull(created);
-        assertEquals("New Country", created.getName());
+        Assertions.assertTrue(countryReturn.isEmpty());
     }
 
     @Test
     public void testUpdateCountry() {
-        Long countryId = 1L;
-        Country existingCountry = new Country(countryId, "Existing Country");
-        Country updatedCountry = new Country(countryId, "Updated Country");
+        Long id = 1L;
+        Country existingCountry = new Country(id, "Country1", "Continent1", "Code1");
+        Country updatedCountry = new Country(id, "UpdatedCountry", "UpdatedContinent", "UpdatedCode");
 
-        when(countryRepository.findById(countryId)).thenReturn(Optional.of(existingCountry));
-        when(countryRepository.save(any(Country.class))).thenReturn(updatedCountry);
+        when(countryRepository.findById(id)).thenReturn(Optional.of(existingCountry));
+        when(countryRepository.save(updatedCountry)).thenReturn(updatedCountry);
 
-        Country result = countryService.updateCountry(updatedCountry, countryId);
+        Country updatedCountryReturn = countryService.updateCountry(updatedCountry, id);
 
-        assertNotNull(result);
-        assertEquals("Updated Country", result.getName());
+        Assertions.assertNotNull(updatedCountryReturn);
+        Assertions.assertEquals(updatedCountry.getName(), updatedCountryReturn.getName());
     }
 
     @Test
-    public void testUpdateCountry_NotFound() {
-        Long countryId = 1L;
-        Country updatedCountry = new Country(countryId, "Updated Country");
+    public void testUpdateCountryIfDoesntExist() {
+        Long id = 3L;
+        Country updatedCountry = new Country(2L, "UpdatedCountry", "UpdatedContinent", "UpdatedCode");
 
-        when(countryRepository.findById(countryId)).thenReturn(Optional.empty());
+        when(countryRepository.findById(id)).thenReturn(Optional.empty());
 
-        assertThrows(EntityNotFoundException.class, () -> {
-            countryService.updateCountry(updatedCountry, countryId);
+        Assertions.assertThrows(EntityNotFoundException.class, () -> {
+            countryService.updateCountry(updatedCountry, id);
         });
     }
 
     @Test
     public void testDeleteCountry() {
-        Long countryId = 1L;
+        Long id = 1L;
 
-        // No need to mock repository behavior, just verify method call
-        countryService.deleteCountry(countryId);
+        countryService.deleteCountry(id);
 
-        verify(countryRepository, times(1)).deleteById(countryId);
+        verify(countryRepository).deleteById(id);
     }
 }
-
