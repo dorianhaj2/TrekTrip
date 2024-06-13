@@ -20,6 +20,7 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class CommentServiceImplTest {
+
     @Mock
     private CommentRepository commentRepository;
 
@@ -28,7 +29,7 @@ class CommentServiceImplTest {
 
     @Test
     public void testCreateComment() {
-        Comment comment = new Comment(1L, null, null, "Great trip!", LocalDateTime.now());
+        Comment comment = new Comment(1L, null, null, "Great trip!");
 
         when(commentRepository.save(Mockito.any(Comment.class))).thenReturn(comment);
 
@@ -39,26 +40,28 @@ class CommentServiceImplTest {
 
     @Test
     public void testGetAllComments() {
-        Comment comment1 = new Comment(1L, null, null, "Great trip!", LocalDateTime.now());
-        Comment comment2 = new Comment(2L, null, null, "Amazing experience!", LocalDateTime.now());
+        Comment comment1 = new Comment(1L, null, null, "Great trip!");
+        Comment comment2 = new Comment(2L, null, null, "Amazing experience!");
 
         List<Comment> allComments = List.of(comment1, comment2);
 
         when(commentRepository.findAll()).thenReturn(allComments);
 
-        Assertions.assertNotNull(commentService.getAllComments());
-        Assertions.assertEquals(2, commentService.getAllComments().size());
+        List<Comment> comments = commentService.getAllComments();
+
+        Assertions.assertNotNull(comments);
+        Assertions.assertEquals(2, comments.size());
     }
 
     @Test
     public void testCommentByIdExists() {
         Long id = 1L;
-        Comment comment = new Comment(1L, null, null, "Great trip!", LocalDateTime.now());
+        Comment comment = new Comment(id, null, null, "Great trip!");
         when(commentRepository.findById(id)).thenReturn(Optional.of(comment));
 
         Optional<Comment> commentReturn = commentService.getCommentById(id);
 
-        Assertions.assertNotNull(commentReturn.get());
+        Assertions.assertTrue(commentReturn.isPresent());
     }
 
     @Test
@@ -74,24 +77,27 @@ class CommentServiceImplTest {
     @Test
     public void testUpdateComment() {
         Long id = 1L;
-        Comment comment1 = new Comment(1L, null, null, "Great trip!", LocalDateTime.now());
-        Comment comment2 = new Comment(2L, null, null, "Amazing experience!", LocalDateTime.now());
+        Comment existingComment = new Comment(id, null, null, "Great trip!");
+        Comment updatedComment = new Comment(id, null, null, "Amazing experience!");
 
-        when(commentRepository.findById(id)).thenReturn(Optional.of(comment1));
-        when(commentRepository.save(comment2)).thenReturn(comment2);
+        when(commentRepository.findById(id)).thenReturn(Optional.of(existingComment));
+        when(commentRepository.save(updatedComment)).thenReturn(updatedComment);
 
-        Comment updateReturn = commentService.updateComment(comment2, id);
+        Comment updatedCommentReturn = commentService.updateComment(updatedComment, id);
 
-        Assertions.assertNotNull(updateReturn);
+        Assertions.assertNotNull(updatedCommentReturn);
+        Assertions.assertEquals(updatedComment.getContent(), updatedCommentReturn.getContent());
     }
 
     @Test
     public void testUpdateCommentIfDoesntExist() {
         Long id = 3L;
-        Comment comment2 = new Comment(2L, null, null, "Amazing experience!", LocalDateTime.now());
+        Comment updatedComment = new Comment(2L, null, null, "Amazing experience!");
+
+        when(commentRepository.findById(id)).thenReturn(Optional.empty());
 
         Assertions.assertThrows(EntityNotFoundException.class, () -> {
-            Comment updatedComment = commentService.updateComment(comment2, id);
+            commentService.updateComment(updatedComment, id);
         });
     }
 
@@ -99,7 +105,8 @@ class CommentServiceImplTest {
     public void testDeleteComment() {
         Long id = 1L;
 
-        commentRepository.deleteById(id);
+        commentService.deleteComment(id);
+
         verify(commentRepository).deleteById(id);
     }
 }
