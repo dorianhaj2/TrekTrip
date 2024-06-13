@@ -24,4 +24,10 @@ public class Day {
     @ManyToOne
     @JoinColumn(name = "trip_id", referencedColumnName = "id")
     private Trip trip;
+
+     public Day(Long id, String title, String text) {
+        this.id = id;
+        this.title = title;
+        this.text = text;
+    }
 }
