@@ -19,8 +19,8 @@ public class LocationController {
     private LocationService locationService;
 
     @GetMapping("/all")
-    public List<Location> getAllLocations() {
-       return locationService.getLocations();
+    public ResponseEntity<List<Location>> getAllLocations() {
+       return ResponseEntity.ok(locationService.getLocations());
 
     }
 

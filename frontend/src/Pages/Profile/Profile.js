@@ -7,6 +7,7 @@ import axiosInstance from '../../axios/axiosInstance';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
 import './Profile.css';
+import {Button} from "@mui/material";
 
 const Profile = () => {
   const {t} = useTranslation();
@@ -121,10 +122,10 @@ const Profile = () => {
               </div>
               <div className="profile-buttons">
                 <Link to='/uredi-profil'>
-                  <button>{t('profile.editProfile')}</button>
+                    <Button>{t('profile.editProfile')}</Button>
                 </Link>
                 <Link to='/dodaj-put'>
-                  <button>{t('profile.addTrip')}</button>
+                  <Button>{t('profile.addTrip')}</Button>
                 </Link>
               </div>
             </div>

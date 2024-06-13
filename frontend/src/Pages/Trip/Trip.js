@@ -180,18 +180,18 @@ const Trip = () => {
                     </div>   
                 </div>             
             </div>
+            <div><h2 className="commentSectionTitle">{t('trip.comments')}</h2></div>
             <div className="comments-section">
-                <h2>{t('trip.comments')}</h2>
-                <ul>
+                <ul className="commentsListContainer">
                     {trip.comments.map(comment => (
-                        <div>
-                            <p>{comment.user.username}</p>
-                            <p key={comment.id}>{comment.content} - {comment.timeOfPosting}</p>
+                        <div className="singleCommentContainer">
+                            <p className="commentDisplayUsername">{comment.user.username}</p>
+                            <p key={comment.id}>{comment.content} {comment.timeOfPosting}</p>
                         </div> 
                     ))}
                 </ul>
                 {isLoggedIn && (
-                    <div>
+                    <div className="commentInputSection">
                         <textarea value={newComment} onChange={(e) => setNewComment(e.target.value)} />
                         <button onClick={handleCommentSubmit}>Submit Comment</button>
                     </div>

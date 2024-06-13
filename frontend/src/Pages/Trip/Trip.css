@@ -4,7 +4,7 @@
     background-position: center;
     position: relative;
   }
-  
+
   .overlay {
     position: absolute;
     top: 0;
@@ -13,14 +13,14 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.4);
   }
-  
+
   .trip {
     padding: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
   }
-  
+
   .trip-intro {
     display: flex;
     flex-direction: column;
@@ -30,7 +30,7 @@
     font-size: 28px;
     margin-bottom: 10px;
   }
-  
+
    .trip-summary {
     margin: 30px 0;
     padding: 0 60px 20px;
@@ -42,12 +42,12 @@
     -ms-border-radius: 15px;
     -o-border-radius: 15px;
 }
-  
+
   .trip-summary p {
     margin: 20px;
     font-size: 20px;
   }
-  
+
   .trip-details {
     display: flex;
     flex-direction: column;
@@ -58,21 +58,57 @@
   .trip-detail {
     margin-bottom: 20px;
   }
-  
+
   .trip-detail h2 {
     font-size: 20px;
     margin-bottom: 5px;
   }
-  
+
   .comments-section {
     padding: 20px;
-    background-color: #f8f8f8;
     border-top: 1px solid #ddd;
+      margin: 0 auto;
+      align-items: flex-start;
+      display: flex;
+      justify-content:  center;
+      flex-direction: column;
+      width: 70%;
+
+
   }
-  
+
   .comment {
     margin-bottom: 15px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      background-color: #cccccc;
+
+
   }
-  
-  
-  
+.commentDisplayUsername{
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+.commentInputSection{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+.commentSectionTitle{
+    color: #486284;
+}
+
+.singleCommentContainer{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 20px;
+    width: 100%;
+}
+  .commentsListContainer{
+      width: 100%;
+  }

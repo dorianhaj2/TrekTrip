@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 import { Link } from 'react-router-dom';
 import HighlightedTripCard from '../../Components/HighlightedTripCard/HighlightedTripCard';
 import axiosInstance from '../../axios/axiosInstance';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
 import './Home.css';
-
+import {ComposableMap, Geographies, Geography} from "react-simple-maps";
 const geoUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-continents.json";
-
+const geoLocal = "/countries.json";
 const Home = () => {
   const {t} = useTranslation();
   const [trips, setTrips] = useState([]);
@@ -20,9 +19,9 @@ const Home = () => {
       const fetchTrips = async () => {
           try {
               const response = await axiosInstance.get(`/trip/all`);
-              setTrips(response.data); 
+              setTrips(response.data);
               setLoading(false);
-              //console.log(response.data)
+              console.log(response.data)
           } catch (error) {
               console.error('Error fetching trips:', error);
               setError(error.message);
@@ -32,7 +31,7 @@ const Home = () => {
 
       fetchTrips();
 
-  }, [trips]);
+  }, []);
 
   useEffect(() => {
     const calculateAverageRating = (ratings) => {
@@ -47,7 +46,7 @@ const Home = () => {
     });
 
     const sortedTrips = tripsWithAverageRating.sort((a, b) => b.averageRating - a.averageRating);
-    
+
     const topThreeTrips = sortedTrips.slice(0, 3);
 
     setTopTrips(topThreeTrips);
@@ -74,11 +73,14 @@ const Home = () => {
       <header className="homepage-header">
         <h1>{t('home.title')}</h1>
         <p>{t('home.subtitle')}</p>
-        <ComposableMap
+      </header>
+
+
+          <ComposableMap
           width={800}
           height={300}
         >
-          <Geographies geography={geoUrl}>
+          <Geographies geography={geoLocal}>
             {({ geographies }) =>
               geographies.map(geo => (
                 <Geography
@@ -95,7 +97,8 @@ const Home = () => {
             }
           </Geographies>
         </ComposableMap>
-      </header>
+
+
       <section className="featured-trips">
         <h2>{t('home.tripsTitle')}</h2>
         <div className="trip-cards">
