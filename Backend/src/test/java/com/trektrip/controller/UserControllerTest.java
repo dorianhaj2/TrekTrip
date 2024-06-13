@@ -2,6 +2,8 @@ package com.trektrip.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trektrip.model.UserInfo;
+import com.trektrip.repository.ImageRepository;
+import com.trektrip.service.ImageService;
 import com.trektrip.service.JwtService;
 import com.trektrip.service.UserDetailsServiceImpl;
 import com.trektrip.service.UserService;
@@ -48,7 +50,10 @@ class UserControllerTest {
     private JwtService jwtService;
     @MockBean
     private UserDetailsServiceImpl userDetailsService;
-
+    @MockBean
+    private ImageService imageService;
+    @MockBean
+    private ImageRepository imageRepository;
 
     @Autowired
     private ObjectMapper objectMapper;

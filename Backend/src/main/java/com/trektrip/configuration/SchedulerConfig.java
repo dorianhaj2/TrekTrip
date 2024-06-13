@@ -12,17 +12,17 @@ public class SchedulerConfig {
     private static final String TOP_TRIPS_TRIGGER = "topTripsTrigger";
 
     @Bean
-    public JobDetail vaccinePrintJobDetail() {
+    public JobDetail topTripsPrintJobDetail() {
         return JobBuilder.newJob(TopThreeTripsJob.class).withIdentity(TOP_TRIPS_JOB_IDENTITY)
                 .storeDurably().build();
     }
 
     @Bean
-    public SimpleTrigger vaccinePrintTrigger() {
+    public SimpleTrigger topTripsPrintTrigger() {
         SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
                 .withIntervalInSeconds(5).repeatForever();
 
-        return TriggerBuilder.newTrigger().forJob(vaccinePrintJobDetail())
+        return TriggerBuilder.newTrigger().forJob(topTripsPrintJobDetail())
                 .withIdentity(TOP_TRIPS_TRIGGER).withSchedule(scheduleBuilder).build();
     }
 

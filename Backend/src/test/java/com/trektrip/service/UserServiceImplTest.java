@@ -78,7 +78,7 @@ class UserServiceImplTest {
         UserInfo user2 = new UserInfo(2L, "user2", "user2@mail.com", "pass2");
 
         when(userRepository.findById(id)).thenReturn(Optional.of(user1));
-        when(userRepository.save(user2)).thenReturn(user2);
+        when(userRepository.save(Mockito.any(UserInfo.class))).thenReturn(user2);
 
         UserInfo updateReturn = userService.updateUser(user2, id);
 
