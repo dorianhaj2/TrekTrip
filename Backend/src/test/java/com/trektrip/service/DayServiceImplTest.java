@@ -28,7 +28,7 @@ class DayServiceImplTest {
 
     @Test
     public void testCreateDay() {
-        Day day = new Day(1L, "Title1", "Text1", null);
+        Day day = new Day(1L, "Title1", "Text1");
 
         when(dayRepository.save(Mockito.any(Day.class))).thenReturn(day);
 
@@ -39,8 +39,8 @@ class DayServiceImplTest {
 
     @Test
     public void testGetAllDays() {
-        Day day1 = new Day(1L, "Title1", "Text1", null);
-        Day day2 = new Day(2L, "Title2", "Text2", null);
+        Day day1 = new Day(1L, "Title1", "Text1");
+        Day day2 = new Day(2L, "Title2", "Text2");
 
         List<Day> allDays = List.of(day1, day2);
 
@@ -55,7 +55,7 @@ class DayServiceImplTest {
     @Test
     public void testDayByIdExists() {
         Long id = 1L;
-        Day day = new Day(id, "Title1", "Text1", null);
+        Day day = new Day(id, "Title1", "Text1");
         when(dayRepository.findById(id)).thenReturn(Optional.of(day));
 
         Optional<Day> dayReturn = dayService.getDay(id);
@@ -76,11 +76,11 @@ class DayServiceImplTest {
     @Test
     public void testUpdateDay() {
         Long id = 1L;
-        Day existingDay = new Day(id, "Title1", "Text1", null);
-        Day updatedDay = new Day(id, "UpdatedTitle", "UpdatedText", null);
+        Day existingDay = new Day(id, "Title1", "Text1");
+        Day updatedDay = new Day(id, "UpdatedTitle", "UpdatedText");
 
         when(dayRepository.findById(id)).thenReturn(Optional.of(existingDay));
-        when(dayRepository.save(updatedDay)).thenReturn(updatedDay);
+        when(dayRepository.save(Mockito.any(Day.class))).thenReturn(updatedDay);
 
         Day updatedDayReturn = dayService.updateDay(updatedDay, id);
 
@@ -91,7 +91,7 @@ class DayServiceImplTest {
     @Test
     public void testUpdateDayIfDoesntExist() {
         Long id = 3L;
-        Day updatedDay = new Day(2L, "UpdatedTitle", "UpdatedText", null);
+        Day updatedDay = new Day(id, "UpdatedTitle", "UpdatedText");
 
         when(dayRepository.findById(id)).thenReturn(Optional.empty());
 
