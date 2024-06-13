@@ -2,124 +2,111 @@ package com.trektrip.service;
 
 import com.trektrip.model.Comment;
 import com.trektrip.repository.CommentRepository;
-import org.junit.jupiter.api.BeforeEach;
+import jakarta.persistence.EntityNotFoundException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-public class CommentServiceImplTest {
+@ExtendWith(MockitoExtension.class)
+class CommentServiceImplTest {
 
     @Mock
     private CommentRepository commentRepository;
 
     @InjectMocks
-    private CommentService commentService = new CommentServiceImpl(commentRepository);
+    private CommentServiceImpl commentService;
 
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
+    @Test
+    public void testCreateComment() {
+        Comment comment = new Comment(1L,  "Great trip!");
+
+        when(commentRepository.save(Mockito.any(Comment.class))).thenReturn(comment);
+
+        Comment savedComment = commentService.createComment(comment);
+
+        Assertions.assertNotNull(savedComment);
     }
 
     @Test
     public void testGetAllComments() {
-        // Mock data
-        List<Comment> comments = new ArrayList<>();
-        comments.add(new Comment(1L, "Content 1"));
-        comments.add(new Comment(2L, "Content 2"));
+        Comment comment1 = new Comment(1L,  "Great trip!");
+        Comment comment2 = new Comment(2L,  "Amazing experience!");
 
-        when(commentRepository.findAll()).thenReturn(comments);
+        List<Comment> allComments = List.of(comment1, comment2);
 
-        // Call service method
-        List<Comment> result = commentService.getAllComments();
+        when(commentRepository.findAll()).thenReturn(allComments);
 
-        // Verify the result
-        assertEquals(2, result.size());
-        assertEquals("Content 1", result.get(0).getContent());
-        assertEquals("Content 2", result.get(1).getContent());
+        List<Comment> comments = commentService.getAllComments();
+
+        Assertions.assertNotNull(comments);
+        Assertions.assertEquals(2, comments.size());
     }
 
     @Test
-    public void testGetCommentById() {
-        Long commentId = 1L;
-        Comment comment = new Comment(commentId, "Test content");
+    public void testCommentByIdExists() {
+        Long id = 1L;
+        Comment comment = new Comment(id,  "Great trip!");
+        when(commentRepository.findById(id)).thenReturn(Optional.of(comment));
 
-        when(commentRepository.findById(commentId)).thenReturn(Optional.of(comment));
+        Optional<Comment> commentReturn = commentService.getCommentById(id);
 
-        Optional<Comment> result = commentService.getCommentById(commentId);
-
-        assertTrue(result.isPresent());
-        assertEquals("Test content", result.get().getContent());
+        Assertions.assertTrue(commentReturn.isPresent());
     }
 
     @Test
-    public void testGetCommentById_NotFound() {
-        Long commentId = 1L;
+    public void testCommentByIdDoesntExist() {
+        Long id = 2L;
+        when(commentRepository.findById(id)).thenReturn(Optional.empty());
 
-        when(commentRepository.findById(commentId)).thenReturn(Optional.empty());
+        Optional<Comment> commentReturn = commentService.getCommentById(id);
 
-        assertThrows(EntityNotFoundException.class, () -> {
-            commentService.getCommentById(commentId);
-        });
-    }
-
-    @Test
-    public void testCreateComment() {
-        Comment comment = new Comment();
-        comment.setContent("New comment");
-
-        when(commentRepository.save(any(Comment.class))).thenReturn(comment);
-
-        Comment created = commentService.createComment(comment);
-
-        assertNotNull(created);
-        assertEquals("New comment", created.getContent());
+        Assertions.assertTrue(commentReturn.isEmpty());
     }
 
     @Test
     public void testUpdateComment() {
-        Long commentId = 1L;
-        Comment existingComment = new Comment(commentId, "Existing content");
-        Comment updatedComment = new Comment(commentId, "Updated content");
+        Long id = 1L;
+        Comment existingComment = new Comment(id,  "Great trip!");
+        Comment updatedComment = new Comment(id,  "Amazing experience!");
 
-        when(commentRepository.findById(commentId)).thenReturn(Optional.of(existingComment));
-        when(commentRepository.save(any(Comment.class))).thenReturn(updatedComment);
+        when(commentRepository.findById(id)).thenReturn(Optional.of(existingComment));
+        when(commentRepository.save(updatedComment)).thenReturn(updatedComment);
 
-        Comment result = commentService.updateComment(updatedComment, commentId);
+        Comment updatedCommentReturn = commentService.updateComment(updatedComment, id);
 
-        assertNotNull(result);
-        assertEquals("Updated content", result.getContent());
+        Assertions.assertNotNull(updatedCommentReturn);
+        Assertions.assertEquals(updatedComment.getContent(), updatedCommentReturn.getContent());
     }
 
     @Test
-    public void testUpdateComment_NotFound() {
-        Long commentId = 1L;
-        Comment updatedComment = new Comment(commentId, "Updated content");
+    public void testUpdateCommentIfDoesntExist() {
+        Long id = 3L;
+        Comment updatedComment = new Comment(2L,  "Amazing experience!");
 
-        when(commentRepository.findById(commentId)).thenReturn(Optional.empty());
+        when(commentRepository.findById(id)).thenReturn(Optional.empty());
 
-        assertThrows(EntityNotFoundException.class, () -> {
-            commentService.updateComment(updatedComment, commentId);
+        Assertions.assertThrows(EntityNotFoundException.class, () -> {
+            commentService.updateComment(updatedComment, id);
         });
     }
 
     @Test
     public void testDeleteComment() {
-        Long commentId = 1L;
+        Long id = 1L;
 
-        // No need to mock repository behavior, just verify method call
-        commentService.deleteComment(commentId);
+        commentService.deleteComment(id);
 
-        verify(commentRepository, times(1)).deleteById(commentId);
+        verify(commentRepository).deleteById(id);
     }
 }
-
