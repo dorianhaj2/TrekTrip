@@ -30,4 +30,11 @@ public class Comment {
     private String content;
 
     private LocalDateTime time_of_posting;
+
+    public Comment(Long id, UserInfo user, Trip trip, String content) {
+        this.id = id;
+        this.user = user;
+        this.trip = trip;
+        this.content = content;
+    }
 }
