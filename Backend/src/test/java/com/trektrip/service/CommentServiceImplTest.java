@@ -29,7 +29,7 @@ class CommentServiceImplTest {
 
     @Test
     public void testCreateComment() {
-        Comment comment = new Comment(1L, null, null, "Great trip!");
+        Comment comment = new Comment(1L,  "Great trip!");
 
         when(commentRepository.save(Mockito.any(Comment.class))).thenReturn(comment);
 
@@ -40,8 +40,8 @@ class CommentServiceImplTest {
 
     @Test
     public void testGetAllComments() {
-        Comment comment1 = new Comment(1L, null, null, "Great trip!");
-        Comment comment2 = new Comment(2L, null, null, "Amazing experience!");
+        Comment comment1 = new Comment(1L,  "Great trip!");
+        Comment comment2 = new Comment(2L,  "Amazing experience!");
 
         List<Comment> allComments = List.of(comment1, comment2);
 
@@ -56,7 +56,7 @@ class CommentServiceImplTest {
     @Test
     public void testCommentByIdExists() {
         Long id = 1L;
-        Comment comment = new Comment(id, null, null, "Great trip!");
+        Comment comment = new Comment(id,  "Great trip!");
         when(commentRepository.findById(id)).thenReturn(Optional.of(comment));
 
         Optional<Comment> commentReturn = commentService.getCommentById(id);
@@ -77,8 +77,8 @@ class CommentServiceImplTest {
     @Test
     public void testUpdateComment() {
         Long id = 1L;
-        Comment existingComment = new Comment(id, null, null, "Great trip!");
-        Comment updatedComment = new Comment(id, null, null, "Amazing experience!");
+        Comment existingComment = new Comment(id,  "Great trip!");
+        Comment updatedComment = new Comment(id,  "Amazing experience!");
 
         when(commentRepository.findById(id)).thenReturn(Optional.of(existingComment));
         when(commentRepository.save(updatedComment)).thenReturn(updatedComment);
@@ -92,7 +92,7 @@ class CommentServiceImplTest {
     @Test
     public void testUpdateCommentIfDoesntExist() {
         Long id = 3L;
-        Comment updatedComment = new Comment(2L, null, null, "Amazing experience!");
+        Comment updatedComment = new Comment(2L,  "Amazing experience!");
 
         when(commentRepository.findById(id)).thenReturn(Optional.empty());
 
