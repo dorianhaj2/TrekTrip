@@ -20,7 +20,7 @@ const Home = () => {
       const fetchTrips = async () => {
           try {
               const response = await axiosInstance.get(`/trip/all`);
-              setTrips(response.data);
+              setTrips(response.data); 
               setLoading(false);
               console.log("Fetch trips")
           } catch (error) {
@@ -49,7 +49,7 @@ const Home = () => {
     const sortedTrips = tripsWithAverageRating.sort((a, b) => b.averageRating - a.averageRating);
     
     const topThreeTrips = sortedTrips.slice(0, 3);
-    console.log("Calculate trips")
+
     setTopTrips(topThreeTrips);
   }, [trips]);
 
@@ -61,32 +61,11 @@ const Home = () => {
       return <div>Error: {error}</div>;
   }
 
-import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
-import { Link } from 'react-router-dom';
-import HighlightedTripCard from '../../Components/HighlightedTripCard/HighlightedTripCard';
-import tripsData from '../Trips/tripsData';
-import './Home.css';
-
-const geoUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-continents.json";
-
-const Home = () => {
-  const [trips, setTrips] = useState([]);
-
-  useEffect(() => {
-    // Fetch trips from the API or static file
-    fetch('/api/trips')
-      .then(response => response.json())
-      .then(data => {
-        // Sort trips by rating and get the top 3
-        const topTrips = data.sort((a, b) => b.rating - a.rating).slice(0, 3);
-        setTrips(topTrips);
-      });
-  }, []);
-
   const handleContinentClick = (continent) => {
     // Handle continent click, you can navigate to a different view or filter trips
     console.log(`Continent clicked: ${continent}`);
   };
+  
   return (
     <div className="homepage">
       <Helmet>

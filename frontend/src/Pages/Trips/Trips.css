@@ -11,7 +11,9 @@
   flex-direction: column; 
   align-items: flex-start; 
   gap: 10px; 
+  width: 200px; 
 }
+
 .filters button {
   width: 100%;
 }
@@ -20,6 +22,35 @@
   display: flex;
   flex-direction: column; 
   justify-content: center;
-  gap: 20px; 
+  gap: 18px; 
   width: 100%; 
+}
+
+.destinations a {
+  text-decoration: none;
+}
+
+.dropdown {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    position: static; 
+    width: 100%; 
+    flex-direction: row; 
+    justify-content: space-between; 
+  }
+}
+
+@media (max-width: 480px) {
+  .filters {
+    flex-direction: column;
+    width: 70%;
+    margin: 0 auto;
+  }
+  
+  .filters button, .sort-dropdown {
+    width: 100%; 
+  }
 }

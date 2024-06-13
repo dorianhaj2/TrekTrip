@@ -21,5 +21,4 @@ public class UserRole {
     public UserRole(Long id) {
         this.id = id;
     }
-
 }

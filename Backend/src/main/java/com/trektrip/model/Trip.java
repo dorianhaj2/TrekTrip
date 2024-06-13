@@ -1,9 +1,15 @@
 package com.trektrip.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Type;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.util.List;
 
@@ -29,15 +35,25 @@ public class Trip {
     @OneToMany(targetEntity = Image.class)
     private List<Image> images;
 
-    private String highlight;
-
     private int lengthInDays;
+
+    private int price;
+
+    private String tripMonth;
 
     @ManyToMany
     @JoinTable(name = "trips_locations",
             joinColumns = @JoinColumn(name = "trip_id"),
             inverseJoinColumns = @JoinColumn(name = "location_id"))
     private List<Location> locations;
+
+    @OneToMany(mappedBy = "trip", fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SELECT)
+    @JsonManagedReference
+    private List<Rating> ratings;
+
+    @OneToMany(mappedBy = "trip", fetch = FetchType.EAGER)
+    private List<Comment> comments;
 
     private boolean isPublic;
 

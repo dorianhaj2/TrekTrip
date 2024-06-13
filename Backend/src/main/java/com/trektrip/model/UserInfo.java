@@ -1,6 +1,6 @@
 package com.trektrip.model;
 
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,6 +29,7 @@ public class UserInfo {
     @JoinColumn(name = "image_id", referencedColumnName = "id")
     private Image image;
 
+    @Column(length = 1000)
     private String description;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -45,4 +46,8 @@ public class UserInfo {
         this.email = email;
         this.password = password;
     }
+    
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @JsonBackReference
+    private List<Trip> trips;
 }

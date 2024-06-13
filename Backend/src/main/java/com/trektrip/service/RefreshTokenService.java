@@ -13,7 +13,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
+import java.time.Duration;
 @Service
 @AllArgsConstructor
 public class RefreshTokenService {
@@ -22,13 +22,16 @@ public class RefreshTokenService {
 
     private UserRepository userRepository;
 
+    private static final Duration TOKEN_EXPIRY_DURATION = Duration.ofDays(30);
+
     public RefreshToken createRefreshToken(String username){
         Optional<UserInfo> userOptional = userRepository.findByUsername(username);
         if (userOptional.isPresent()) {
+            Instant expiryDate = Instant.now().plus(TOKEN_EXPIRY_DURATION);
             RefreshToken refreshToken = RefreshToken.builder()
                     .userInfo(userOptional.get())
                     .token(UUID.randomUUID().toString())
-                    .expiryDate(Instant.now().plusMillis(10000))
+                    .expiryDate(expiryDate)
                     .build();
             return refreshTokenRepository.save(refreshToken);
         } else {

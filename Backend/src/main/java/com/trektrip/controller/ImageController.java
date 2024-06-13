@@ -6,7 +6,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,8 +35,13 @@ public class ImageController {
     }
 
     @PostMapping
-    public ResponseEntity<Image> createImage(@RequestBody Image image) {
-        return new ResponseEntity<>(imageService.createImage(image), HttpStatus.CREATED);
+    public ResponseEntity<Image> createImage(@RequestParam("file") MultipartFile file) {
+        try {
+            Image savedImage = imageService.handleImageUpload(file);
+            return new ResponseEntity<>(savedImage, HttpStatus.CREATED);
+        } catch (IOException e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PutMapping("/{id}")
