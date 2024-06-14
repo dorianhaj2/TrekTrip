@@ -3,25 +3,24 @@ package com.trektrip.service;
 import com.trektrip.model.Country;
 import com.trektrip.model.Trip;
 import com.trektrip.repository.CountryRepository;
-import com.trektrip.service.CountryService;
-import com.trektrip.service.CountryServiceImpl;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-public class CountryServiceImplTest {
+@ExtendWith(MockitoExtension.class)
+class CountryServiceImplTest {
 
     @Mock
     private CountryRepository countryRepository;
@@ -126,4 +125,3 @@ public class CountryServiceImplTest {
         verify(countryRepository, times(1)).deleteById(countryId);
     }
 }
-

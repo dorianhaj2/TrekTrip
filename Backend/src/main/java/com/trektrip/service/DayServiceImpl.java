@@ -45,10 +45,7 @@ public class DayServiceImpl implements DayService {
 
     @Override
     public void deleteDay(Long id) {
-        if (dayRepository.existsById(id)) {
-            dayRepository.deleteById(id);
-        } else {
-            throw new EntityNotFoundException("Day with the ID '" + id + "' not found");
-        }
+        dayRepository.deleteById(id);
     }
+
 }

@@ -40,4 +40,3 @@ public class Rating {
         return Double.compare(getRating(), rating2.getRating());
     }
 }
-
