@@ -20,4 +20,9 @@ public class Country {
     private String continent;
 
     private String code;
+
+    public Country(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

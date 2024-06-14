@@ -25,7 +25,8 @@ public class Day {
     @JoinColumn(name = "trip_id", referencedColumnName = "id")
     private Trip trip;
 
-     public Day(Long id, String title, String text) {
+
+    public Day(Long id, String title, String text) {
         this.id = id;
         this.title = title;
         this.text = text;

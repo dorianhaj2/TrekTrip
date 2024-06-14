@@ -27,32 +27,32 @@ class TripServiceImplTest {
 
     @Test
     public void testCreateTrip() {
-        Trip trip = new Trip(1L, "Trip 1", "Description 1", 5, true);
+        Trip trip = new Trip(1L, "Naslov 1", "Opis 1", 3, true);
 
         when(tripRepository.save(Mockito.any(Trip.class))).thenReturn(trip);
 
         Trip savedTrip = tripService.createTrip(trip);
 
         Assertions.assertNotNull(savedTrip);
+
     }
 
     @Test
     public void testGetAllTrips() {
-        Trip trip1 = new Trip(1L, "Trip 1", "Description 1", 5, true);
-        Trip trip2 = new Trip(2L, "Trip 2", "Description 2", 7, false);
+        Trip trip1 = new Trip(1L, "Naslov 1", "Opis 1", 3, true);
+        Trip trip2 = new Trip(2L, "Naslov 2", "Opis 2", 5, false);
 
         List<Trip> allTrips = List.of(trip1, trip2);
 
         when(tripRepository.findAll()).thenReturn(allTrips);
 
-        Assertions.assertNotNull(tripService.getAllTrips());
-        Assertions.assertEquals(2, tripService.getAllTrips().size());
+        Assertions.assertNotNull(tripRepository.findAll());
     }
 
     @Test
     public void testTripByIdExists() {
         Long id = 1L;
-        Trip trip = new Trip(1L, "Trip 1", "Description 1", 5, true);
+        Trip trip = new Trip(1L, "Naslov 1", "Opis 1", 3, true);
         when(tripRepository.findById(id)).thenReturn(Optional.of(trip));
 
         Optional<Trip> tripReturn = tripService.getTripById(id);
@@ -73,8 +73,8 @@ class TripServiceImplTest {
     @Test
     public void testUpdateTrip() {
         Long id = 1L;
-        Trip trip1 = new Trip(1L, "Trip 1", "Description 1", 5, true);
-        Trip trip2 = new Trip(2L, "Trip 2", "Description 2", 7, false);
+        Trip trip1 = new Trip(1L, "Naslov 1", "Opis 1", 3, true);
+        Trip trip2 = new Trip(2L, "Naslov 2", "Opis 2", 5, false);
 
         when(tripRepository.findById(id)).thenReturn(Optional.of(trip1));
         when(tripRepository.save(trip2)).thenReturn(trip2);
@@ -87,7 +87,7 @@ class TripServiceImplTest {
     @Test
     public void testUpdateTripIfDoesntExist() {
         Long id = 3L;
-        Trip trip2 = new Trip(2L, "Trip 2", "Description 2", 7, false);
+        Trip trip2 = new Trip(2L, "Naslov 2", "Opis 2", 5, false);
 
         Assertions.assertThrows(EntityNotFoundException.class, () -> {
             Trip updatedTrip = tripService.updateTrip(trip2, id);

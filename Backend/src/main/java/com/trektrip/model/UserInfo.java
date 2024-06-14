@@ -40,6 +40,13 @@ public class UserInfo {
     )
     private List<UserRole> roles;
 
+    public UserInfo(Long id, String username, String email, String password) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+    
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     @JsonBackReference
     private List<Trip> trips;

@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Objects;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,11 +24,19 @@ public class Rating {
     @JsonBackReference
     private Trip trip;
 
-    @Column(name = "rating", columnDefinition = "DOUBLE")
-    private double rating;
-
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private UserInfo user;
-}
 
+    @Column(name = "rating", columnDefinition = "DOUBLE")
+    private double rating;
+
+    public Rating(Long id, double rating) {
+        this.id = id;
+        this.rating = rating;
+    }
+
+    public int compareTo(Rating rating2) {
+        return Double.compare(getRating(), rating2.getRating());
+    }
+}

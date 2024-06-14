@@ -2,18 +2,19 @@ package com.trektrip.model;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Getter
+@Setter
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "destination")
     private String destination;
@@ -21,8 +22,12 @@ public class Location {
     @ManyToOne
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private Country country;
-
     @OneToOne
     @JoinColumn(name = "pin_ID", referencedColumnName = "id")
     private Pin pin;
+
+    public Location(Long id, String destination) {
+        this.id = id;
+        this.destination = destination;
+    }
 }

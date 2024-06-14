@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
 
             return userRepository.save(existingUser);
         } else {
-            throw new EntityNotFoundException("User with ID = '" + id + "' not found!");
+            throw new EntityNotFoundException("UserInfo with ID = '" + id + "' not found!");
         }
     }
 

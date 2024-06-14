@@ -1,10 +1,10 @@
 package com.trektrip.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.trektrip.model.UserRole;
+import com.trektrip.model.Rating;
 import com.trektrip.service.JwtService;
+import com.trektrip.service.RatingService;
 import com.trektrip.service.UserDetailsServiceImpl;
-import com.trektrip.service.UserRoleService;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -30,84 +29,82 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
-@WebMvcTest(controllers = UserRoleController.class)
+@WebMvcTest(controllers = RatingController.class)
 @AutoConfigureMockMvc(addFilters = false)
 @ExtendWith(MockitoExtension.class)
-class UserRoleRoleControllerTest {
-
+class RatingControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private UserRoleService userRoleService;
-
-    @MockBean
-    private PasswordEncoder passwordEncoder;
+    private RatingService ratingService;
 
     @MockBean
     private JwtService jwtService;
     @MockBean
-    private UserDetailsServiceImpl userRoleDetailsService;
-
+    private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
     private ObjectMapper objectMapper;
 
-    private UserRole role1;
-    private UserRole role2;
+    private Rating rating1;
+    private Rating rating2;
 
     @BeforeEach
     public void init() {
-        role1 = new UserRole(1L, "USER");
-        role2 = new UserRole(2L, "ADMIN");
+        rating1 = new Rating(1L, 3);
+        rating2 = new Rating(2L,  5);
     }
 
     @Test
-    public void testCreateUserRole() throws Exception{
-        given(userRoleService.createUserRole(ArgumentMatchers.any())).willAnswer((invocationOnMock -> invocationOnMock.getArgument(0)));
+    @WithMockUser
+    public void testCreateRating() throws Exception{
+        given(ratingService.createRating(ArgumentMatchers.any())).willAnswer((invocationOnMock -> invocationOnMock.getArgument(0)));
 
-        ResultActions response = mockMvc.perform(post("/userRole")
+        ResultActions response = mockMvc.perform(post("/rating")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(role1)));
+                .content(objectMapper.writeValueAsString(rating1)));
 
         response.andExpect(MockMvcResultMatchers.status().isCreated())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.name", CoreMatchers.is(role1.getName())));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.rating", CoreMatchers.is(rating1.getRating())));
+
     }
 
     @Test
-    public void testGetAllUserRoles() throws Exception {
-        List<UserRole> allUserRoles = List.of(role1, role2);
-        when(userRoleService.getAllUserRoles()).thenReturn(allUserRoles);
+    @WithMockUser
+    public void testGetAllRatings() throws Exception {
+        List<Rating> allRatings = List.of(rating1, rating2);
+        when(ratingService.getAllRatings()).thenReturn(allRatings);
 
-        ResultActions response = mockMvc.perform(get("/userRole/all")
+        ResultActions response = mockMvc.perform(get("/rating/all")
                 .contentType(MediaType.APPLICATION_JSON));
 
         response.andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.size()", CoreMatchers.is(allUserRoles.size())));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.size()", CoreMatchers.is(allRatings.size())));
 
     }
 
     @Test
     @WithMockUser
-    public void testGetUserRoleByIdIfExists() throws Exception {
+    public void testGetRatingByIdIfExists() throws Exception {
         Long id = 1L;
-        when(userRoleService.getUserRoleById(id)).thenReturn(Optional.of(role1));
+        when(ratingService.getRatingById(id)).thenReturn(Optional.of(rating1));
 
-        ResultActions response = mockMvc.perform(get("/userRole/1")
+        ResultActions response = mockMvc.perform(get("/rating/1")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(role1)));
+                .content(objectMapper.writeValueAsString(rating1)));
 
         response.andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.name", CoreMatchers.is(role1.getName())));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.rating", CoreMatchers.is(rating1.getRating())));
     }
 
     @Test
     @WithMockUser
-    public void testGetUserRoleByIdDoesntExist() throws Exception {
+    public void testGetRatingByIdDoesntExist() throws Exception {
         Long id = 3L;
-        when(userRoleService.getUserRoleById(id)).thenReturn(Optional.empty());
+        when(ratingService.getRatingById(id)).thenReturn(Optional.empty());
 
-        ResultActions response = mockMvc.perform(get("/userRole/3")
+        ResultActions response = mockMvc.perform(get("/rating/3")
                 .contentType(MediaType.APPLICATION_JSON));
 
         response.andExpect(MockMvcResultMatchers.status().isNoContent());
@@ -115,27 +112,28 @@ class UserRoleRoleControllerTest {
 
     @Test
     @WithMockUser
-    public void testUpdateUserRole() throws Exception {
+    public void testUpdateRating() throws Exception {
         Long id = 1L;
-        when(userRoleService.updateUserRole(role2, id)).thenReturn(role2);
+        when(ratingService.updateRating(rating2, id)).thenReturn(rating2);
 
-        ResultActions response = mockMvc.perform(put("/userRole/1")
+        ResultActions response = mockMvc.perform(put("/rating/1")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(role2)));
+                .content(objectMapper.writeValueAsString(rating2)));
 
         response.andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.name", CoreMatchers.is(role2.getName())));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.rating", CoreMatchers.is(rating2.getRating())));
     }
 
     @Test
     @WithMockUser
-    public void testDeleteUserRole() throws Exception {
+    public void testDeleteRating() throws Exception {
         Long id = 1L;
-        doNothing().when(userRoleService).deleteUserRole(id);
+        doNothing().when(ratingService).deleteRating(id);
 
-        ResultActions response = mockMvc.perform(delete("/userRole/1")
+        ResultActions response = mockMvc.perform(delete("/rating/1")
                 .contentType(MediaType.APPLICATION_JSON));
 
         response.andExpect(MockMvcResultMatchers.status().isNoContent());
     }
+
 }

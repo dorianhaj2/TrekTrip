@@ -11,7 +11,12 @@
     font-size: 2.5em;
     margin: 0;
   }
-  
+  .bejbe{
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+  }
   .homepage-header p {
     margin: 0.5em 0 1em;
     font-size: 1.2em;

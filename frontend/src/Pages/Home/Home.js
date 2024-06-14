@@ -65,7 +65,7 @@ const Home = () => {
     // Handle continent click, you can navigate to a different view or filter trips
     console.log(`Continent clicked: ${continent}`);
   };
-
+  
   return (
     <div className="homepage">
       <Helmet>
@@ -74,7 +74,7 @@ const Home = () => {
       <header className="homepage-header">
         <h1>{t('home.title')}</h1>
         <p>{t('home.subtitle')}</p>
-  {/* <ComposableMap
+          {/*<ComposableMap
           width={800}
           height={300}
         >

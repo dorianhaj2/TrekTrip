@@ -1,7 +1,14 @@
 package com.trektrip.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.trektrip.dto.TripRequestDTO;
+import com.trektrip.model.Image;
+import com.trektrip.model.Location;
 import com.trektrip.model.Trip;
+import com.trektrip.repository.ImageRepository;
+import com.trektrip.repository.LocationRepository;
+import com.trektrip.repository.TripRepository;
+import com.trektrip.service.ImageService;
 import com.trektrip.service.TripService;
 import com.trektrip.service.JwtService;
 import com.trektrip.service.UserDetailsServiceImpl;
@@ -21,6 +28,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,6 +52,12 @@ class TripControllerTest {
     private JwtService jwtService;
     @MockBean
     private UserDetailsServiceImpl userDetailsService;
+    @MockBean
+    private ImageService imageService;
+    @MockBean
+    private ImageRepository imageRepository;
+    @MockBean
+    private LocationRepository locationRepository;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -52,21 +67,31 @@ class TripControllerTest {
 
     @BeforeEach
     public void init() {
-        trip1 = new Trip(1L, "Trip 1", "Description 1", 5, true);
-        trip2 = new Trip(2L, "Trip 2", "Description 2", 7, false);
+        trip1 = new Trip(1L, "Naslov 1", "Opis 1", 3, true);
+        trip2 = new Trip(2L, "Naslov 2", "Opis 2", 5, false);
     }
 
     @Test
     @WithMockUser
     public void testCreateTrip() throws Exception{
+        TripRequestDTO tripRequestDTO = new TripRequestDTO(trip1, Arrays.asList(1L), Arrays.asList(1L));
+        Image image1 = new Image(1L, "url1");
+        Location location1 = new Location(1L, "dest 1");
+
         given(tripService.createTrip(ArgumentMatchers.any())).willAnswer((invocationOnMock -> invocationOnMock.getArgument(0)));
+        when(imageRepository.findById(1L)).thenReturn(Optional.of(image1));
+        when(locationRepository.findById(1L)).thenReturn(Optional.of(location1));
 
         ResultActions response = mockMvc.perform(post("/trip")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(trip1)));
+                .content(objectMapper.writeValueAsString(tripRequestDTO)));
 
         response.andExpect(MockMvcResultMatchers.status().isCreated())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.title", CoreMatchers.is(trip1.getTitle())));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.title", CoreMatchers.is(trip1.getTitle())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description", CoreMatchers.is(trip1.getDescription())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.lengthInDays", CoreMatchers.is(trip1.getLengthInDays())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.public", CoreMatchers.is(trip1.isPublic())));
+
     }
 
     @Test
@@ -80,6 +105,7 @@ class TripControllerTest {
 
         response.andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.size()", CoreMatchers.is(allTrips.size())));
+
     }
 
     @Test
@@ -93,7 +119,10 @@ class TripControllerTest {
                 .content(objectMapper.writeValueAsString(trip1)));
 
         response.andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.title", CoreMatchers.is(trip1.getTitle())));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.title", CoreMatchers.is(trip1.getTitle())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description", CoreMatchers.is(trip1.getDescription())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.lengthInDays", CoreMatchers.is(trip1.getLengthInDays())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.public", CoreMatchers.is(trip1.isPublic())));
     }
 
     @Test
@@ -119,7 +148,10 @@ class TripControllerTest {
                 .content(objectMapper.writeValueAsString(trip2)));
 
         response.andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.title", CoreMatchers.is(trip2.getTitle())));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.title", CoreMatchers.is(trip2.getTitle())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.description", CoreMatchers.is(trip2.getDescription())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.lengthInDays", CoreMatchers.is(trip2.getLengthInDays())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.public", CoreMatchers.is(trip2.isPublic())));
     }
 
     @Test
