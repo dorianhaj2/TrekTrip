@@ -1,6 +1,6 @@
 package com.trektrip.controller;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.trektrip.controller.CountryController;
 import com.trektrip.model.Country;
 import com.trektrip.service.CountryService;
 import com.trektrip.service.JwtService;
@@ -9,33 +9,32 @@ import jakarta.persistence.EntityNotFoundException;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.ResultActions;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(CountryController.class)
 @AutoConfigureMockMvc(addFilters = false)
-@ExtendWith(MockitoExtension.class)
-@ContextConfiguration(classes = {CountryController.class, CountryService.class})
-public class CountryControllerTest {
+class CountryControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @MockBean
     private CountryService countryService;
@@ -44,77 +43,117 @@ public class CountryControllerTest {
     @MockBean
     private UserDetailsServiceImpl userDetailsService;
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
     private Country country1;
     private Country country2;
 
     @BeforeEach
-    public void setUp() {
-        country1 = new Country(1L, "Country1", "Continent1", "Code1");
-        country2 = new Country(2L, "Country2", "Continent2", "Code2");
+    void setUp() {
+        country1 = new Country(1L, "Country1", "Continent1", "C1");
+        country2 = new Country(2L, "Country2", "Continent2", "C2");
     }
 
     @Test
-    public void testGetAllCountries() throws Exception {
-        List<Country> countries = new ArrayList<>();
-        countries.add(country1);
-        countries.add(country2);
-
-        when(countryService.getAllCountries()).thenReturn(countries);
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/country/all"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(countries.size()));
-    }
-
-    @Test
-    public void testGetCountryById() throws Exception {
-        Long countryId = 1L;
-
-        when(countryService.getCountryById(countryId)).thenReturn(Optional.of(country1));
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/country/{id}", countryId))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(countryId));
-    }
-
-    @Test
-    public void testCreateCountry() throws Exception {
+    void testCreateCountry() throws Exception {
         when(countryService.createCountry(any(Country.class))).thenReturn(country1);
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/country")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(country1)))
-                .andExpect(MockMvcResultMatchers.status().isCreated())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(country1.getName()));
+        ResultActions response = mockMvc.perform(post("/country")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(country1)));
+
+        response.andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id").exists()) // Ensure id is returned
+                .andExpect(jsonPath("$.name", CoreMatchers.is(country1.getName())))
+                .andExpect(jsonPath("$.continent", CoreMatchers.is(country1.getContinent())))
+                .andExpect(jsonPath("$.code", CoreMatchers.is(country1.getCode())));
     }
 
     @Test
-    public void testUpdateCountry() throws Exception {
-        Long countryId = 1L;
-        Country updatedCountry = new Country(countryId, "UpdatedCountry", "UpdatedContinent", "UpdatedCode");
+    void testGetAllCountries() throws Exception {
+        List<Country> allCountries = List.of(country1, country2);
+        when(countryService.getAllCountries()).thenReturn(allCountries);
 
-        when(countryService.updateCountry(any(Country.class), any(Long.class))).thenReturn(updatedCountry);
+        ResultActions response = mockMvc.perform(get("/country/all")
+                .contentType(MediaType.APPLICATION_JSON));
 
-        mockMvc.perform(MockMvcRequestBuilders.put("/country/{id}", countryId)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(updatedCountry)))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(countryId));
+        response.andExpect(status().isOk())
+                .andExpect(jsonPath("$.size()", CoreMatchers.is(allCountries.size()))) // Check size of array
+                .andExpect(jsonPath("$.[0].id").value(country1.getId().intValue())) // Check first element
+                .andExpect(jsonPath("$.[0].name", CoreMatchers.is(country1.getName())))
+                .andExpect(jsonPath("$.[0].continent", CoreMatchers.is(country1.getContinent())))
+                .andExpect(jsonPath("$.[0].code", CoreMatchers.is(country1.getCode())))
+                .andExpect(jsonPath("$.[1].id").value(country2.getId().intValue())) // Check second element
+                .andExpect(jsonPath("$.[1].name", CoreMatchers.is(country2.getName())))
+                .andExpect(jsonPath("$.[1].continent", CoreMatchers.is(country2.getContinent())))
+                .andExpect(jsonPath("$.[1].code", CoreMatchers.is(country2.getCode())));
     }
 
     @Test
-    public void testDeleteCountry() throws Exception {
-        Long countryId = 1L;
+    @WithMockUser
+    void testGetCountryByIdExists() throws Exception {
+        Long id = 1L;
+        when(countryService.getCountryById(id)).thenReturn(Optional.of(country1));
 
-        mockMvc.perform(MockMvcRequestBuilders.delete("/country/{id}", countryId))
-                .andExpect(MockMvcResultMatchers.status().isNoContent());
+        ResultActions response = mockMvc.perform(get("/country/{id}", id)
+                .contentType(MediaType.APPLICATION_JSON));
+
+        response.andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(country1.getId().intValue()))
+                .andExpect(jsonPath("$.name", CoreMatchers.is(country1.getName())))
+                .andExpect(jsonPath("$.continent", CoreMatchers.is(country1.getContinent())))
+                .andExpect(jsonPath("$.code", CoreMatchers.is(country1.getCode())));
+    }
+
+    @Test
+    @WithMockUser
+    void testGetCountryByIdDoesntExist() throws Exception {
+        Long id = 3L;
+        when(countryService.getCountryById(id)).thenReturn(Optional.empty());
+
+        ResultActions response = mockMvc.perform(get("/country/{id}", id)
+                .contentType(MediaType.APPLICATION_JSON));
+
+        response.andExpect(status().isNoContent());
+    }
+
+    @Test
+    @WithMockUser
+    void testUpdateCountry() throws Exception {
+        Long id = 1L;
+        when(countryService.updateCountry(any(Country.class), eq(id))).thenReturn(country2);
+
+        ResultActions response = mockMvc.perform(put("/country/{id}", id)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(country2)));
+
+        response.andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(country2.getId().intValue()))
+                .andExpect(jsonPath("$.name", CoreMatchers.is(country2.getName())))
+                .andExpect(jsonPath("$.continent", CoreMatchers.is(country2.getContinent())))
+                .andExpect(jsonPath("$.code", CoreMatchers.is(country2.getCode())));
+    }
+
+    @Test
+    @WithMockUser
+    void testUpdateCountry_NotFound() throws Exception {
+        Long id = 3L;
+        when(countryService.updateCountry(any(Country.class), eq(id))).thenThrow(EntityNotFoundException.class);
+
+        ResultActions response = mockMvc.perform(put("/country/{id}", id)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(country2)));
+
+        response.andExpect(status().isNotFound());
+    }
+
+    @Test
+    @WithMockUser
+    void testDeleteCountry() throws Exception {
+        Long id = 1L;
+        doNothing().when(countryService).deleteCountry(id);
+
+        ResultActions response = mockMvc.perform(delete("/country/{id}", id)
+                .contentType(MediaType.APPLICATION_JSON));
+
+        response.andExpect(status().isNoContent());
     }
 }

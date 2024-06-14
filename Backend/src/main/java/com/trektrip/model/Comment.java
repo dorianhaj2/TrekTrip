@@ -31,7 +31,6 @@ public class Comment {
 
     private LocalDateTime time_of_posting;
 
-
     public Comment(Long id,  String content) {
         this.id = id;
         this.content = content;
