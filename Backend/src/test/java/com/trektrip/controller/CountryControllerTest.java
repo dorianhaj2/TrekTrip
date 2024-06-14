@@ -3,6 +3,10 @@ package com.trektrip.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trektrip.model.Country;
 import com.trektrip.service.CountryService;
+import com.trektrip.service.JwtService;
+import com.trektrip.service.UserDetailsServiceImpl;
+import jakarta.persistence.EntityNotFoundException;
+import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,6 +39,10 @@ public class CountryControllerTest {
 
     @MockBean
     private CountryService countryService;
+    @MockBean
+    private JwtService jwtService;
+    @MockBean
+    private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
     private ObjectMapper objectMapper;
