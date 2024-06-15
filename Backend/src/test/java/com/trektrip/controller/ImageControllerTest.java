@@ -68,7 +68,7 @@ class ImageControllerTest {
 
         when(imageService.handleImageUpload(mockMultipartFile)).thenReturn(image1);
 
-        ResultActions response = mockMvc.perform(multipart("/image") 
+        ResultActions response = mockMvc.perform(multipart("/image")
                         .file(mockMultipartFile)
                 );
 
