@@ -1,6 +1,10 @@
 package com.trektrip.service;
 
+import com.trektrip.model.Image;
+import com.trektrip.model.Trip;
 import com.trektrip.model.UserInfo;
+import com.trektrip.model.UserRole;
+import com.trektrip.repository.ImageRepository;
 import com.trektrip.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Assertions;
@@ -11,6 +15,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +28,8 @@ class UserServiceImplTest {
 
     @Mock
     private UserRepository userRepository;
+    @Mock
+    private ImageRepository imageRepository;
 
     @InjectMocks
     private UserServiceImpl userService;
@@ -47,7 +55,7 @@ class UserServiceImplTest {
 
         when(userRepository.findAll()).thenReturn(allUsers);
 
-        Assertions.assertNotNull(userRepository.findAll());
+        Assertions.assertNotNull(userService.getAllUsers());
     }
 
     @Test
@@ -74,11 +82,15 @@ class UserServiceImplTest {
     @Test
     public void testUpdateUser() {
         Long id = 1L;
+        Image image = new Image(1L, "url1");
+        Trip trip = new Trip(1L, "Naslov 1", "Opis 1", 3, true);
         UserInfo user1 = new UserInfo(1L, "user1", "user1@mail.com", "pass1");
-        UserInfo user2 = new UserInfo(2L, "user2", "user2@mail.com", "pass2");
+        UserInfo user2 = new UserInfo(2L, "user2", "user2@mail.com", "pass2", image,
+                "desc 1", List.of(new UserRole(1L, "USER")), List.of(trip));
 
         when(userRepository.findById(id)).thenReturn(Optional.of(user1));
         when(userRepository.save(Mockito.any(UserInfo.class))).thenReturn(user2);
+        when(imageRepository.findById(1L)).thenReturn(Optional.of(image));
 
         UserInfo updateReturn = userService.updateUser(user2, id);
 

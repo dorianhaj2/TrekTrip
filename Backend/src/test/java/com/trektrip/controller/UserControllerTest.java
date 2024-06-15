@@ -7,6 +7,7 @@ import com.trektrip.service.ImageService;
 import com.trektrip.service.JwtService;
 import com.trektrip.service.UserDetailsServiceImpl;
 import com.trektrip.service.UserService;
+import jakarta.persistence.EntityNotFoundException;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -134,6 +135,20 @@ class UserControllerTest {
         response.andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.username", CoreMatchers.is(user2.getUsername())))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.email", CoreMatchers.is(user2.getEmail())));
+    }
+
+    @Test
+    @WithMockUser
+    public void testUpdateUserNotFound() throws Exception {
+        Long id = 3L;
+
+        when(userService.updateUser(user2, id)).thenThrow(EntityNotFoundException.class);
+
+        ResultActions response = mockMvc.perform(put("/user/3")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(user2)));
+
+        response.andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
     @Test
