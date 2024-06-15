@@ -5,6 +5,7 @@ import com.trektrip.model.Image;
 import com.trektrip.service.ImageService;
 import com.trektrip.service.JwtService;
 import com.trektrip.service.UserDetailsServiceImpl;
+import jakarta.persistence.EntityNotFoundException;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -68,7 +69,7 @@ class ImageControllerTest {
 
         when(imageService.handleImageUpload(mockMultipartFile)).thenReturn(image1);
 
-        ResultActions response = mockMvc.perform(multipart("/image") 
+        ResultActions response = mockMvc.perform(multipart("/image")
                         .file(mockMultipartFile)
                 );
 
@@ -129,6 +130,20 @@ class ImageControllerTest {
 
         response.andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.url", CoreMatchers.is(image2.getUrl())));
+    }
+
+    @Test
+    @WithMockUser
+    public void testUpdateImageFailed() throws Exception {
+        Long id = 3L;
+
+        when(imageService.updateImage(image2, id)).thenThrow(EntityNotFoundException.class);
+
+        ResultActions response = mockMvc.perform(put("/image/3")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(image2)));
+
+        response.andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
     @Test
