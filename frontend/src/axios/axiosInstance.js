@@ -3,6 +3,7 @@ import axios from 'axios';
 let retryCounter = 0; // Initialize the retry counter
 
 const refreshAccessToken = async () => {
+
   try {
     const res = await axios.post('http://localhost:8080/auth/refreshToken', {
       token: localStorage.getItem('authToken')
@@ -13,11 +14,11 @@ const refreshAccessToken = async () => {
     return accessToken;
   } catch (error) {
     console.error('Error refreshing access token:', error);
-    if (error.response && error.response.status === 401) {
+    /*if (error.response && error.response.status === 401) {
       // Handle refresh token expiration (401 Unauthorized)
       logout(); // Call the logout function from AuthContext
     }
-    throw error;
+    throw error;*/
   }
 };
 
