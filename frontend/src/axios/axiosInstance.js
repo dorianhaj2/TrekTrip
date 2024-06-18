@@ -13,6 +13,10 @@ const refreshAccessToken = async () => {
     return accessToken;
   } catch (error) {
     console.error('Error refreshing access token:', error);
+    if (error.response && error.response.status === 401) {
+      // Handle refresh token expiration (401 Unauthorized)
+      logout(); // Call the logout function from AuthContext
+    }
     throw error;
   }
 };

@@ -40,8 +40,10 @@ const Register = () => {
       return;
     }
 
+    const { repeatPassword, ...dataToSend } = formData; // Exclude repeatPassword
+
     try {
-      const response = await axiosInstance.post('/user/register', formData);
+      const response = await axiosInstance.post('/user/register', dataToSend);
       
       console.log('Registration successful:', response.data);
       navigate('/prijava');

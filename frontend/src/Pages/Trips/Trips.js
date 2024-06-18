@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import TripCard from '../../Components/TripCard/TripCard';
 import { Link } from 'react-router-dom';
-import tripService from '../../Services/tripService';
-import countryService from '../../Services/countryService';
+import tripService from '../../Services/tripService/tripService';
+import countryService from '../../Services/countryService/countryService';
 import { MenuItem, Select, FormControl, InputLabel, Button } from '@mui/material';
 import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
@@ -146,6 +146,7 @@ const Trips = () => {
                         value={selectedCountry}
                         onChange={handleCountryChange}
                         label="Country"
+                        placeholder={t('filters.countryPlaceholder')}
                     >
                         <MenuItem value="Sve">Sve</MenuItem>
                         {countries.map((country) => (

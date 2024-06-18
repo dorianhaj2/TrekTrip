@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import axiosInstance from '../../axios/axiosInstance';
-import tripService from '../../Services/tripService';
+import tripService from '../../Services/tripService/tripService';
 import { useTranslation } from 'react-i18next';
 import './Trip.css';
 

@@ -12,15 +12,15 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import { Navigate } from 'react-router-dom';
 import UpdateProfile from './Pages/UpdateProfile/UpdateProfile';
 import AddTrip from './Pages/AddTrip/AddTrip';
-import ScrollToTop from './hooks/scrollToTop';
+import ScrollToTop from './hooks/scrollToTop/scrollToTop';
 import './App.css';
 
-const PrivateRoute = ({ children }) => {
+export const PrivateRoute = ({ children }) => {
   const { isLoggedIn } = useAuth();
   return isLoggedIn ? children : <Navigate to="/prijava" />;
 };
 
-const PublicRoute = ({ children }) => {
+export const PublicRoute = ({ children }) => {
   const { isLoggedIn } = useAuth();
   return isLoggedIn ? <Navigate to="/profil" /> : children;
 };
