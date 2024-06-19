@@ -1,6 +1,4 @@
 node {
-  when{changeset "Backend/*"}
-  steps{
      stage('SCM') {
     checkout scm
   }
@@ -9,6 +7,5 @@ node {
     withSonarQubeEnv() {
       bat "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=TrekTrip -Dsonar.projectName='TrekTrip'"
     }
-  }
   }
 }
