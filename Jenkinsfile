@@ -1,4 +1,5 @@
 node {
+  when{changeset "Backend/*"}
   stage('SCM') {
     checkout scm
   }
