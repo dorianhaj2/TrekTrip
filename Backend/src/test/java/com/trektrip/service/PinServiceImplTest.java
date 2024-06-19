@@ -100,7 +100,7 @@ class PinServiceImplTest {
     public void testDeletePin() {
         Long id = 1L;
 
-        pinRepository.deleteById(id);
+        pinService.deletePin(id);
         verify(pinRepository).deleteById(id);
     }
 }
