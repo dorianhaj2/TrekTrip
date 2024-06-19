@@ -61,10 +61,10 @@ const Home = () => {
       return <div>Error: {error}</div>;
   }
 
-  const handleContinentClick = (continent) => {
+  /*const handleContinentClick = (continent) => {
     // Handle continent click, you can navigate to a different view or filter trips
     console.log(`Continent clicked: ${continent}`);
-  };
+  };*/
   
   return (
     <div className="homepage">

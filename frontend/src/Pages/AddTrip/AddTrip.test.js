@@ -131,11 +131,10 @@ describe('AddTrip Component', () => {
     fireEvent.change(screen.getByLabelText(/addTrip.description/i), { target: { value: 'This is a test trip' } });
     fireEvent.change(screen.getByLabelText(/addTrip.length/i), { target: { value: '5' } });
     fireEvent.change(screen.getByLabelText(/addTrip.price/i), { target: { value: '1000' } });
-    // Find the Month combobox using its label
+
     const monthLabel = screen.getByText(/addTrip.month/i);
     const monthCombobox = monthLabel.closest('.MuiFormControl-root').querySelector('[role="combobox"]');
 
-    // Open the dropdown for selecting the month
     fireEvent.mouseDown(monthCombobox);
     fireEvent.click(screen.getByRole('option', { name: 'January' }));
 
@@ -169,7 +168,6 @@ describe('AddTrip Component', () => {
     const countryLabel = screen.getByText(/addTrip.country/i);
     const countryCombobox = countryLabel.closest('.MuiFormControl-root').querySelector('[role="combobox"]');
 
-    // Open the dropdown for selecting the month
     fireEvent.mouseDown(countryCombobox);
 
     await waitFor(() => {
@@ -187,7 +185,6 @@ describe('AddTrip Component', () => {
       locationLabel = screen.getByText(/addTrip.location/i);
     });
   
-    // Assert that the locations have been fetched and set
     const locationCombobox = locationLabel.closest('.MuiFormControl-root').querySelector('[role="combobox"]');
     expect(locationLabel).toBeInTheDocument();
     fireEvent.mouseDown(locationCombobox);
@@ -211,7 +208,6 @@ describe('AddTrip Component', () => {
   
     fireEvent.change(screen.getByLabelText(/addTrip.length/i), { target: { value: '2' } });
   
-    // Get the first and second day title and text inputs
   const dayTitleInputs = screen.getAllByLabelText(/addTrip.dayTitle/i);
   const dayTextInputs = screen.getAllByLabelText(/addTrip.dayText/i);
 
@@ -259,7 +255,6 @@ describe('AddTrip Component', () => {
     
     fireEvent.click(screen.getByRole('option', { name: 'Country1' }));
     
-    // Wait for the location dropdown to appear
     await waitFor(() => {
       expect(screen.getByText(/addTrip.location/i)).toBeInTheDocument();
     });
@@ -278,13 +273,11 @@ describe('AddTrip Component', () => {
     const button = screen.getByText('addTrip.clear');
     fireEvent.click(button);
 
-   // Verify that the selections are cleared
    await waitFor(() => {
-    // Check that the country combobox value is empty
+
     const updatedCountryCombobox = countryLabel.closest('.MuiFormControl-root').querySelector('[role="combobox"]');
     expect(updatedCountryCombobox).toHaveTextContent('\u200B'); // non-breaking space (zero-width space)
 
-    // Check that the location combobox is empty
     const updatedLocationCombobox = locationLabel.closest('.MuiFormControl-root').querySelector('[role="combobox"]');
     expect(updatedLocationCombobox).toHaveTextContent('\u200B'); // non-breaking space (zero-width space)
   });
@@ -343,7 +336,6 @@ describe('AddTrip Component', () => {
   const countryLabel = screen.getByText(/addTrip.country/i);
     const countryCombobox = countryLabel.closest('.MuiFormControl-root').querySelector('[role="combobox"]');
 
-    // Open the dropdown for selecting the month
     fireEvent.mouseDown(countryCombobox);
 
     await waitFor(() => {
@@ -361,37 +353,32 @@ describe('AddTrip Component', () => {
   });
 
   it('fetches locations when a country is selected and posts selected locations', async () => {
-    // Mock the response of countryService.getAllCountries
+    // Mock responses for countryService, tripService, and axiosInstance
     countryService.getAllCountries.mockResolvedValue({ data: [{ id: 1, name: 'Country1' }] });
     tripService.createTrip.mockResolvedValue({ data: { id: 1 } });
-    axiosInstance.post.mockResolvedValue({ data: { id: 1 } });
+    axiosInstance.post.mockResolvedValue({ data: { id: 'mockLocationId' } });
 
-    // Mock the response of the fetch call for locations
+    // Mock data for locations fetched from Geonames API
     const mockLocations = [
       { geonameId: 1, name: 'Location1' },
       { geonameId: 2, name: 'Location2' },
     ];
+
+    // Mock fetch function to simulate Geonames API response
     global.fetch = jest.fn(() =>
       Promise.resolve({
         json: () => Promise.resolve({ geonames: mockLocations }),
       })
     );
-  
-    // Mock axiosInstance.post to simulate posting locations
-    const mockPostResponse = { data: { id: 'mockLocationId' } };
-    axiosInstance.post.mockImplementation(async (url, data) => {
-      // Simulate posting the location and returning a mock response
-      return Promise.resolve(mockPostResponse);
-    });
-  
-    // Render the component within a MemoryRouter
+
+    // Render AddTrip component wrapped in MemoryRouter
     render(
       <MemoryRouter>
         <AddTrip />
       </MemoryRouter>
     );
-  
-    // Select the country from the dropdown
+
+    // Wait for country options to be loaded and select Country1
     const countryLabel = screen.getByText(/addTrip.country/i);
     const countryCombobox = countryLabel.closest('.MuiFormControl-root').querySelector('[role="combobox"]');
     fireEvent.mouseDown(countryCombobox);
@@ -399,46 +386,41 @@ describe('AddTrip Component', () => {
       expect(screen.getByRole('option', { name: 'Country1' })).toBeInTheDocument();
     });
     fireEvent.click(screen.getByRole('option', { name: 'Country1' }));
-  
-    let locationLabel;
 
-    // Wait for the fetch call to be made and assert its parameters
+    // Wait for locations to be fetched and displayed
+    let locationLabel;
     await waitFor(() => {
       expect(fetch).toHaveBeenCalledWith(
-        'http://api.geonames.org/searchJSON?country=C1&username=luka58'
+        'http://api.geonames.org/searchJSON?country=Country1&username=luka58'
       );
       locationLabel = screen.getByText(/addTrip.location/i);
     });
-  
-    // Select locations from the fetched data
+
+    // Select Location1 and Location2
     const locationCombobox = locationLabel.closest('.MuiFormControl-root').querySelector('[role="combobox"]');
     fireEvent.mouseDown(locationCombobox);
     await waitFor(() => {
       expect(screen.getByRole('option', { name: 'Location1' })).toBeInTheDocument();
       expect(screen.getByRole('option', { name: 'Location2' })).toBeInTheDocument();
     });
-  
-    // Simulate selection of Location1 and Location2
     fireEvent.click(screen.getByRole('option', { name: 'Location1' }));
     fireEvent.click(screen.getByRole('option', { name: 'Location2' }));
-  
-    // Submit the form to trigger axiosInstance.post calls
+
+    // Submit the form
     fireEvent.submit(screen.getByRole('button', { name: /Dodaj Putovanje/i }));
-  
-    // Assert that axiosInstance.post was called for each selected location
+
+    // Wait for axiosInstance.post calls to be made and verify them
     await waitFor(() => {
-      expect(axiosInstance.post).toHaveBeenCalledTimes(2); // Assuming two locations were selected
+      expect(axiosInstance.post).toHaveBeenCalledTimes(2);
       expect(axiosInstance.post).toHaveBeenCalledWith('/location', {
         destination: 'Location1',
-        country: { id: 1 }, // Assuming countryId 1 for Country1
+        country: { id: 1 }, // Adjust country ID as needed
       });
       expect(axiosInstance.post).toHaveBeenCalledWith('/location', {
         destination: 'Location2',
-        country: { id: 1 }, // Assuming countryId 1 for Country1
+        country: { id: 1 }, // Adjust country ID as needed
       });
     });
-  
-    // Add more specific assertions about the payload sent if necessary
-  });  
+  });
   
 });

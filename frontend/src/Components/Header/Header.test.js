@@ -1,8 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext'; // Replace with your actual context if different
+import { useAuth } from '../../context/AuthContext'; // Replace with your actual context if different
 import Header from './Header'; // Replace with the correct path to your Header component
 
 // Mock AuthContext for testing purposes
@@ -34,6 +33,10 @@ jest.mock('react-i18next', () => ({
     }),
 }));
 
+beforeEach(() => {
+    mockAuthContextValue.logout.mockClear();
+    mockNavigate.mockClear();
+});
 
 describe('Header Component', () => {
     beforeEach(() => {
@@ -57,21 +60,18 @@ describe('Header Component', () => {
     });
 
     it('displays profile dropdown when logged in', async () => {
+        // Simulate logged in state
+        mockAuthContextValue.isLoggedIn = true;
+        
         const profileButton = screen.getByText('header.profile');
         fireEvent.mouseEnter(profileButton);
-
-        await screen.findByText('header.logout').then(logoutButton => {
-            expect(logoutButton).toBeInTheDocument();
     
-            // Simulate logout button click
-            fireEvent.click(logoutButton);
+        const logoutButton = await screen.findByText('header.logout');
+        fireEvent.click(logoutButton);
     
-            // Ensure logout function is called
-            expect(mockAuthContextValue.logout).toHaveBeenCalled();
+        expect(mockAuthContextValue.logout).toHaveBeenCalled();
     
-            // Ensure navigation to '/' is triggered
-            expect(mockNavigate).toHaveBeenCalledWith('/');
-        });
+        expect(mockNavigate).toHaveBeenCalledWith('/');
     });
 
     it('changes language when language buttons are clicked', () => {
@@ -97,4 +97,34 @@ describe('Header Component', () => {
         expect(loginButton).toBeInTheDocument();
     });
 
+    it('displays profile dropdown when mouse enters profile button', async () => {
+        mockAuthContextValue.isLoggedIn = true;
+  
+        const profileLinkButton = screen.getByText('header.profile');
+        fireEvent.mouseEnter(profileLinkButton);
+
+        const logoutButton = await screen.findByText('header.logout');
+        expect(logoutButton).toBeInTheDocument();
+
+        fireEvent.mouseLeave(profileLinkButton);
+        const dropdownContent = screen.queryByText('header.logout');
+        expect(dropdownContent).not.toBeInTheDocument();
+    });
+
+    it('handles click on header title link', () => {
+        const headerTitleLink = screen.getByText('TrekTrip');
+        fireEvent.click(headerTitleLink);
+
+        expect(window.scrollY).toBe(0);
+    });
+
+    it('handles click on profile link button', () => {
+        mockAuthContextValue.isLoggedIn = true;
+    
+        const profileLinkButton = screen.getByText('header.profile');
+        fireEvent.click(profileLinkButton);
+    
+        expect(window.location.pathname).toBe('/profil');
+    });
+    
 });

@@ -1,94 +1,80 @@
+import axios from 'axios';
 import axiosInstance from './axiosInstance';
 
-// Mock localStorage
-const localStorageMock = {
-  getItem: jest.fn(),
-  setItem: jest.fn(),
-};
+jest.mock('axios', () => {
+  const actualAxios = jest.requireActual('axios');
+  return {
+    ...actualAxios,
+    create: jest.fn(() => {
+      const instance = {
+        get: jest.fn(),
+        post: jest.fn(),
+        interceptors: {
+          request: {
+            handlers: [],
+            use: jest.fn(function (fulfilled, rejected) {
+              this.handlers.push({ fulfilled, rejected });
+            }),
+            eject: jest.fn()
+          },
+          response: {
+            handlers: [],
+            use: jest.fn(function (fulfilled, rejected) {
+              this.handlers.push({ fulfilled, rejected });
+            }),
+            eject: jest.fn()
+          }
+        }
+      };
+      return instance;
+    })
+  };
+});
 
-// Mock Axios
-jest.mock('axios');
+describe('Request Interceptor', () => {
+  it('attaches the token to the request', async () => {
+    const token = 'your-access-token';
+    localStorage.setItem('accessToken', token);
 
-describe('Axios Instance', () => {
-  beforeEach(() => {
-    jest.clearAllMocks(); // Clear mocks before each test
-  });
-
-  it('should add Authorization header with access token', async () => {
-    const accessToken = 'mockAccessToken';
-    localStorageMock.getItem.mockReturnValueOnce(accessToken);
-
-    // Mock Axios request
-    axiosInstance.post = jest.fn().mockResolvedValueOnce({ data: { accessToken: 'newAccessToken' } });
-
-    const response = await axiosInstance.get('/test');
-    expect(response).toBeDefined();
-    
-    // Check if Authorization header was set
-    expect(axiosInstance.post).toHaveBeenCalledWith('http://localhost:8080/auth/refreshToken', {
-      token: accessToken,
+    const fulfilledHandler = axiosInstance.interceptors.request.handlers[0].fulfilled;
+    const config = await fulfilledHandler({
+      headers: {},
     });
-    expect(localStorageMock.setItem).toHaveBeenCalledWith('accessToken', 'newAccessToken');
+
+    expect(config.headers.Authorization).toBe(`Bearer ${token}`);
   });
+});
 
-  it('should retry request after token refresh', async () => {
-    const accessToken = 'mockAccessToken';
-    localStorageMock.getItem.mockReturnValueOnce(accessToken);
+const refreshAccessToken = jest.fn().mockResolvedValue('new-access-token');
 
-    // Mock Axios requests
-    axiosInstance.post = jest.fn()
-      .mockRejectedValueOnce({ response: { status: 403 } }) // Simulate 403 error
-      .mockResolvedValueOnce({ data: { accessToken: 'newAccessToken' } }); // Simulate refresh token success
+describe('Response Interceptor', () => {
+  it('retries the request on 403 error', async () => {
+    localStorage.setItem('accessToken', 'old-access-token');
+    localStorage.setItem('authToken', 'refresh-token');
 
-    axiosInstance.request = jest.fn().mockResolvedValueOnce({ data: 'responseAfterRefresh' });
+    // Mock the Axios post method for refresh token
+    axios.post.mockImplementation((url) => {
+      if (url === 'http://localhost:8080/auth/refreshToken') {
+        // Simulate refresh token response
+        return Promise.resolve({ data: { accessToken: 'new-access-token' } });
+      }
+      return Promise.resolve({});
+    });
 
-    try {
-      await axiosInstance.get('/protected');
-    } catch (error) {
-      // Check if the original request was retried with the new token
-      expect(axiosInstance.request).toHaveBeenCalledWith({
-        baseURL: 'http://localhost:8080',
-        headers: { Authorization: `Bearer newAccessToken` },
-        url: '/protected',
-        method: 'GET',
-      });
-      // Check if token was refreshed
-      expect(axiosInstance.post).toHaveBeenCalledWith('http://localhost:8080/auth/refreshToken', {
-        token: accessToken,
-      });
-      // Check if localStorage was updated
-      expect(localStorageMock.setItem).toHaveBeenCalledWith('accessToken', 'newAccessToken');
-    }
-  });
+    const error = {
+      response: {
+        status: 403,
+      },
+      config: {
+        headers: {},
+      },
+    };
 
-  it('should handle maximum retry attempts for token refresh', async () => {
-    const accessToken = 'mockAccessToken';
-    localStorageMock.getItem.mockReturnValueOnce(accessToken);
+    const rejectedHandler = axiosInstance.interceptors.response.handlers[0].rejected;
+    const result = await rejectedHandler(error);
 
-    // Mock Axios requests
-    axiosInstance.post = jest.fn()
-      .mockRejectedValue({ response: { status: 403 } }) // Simulate 403 error repeatedly
-      .mockRejectedValue({ message: 'Refresh token failed' }); // Simulate refresh token failure
-
-    try {
-      await axiosInstance.get('/protected');
-    } catch (error) {
-      // Check if maximum retry attempts reached
-      expect(error.message).toBe('Refresh token failed');
-      // Check if token refresh was attempted multiple times
-      expect(axiosInstance.post).toHaveBeenCalledTimes(4); // 3 retries + initial attempt
-    }
-  });
-
-  it('should handle other errors', async () => {
-    // Mock Axios request to simulate other errors
-    axiosInstance.get = jest.fn().mockRejectedValueOnce(new Error('Network Error'));
-
-    try {
-      await axiosInstance.get('/nonexistent');
-    } catch (error) {
-      // Check if network error was handled
-      expect(error.message).toBe('Network Error');
-    }
+    expect(result.config.headers.Authorization).toBe('Bearer new-access-token');
+    
+    expect(refreshAccessToken).toHaveBeenCalledTimes(1); 
   });
 });
