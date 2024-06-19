@@ -98,7 +98,7 @@ class TripServiceImplTest {
     public void testDeleteTrip() {
         Long id = 1L;
 
-        tripRepository.deleteById(id);
+        tripService.deleteTrip(id);
         verify(tripRepository).deleteById(id);
     }
 }

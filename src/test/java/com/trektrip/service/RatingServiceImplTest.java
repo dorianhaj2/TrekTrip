@@ -113,7 +113,7 @@ class RatingServiceImplTest {
     public void testDeleteRating() {
         Long id = 1L;
 
-        ratingRepository.deleteById(id);
+        ratingService.deleteRating(id);
         verify(ratingRepository).deleteById(id);
     }
 }

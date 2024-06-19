@@ -100,7 +100,7 @@ class LocationServiceImplTest {
     public void testDeleteLocation() {
         Long id = 1L;
 
-        locationRepository.deleteById(id);
+        locationService.deleteLocation(id);
         verify(locationRepository).deleteById(id);
     }
 }
