@@ -100,8 +100,7 @@ class UserRoleServiceImplTest {
     @Test
     public void testDeleteUserRole() {
         Long id = 1L;
-
-        userRoleRepository.deleteById(id);
+        userRoleService.deleteUserRole(id);
         verify(userRoleRepository).deleteById(id);
     }
 }
