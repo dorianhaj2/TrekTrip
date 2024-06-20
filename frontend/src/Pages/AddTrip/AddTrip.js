@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import tripService from '../../Services/tripService';
+import tripService from '../../Services/tripService/tripService';
 import axiosInstance from '../../axios/axiosInstance';
 import { useTranslation } from 'react-i18next';
 import { MenuItem, Select, FormControl, InputLabel, Button } from '@mui/material';
-import countryService from '../../Services/countryService';
+import countryService from '../../Services/countryService/countryService';
 import './AddTrip.css';
 
 const AddTrip = () => {
@@ -287,8 +287,8 @@ const AddTrip = () => {
               ))}
             </Select>
             <Button onClick={handleClearAll}>
-          Clear All
-        </Button>
+              {t('addTrip.clear')}
+            </Button>
           </FormControl>
         )}
         <label>

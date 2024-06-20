@@ -4,6 +4,7 @@
   "homepage": "https://dorianhaj2.github.io/TrekTrip",
   "private": true,
   "dependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.24.7",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@mui/material": "^5.15.18",
@@ -12,8 +13,11 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@toolz/allow": "^1.1.5",
+    "@toolz/is-a-regular-object-react": "^1.0.1",
     "axios": "^1.7.2",
     "cors": "^2.8.5",
+    "history": "^5.3.0",
     "i18next": "^23.11.5",
     "i18next-browser-languagedetector": "^8.0.0",
     "i18next-http-backend": "^2.5.2",
@@ -33,7 +37,7 @@
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!@toolz/allow-react)/\" --env=jsdom --coveragePathIgnorePatterns=index\\.js$",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -55,8 +59,10 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.24.7",
     "@babel/preset-react": "^7.24.7",
+    "axios-mock-adapter": "^1.22.0",
     "babel-jest": "^29.7.0",
     "gh-pages": "^6.1.1",
     "jest": "^27.5.1"

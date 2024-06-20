@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from 'react';
-
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import axiosInstance from '../../axios/axiosInstance';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
-
 import './Profile.css';
-import {Button} from "@mui/material";
-
+import { Button } from "@mui/material";
 import HighlightedTripCard from '../../Components/HighlightedTripCard/HighlightedTripCard';
 
 const Profile = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const [user, setUser] = useState(null);
   const [id, setId] = useState(null);
   const [activeUser, setActiveUser] = useState(null);
-  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
   const [topTrips, setTopTrips] = useState([]);
@@ -33,45 +29,35 @@ const Profile = () => {
   const fetchData = async () => {
     try {
       const username = localStorage.getItem('username');
-      
       const response = await axiosInstance.get(`/user/all`);
-      
       const users = response.data;
       const activeUser = users && Array.isArray(users) ? users.find(user => user.username === username) : null;
 
       if (activeUser) {
         setActiveUser(activeUser);
-        //console.log(activeUser)
         setId(activeUser.id); 
         localStorage.setItem('userId', activeUser.id);
 
         const userResponse = await axiosInstance.get(`/user/${activeUser.id}`); 
-
         setUser(userResponse.data);
-        setLoading(false); 
 
         const tripsResponse = await axiosInstance.get(`/trip/all`);
-
         const userTrips = tripsResponse.data.filter(trip => trip.user.username === activeUser.username);
 
         const userTripsWithAverage = userTrips.map(trip => {
-        const averageRating = calculateAverageRating(trip.ratings);
-        return { ...trip, averageRating };
-      });
+          const averageRating = calculateAverageRating(trip.ratings);
+          return { ...trip, averageRating };
+        });
 
-      const sortedTrips = userTripsWithAverage.sort((a, b) => b.averageRating - a.averageRating).slice(0, 3);
-      setTopTrips(sortedTrips);
+        const sortedTrips = userTripsWithAverage.sort((a, b) => b.averageRating - a.averageRating).slice(0, 3);
+        setTopTrips(sortedTrips);
       } else {
         console.error('Logged-in user not found');
-        setLoading(false);
       }
     } catch (error) {
       console.error('Error fetching user:', error);
-      setLoading(false); 
     }
   };
-
-  //console.log(user.image.url)
 
   const calculateAverageRating = (ratings) => {
     if (!ratings.length) return 0;
@@ -84,23 +70,21 @@ const Profile = () => {
       <Helmet>
         <title>{t('sitenames.profile')}</title>
       </Helmet>
-      {loading ? (
-        <p>Loading...</p>
-      ) : user ? (
+      {user ? (
         <div className="profile-page">
           <div className="profile-info">
             <div className="profile-details">
               <h1>{user.username}</h1>
               <div className='profile-photo'>
                 <img
-                  src={user.image && user.image.url ? process.env.PUBLIC_URL + `${user.image.url}`: 'https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg'}
+                  src={user.image && user.image.url ? process.env.PUBLIC_URL + `${user.image.url}` : 'https://static.vecteezy.com/system/resources/previews/036/280/651/non_2x/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-illustration-vector.jpg'}
                   alt="Profile"
                   className="profile-pic"
                 />
               </div>
               <div className="profile-buttons">
                 <Link to='/uredi-profil'>
-                    <Button>{t('profile.editProfile')}</Button>
+                  <Button>{t('profile.editProfile')}</Button>
                 </Link>
                 <Link to='/dodaj-put'>
                   <Button>{t('profile.addTrip')}</Button>
