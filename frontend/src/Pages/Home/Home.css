@@ -3,7 +3,6 @@
   }
   
   .homepage-header {
-    background-image: url("/public/uploads/beach_resort_homepage.jpg");
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover;
