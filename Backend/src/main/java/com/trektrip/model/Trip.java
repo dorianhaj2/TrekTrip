@@ -65,6 +65,15 @@ public class Trip {
         this.isPublic = isPublic;
     }
 
+    public Trip(Long id, String title, String description, int lengthInDays, boolean isPublic, List<Image> images) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.lengthInDays = lengthInDays;
+        this.isPublic = isPublic;
+        this.images = images;
+    }
+
     @Override
     public String toString() {
         return "Trip: " + "id=" + id + ", " + title;

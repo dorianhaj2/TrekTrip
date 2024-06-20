@@ -1,7 +1,14 @@
 package com.trektrip.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.trektrip.dto.TripRequestDTO;
+import com.trektrip.model.Image;
+import com.trektrip.model.Location;
 import com.trektrip.model.Trip;
+import com.trektrip.repository.ImageRepository;
+import com.trektrip.repository.LocationRepository;
+import com.trektrip.repository.TripRepository;
+import com.trektrip.service.ImageService;
 import com.trektrip.service.TripService;
 import com.trektrip.service.JwtService;
 import com.trektrip.service.UserDetailsServiceImpl;
@@ -21,6 +28,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,6 +52,12 @@ class TripControllerTest {
     private JwtService jwtService;
     @MockBean
     private UserDetailsServiceImpl userDetailsService;
+    @MockBean
+    private ImageService imageService;
+    @MockBean
+    private ImageRepository imageRepository;
+    @MockBean
+    private LocationRepository locationRepository;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -59,11 +74,17 @@ class TripControllerTest {
     @Test
     @WithMockUser
     public void testCreateTrip() throws Exception{
+        TripRequestDTO tripRequestDTO = new TripRequestDTO(trip1, Arrays.asList(1L), Arrays.asList(1L));
+        Image image1 = new Image(1L, "url1");
+        Location location1 = new Location(1L, "dest 1");
+
         given(tripService.createTrip(ArgumentMatchers.any())).willAnswer((invocationOnMock -> invocationOnMock.getArgument(0)));
+        when(imageRepository.findById(1L)).thenReturn(Optional.of(image1));
+        when(locationRepository.findById(1L)).thenReturn(Optional.of(location1));
 
         ResultActions response = mockMvc.perform(post("/trip")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(trip1)));
+                .content(objectMapper.writeValueAsString(tripRequestDTO)));
 
         response.andExpect(MockMvcResultMatchers.status().isCreated())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.title", CoreMatchers.is(trip1.getTitle())))

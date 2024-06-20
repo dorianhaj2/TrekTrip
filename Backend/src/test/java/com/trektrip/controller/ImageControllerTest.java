@@ -5,6 +5,7 @@ import com.trektrip.model.Image;
 import com.trektrip.service.ImageService;
 import com.trektrip.service.JwtService;
 import com.trektrip.service.UserDetailsServiceImpl;
+import jakarta.persistence.EntityNotFoundException;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -27,6 +30,7 @@ import java.util.Optional;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 @WebMvcTest(controllers = ImageController.class)
@@ -61,9 +65,13 @@ class ImageControllerTest {
     public void testCreateImage() throws Exception{
         given(imageService.createImage(ArgumentMatchers.any())).willAnswer((invocationOnMock -> invocationOnMock.getArgument(0)));
 
-        ResultActions response = mockMvc.perform(post("/image")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(image1)));
+        MockMultipartFile mockMultipartFile = new MockMultipartFile("file", "test.jpg", null, new ClassPathResource("test.jpg").getInputStream());
+
+        when(imageService.handleImageUpload(mockMultipartFile)).thenReturn(image1);
+
+        ResultActions response = mockMvc.perform(multipart("/image")
+                        .file(mockMultipartFile)
+                );
 
         response.andExpect(MockMvcResultMatchers.status().isCreated())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.url", CoreMatchers.is(image1.getUrl())));
@@ -122,6 +130,20 @@ class ImageControllerTest {
 
         response.andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.url", CoreMatchers.is(image2.getUrl())));
+    }
+
+    @Test
+    @WithMockUser
+    public void testUpdateImageFailed() throws Exception {
+        Long id = 3L;
+
+        when(imageService.updateImage(image2, id)).thenThrow(EntityNotFoundException.class);
+
+        ResultActions response = mockMvc.perform(put("/image/3")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(image2)));
+
+        response.andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
     @Test

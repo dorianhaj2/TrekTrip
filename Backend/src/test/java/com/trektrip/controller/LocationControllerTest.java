@@ -35,7 +35,7 @@ public class LocationControllerTest {
     @BeforeEach
     void setUp(){
         MockitoAnnotations.openMocks(this);
-        location = new Location(1, "DestinationName", new Country(1L, "CountryName","feafea","feoa"), new Pin(1L, (float) 4134221L, (float) 23123L,"Descriptio1"));
+        location = new Location(1L, "DestinationName", new Country(1L, "CountryName","feafea","feoa"), new Pin(1L, (float) 4134221L, (float) 23123L,"Descriptio1"));
         locationId = 1L;
     }
 
@@ -43,14 +43,29 @@ public class LocationControllerTest {
     public void testGetAllLocations() throws Exception {
         Country country = new Country();
         Pin pin = new Pin();
-        Location location1 = new Location(1, "Location 1", country, pin);
-        Location location2 = new Location(2, "Location 2", country, pin);
+        Location location1 = new Location(1L, "Location 1", country, pin);
+        Location location2 = new Location(2L, "Location 2", country, pin);
         List<Location> allLocations = Arrays.asList(location1, location2);
         Mockito.when(locationService.getLocations()).thenReturn(allLocations);
         ResponseEntity<List<Location>> response = locationController.getAllLocations();
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(allLocations,response.getBody());
-}
+    }
+
+    @Test
+    public void testGetLocationById() throws Exception {
+        Long id = 1L;
+        Country country = new Country();
+        Pin pin = new Pin();
+        Location location1 = new Location(1L, "Location 1", country, pin);
+
+        Mockito.when(locationService.getLocation(id)).thenReturn(Optional.of(location1));
+
+        ResponseEntity<Location> response = locationController.getLocationById(id);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(location1,response.getBody());
+    }
+
     @Test
     public void testCreateLocation() throws Exception {
         // Arrange

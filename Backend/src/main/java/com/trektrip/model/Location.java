@@ -14,7 +14,7 @@ import lombok.*;
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "destination")
     private String destination;
@@ -25,4 +25,9 @@ public class Location {
     @OneToOne
     @JoinColumn(name = "pin_ID", referencedColumnName = "id")
     private Pin pin;
+
+    public Location(Long id, String destination) {
+        this.id = id;
+        this.destination = destination;
+    }
 }

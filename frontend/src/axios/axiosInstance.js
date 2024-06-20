@@ -1,6 +1,8 @@
 import axios from 'axios';
+import { useAuth } from '../../context/AuthContext';
 
-let retryCounter = 0; // Initialize the retry counter
+let retryCounter = 0; // Initialize the retry counter+
+const { isLoggedIn, logout } = useAuth();
 
 const refreshAccessToken = async () => {
 

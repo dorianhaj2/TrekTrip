@@ -1,7 +1,11 @@
 package com.trektrip.service;
 
 import com.trektrip.model.Rating;
+import com.trektrip.model.Trip;
+import com.trektrip.model.UserInfo;
 import com.trektrip.repository.RatingRepository;
+import com.trektrip.repository.TripRepository;
+import com.trektrip.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -22,14 +26,25 @@ class RatingServiceImplTest {
     @Mock
     private RatingRepository ratingRepository;
 
+    @Mock
+    private TripRepository tripRepository;
+
+    @Mock
+    private UserRepository userRepository;
+
+
     @InjectMocks
     private RatingServiceImpl ratingService;
 
     @Test
     public void testCreateRating() {
-        Rating rating = new Rating(1L, 5);
+        Trip testTrip = new Trip(1L, "Trip 1", "Desc 1", 2, true);
+        UserInfo testUser = new UserInfo(1L, "user1", "user1@mail.com", "pass1");
+        Rating rating = new Rating(1L, testTrip, testUser,5);
 
         when(ratingRepository.save(Mockito.any(Rating.class))).thenReturn(rating);
+        when(tripRepository.findById(1L)).thenReturn(Optional.of(testTrip));
+        when(userRepository.findById(1L)).thenReturn(Optional.of(testUser));
 
         Rating savedRating = ratingService.createRating(rating);
 
@@ -98,7 +113,7 @@ class RatingServiceImplTest {
     public void testDeleteRating() {
         Long id = 1L;
 
-        ratingRepository.deleteById(id);
+        ratingService.deleteRating(id);
         verify(ratingRepository).deleteById(id);
     }
 }

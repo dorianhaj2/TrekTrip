@@ -27,6 +27,7 @@ const Header = () => {
             await axiosInstance.post('/auth/logout', { token });
 
             // Clear the authentication token from local storage
+            
             logout();
             navigate('/');
         } catch (error) {
