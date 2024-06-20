@@ -19,10 +19,11 @@ const HighlightedTripCard = ({ trip }) => {
       <div className="trip-info">
         <h3>{trip.title}</h3>
         <p>{trip.destination}</p>
-        <Stack spacing={1}>
-            <Rating className="rating" name="half-rating-read" value={averageRating} precision={0.1} readOnly />
-        </Stack>
+
         <p>{trip.description}</p>
+          <Stack spacing={1}>
+              <Rating className="rating" name="half-rating-read" value={averageRating} precision={0.1} readOnly />
+          </Stack>
       </div>
     </div>
   );

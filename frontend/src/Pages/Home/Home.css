@@ -3,8 +3,12 @@
   }
   
   .homepage-header {
-    background-color: #e0e4e8;
+    background-image: url("/public/uploads/beach_resort_homepage.jpg");
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
     padding: 20px;
+    height: 400px;
   }
   
   .homepage-header h1 {
@@ -47,5 +51,31 @@
   .trip-card {
     width: 80%;
   }
-  
+
+  .dropdown{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+.dropdown-item{
+  background-color: white;
+  padding: 20px;
+  width: 49%;
+  text-align: left;
+  transition: filter 300ms;
+
+}
+.dropdown-item:hover{
+  filter: brightness(50%);
+}
+
+.searchbar{
+  background-color: lightgrey;
+  border: none;
+  padding: 5px 20px 5px 20px;
+  width: 50%;
+  border-radius: 15px;
+  font-size: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
   
