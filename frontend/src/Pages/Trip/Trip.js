@@ -6,6 +6,9 @@ import axiosInstance from '../../axios/axiosInstance';
 import tripService from '../../Services/tripService/tripService';
 import { useTranslation } from 'react-i18next';
 import './Trip.css';
+import TripComments from "../../Components/TripComments/TripComments";
+import TripDetails from "../../Components/TripDetails/TripDetails";
+import TripDays from "../../Components/TripDays/TripDays";
 
 const Trip = () => {
     const {t} = useTranslation();
@@ -135,7 +138,8 @@ const Trip = () => {
     console.log('Filtered days:', days);
     return (
         <div className="trip-page">
-            <div className="main-image" style={{ backgroundImage: `url(${trip && trip.images && trip.images.length > 0 ? process.env.PUBLIC_URL + trip.images[0].url : ''})` }}>
+            <div className="main-image"
+                 style={{backgroundImage: `url(${trip && trip.images && trip.images.length > 0 ? process.env.PUBLIC_URL + trip.images[0].url : ''})`}}>
                 <div className="overlay"></div>
             </div>
             <div className="trip">
@@ -147,58 +151,85 @@ const Trip = () => {
                     <div className='trip-description'>
                         <p className="intro">{trip.description}</p>
                     </div>
-                    <div className='trip-days'>
-                        {days.map(day => (
-                            <div key={day.id} className="trip-day">
-                            <h3>{day.title}</h3>
-                            <p>{day.text}</p>
-                            </div>
-                        ))}
-                    </div>
-
+                    <TripDays days={days}/>
                 </div>
-                
-                <div className='trip-details'>
-                    <Stack spacing={1}>
-                        <Rating
-                            className="rating"
-                            name="half-rating"
-                            value={averageRating}
-                            precision={0.1}
-                            size='large'
-                            onChange={handleRatingChange}
-                            readOnly={!activeUserId || hasRated  || activeUserId === trip.user.id} // Disable rating if user is not logged in or has already rated
-                        />
-                        <p>Average Rating: {averageRating.toFixed(1)}</p>
-                    </Stack> 
-                    <div className="trip-summary">
-                        <p><strong>{t('trip.country')}:</strong></p><span>{trip.locations.length > 0 ? trip.locations[0].country.name : 'Unknown Country'}</span>
-                        <p><strong>{t('trip.destination')}:</strong></p><span>{trip.locations.map(location => location.destination).join(', ')}</span>
-                        <p><strong>{t('trip.month')}:</strong></p><span>{trip.tripMonth}</span>
-                        <p><strong>{t('trip.duration')}:</strong></p><span>{trip.lengthInDays} {t('trip.days')}</span>
-                        <p><strong>{t('trip.price')}:</strong></p><span>{trip.price} €</span>
-                    </div>   
-                </div>             
+                <TripDetails
+                    trip={trip}
+                    averageRating={averageRating}
+                    handleRatingChange={handleRatingChange}
+                    activeUserId={activeUserId}
+                    hasRated={hasRated}
+                />
             </div>
-            <div className="comments-section">
-                <h2>{t('trip.comments')}</h2>
-                <ul>
-                    {trip.comments.map(comment => (
-                        <div>
-                            <p className='comment-name'>{comment.user.username}</p>
-                            <p key={comment.id}>{comment.content} - {comment.timeOfPosting}</p>
-                        </div> 
-                    ))}
-                </ul>
-                {isLoggedIn && (
-                    <div>
-                        <textarea value={newComment} onChange={(e) => setNewComment(e.target.value)} />
-                        <button onClick={handleCommentSubmit}>Submit Comment</button>
-                    </div>
-                )}
-            </div>
+            <h2 className="commentSectionTitle">{t('trip.comments')}</h2>
+
+            <TripComments
+                trip={trip}
+                newComment={newComment}
+                setNewComment={setNewComment}
+                handleCommentSubmit={handleCommentSubmit}
+                isLoggedIn={isLoggedIn}
+
+            />
         </div>
     );
 }
 
 export default Trip;
+
+
+//  Trip days
+
+{/*<div className='trip-days'>*/}
+{/*    {days.map(day => (*/}
+{/*        <div key={day.id} className="trip-day">*/}
+{/*        <h3>{day.title}</h3>*/}
+{/*        <p>{day.text}</p>*/}
+{/*        </div>*/}
+{/*    ))}*/}
+{/*</div>*/}
+
+//  Trip details
+
+{/*<div className='trip-details'>*/}
+{/*    <Stack spacing={1}>*/}
+{/*        <Rating*/}
+{/*            className="rating"*/}
+{/*            name="half-rating"*/}
+{/*            value={averageRating}*/}
+{/*            precision={0.1}*/}
+{/*            size='large'*/}
+{/*            onChange={handleRatingChange}*/}
+{/*            readOnly={!activeUserId || hasRated  || activeUserId === trip.user.id} // Disable rating if user is not logged in or has already rated*/}
+{/*        />*/}
+{/*        <p>Average Rating: {averageRating.toFixed(1)}</p>*/}
+{/*    </Stack> */}
+{/*    <div className="trip-summary">*/}
+{/*        <p><strong>{t('trip.country')}:</strong></p><span>{trip.locations.length > 0 ? trip.locations[0].country.name : 'Unknown Country'}</span>*/}
+{/*        <p><strong>{t('trip.destination')}:</strong></p><span>{trip.locations.map(location => location.destination).join(', ')}</span>*/}
+{/*        <p><strong>{t('trip.month')}:</strong></p><span>{trip.tripMonth}</span>*/}
+{/*        <p><strong>{t('trip.duration')}:</strong></p><span>{trip.lengthInDays} {t('trip.days')}</span>*/}
+{/*        <p><strong>{t('trip.price')}:</strong></p><span>{trip.price} €</span>*/}
+{/*    </div>   */}
+{/*</div>             */}
+
+
+// Trip comments
+
+{/*<div><h2 className="commentSectionTitle">{t('trip.comments')}</h2></div>*/}
+{/*<div className="comments-section">*/}
+{/*    <ul className="commentsListContainer">*/}
+{/*        {trip.comments.map(comment => (*/}
+{/*            <div className="singleCommentContainer">*/}
+{/*                <p className="commentDisplayUsername">{comment.user.username}</p>*/}
+{/*                <p key={comment.id}>{comment.content} {comment.timeOfPosting}</p>*/}
+{/*            </div> */}
+{/*        ))}*/}
+{/*    </ul>*/}
+{/*    {isLoggedIn && (*/}
+{/*        <div className="commentInputSection">*/}
+{/*            <textarea value={newComment} onChange={(e) => setNewComment(e.target.value)} />*/}
+{/*            <button onClick={handleCommentSubmit}>Submit Comment</button>*/}
+{/*        </div>*/}
+{/*    )}*/}
+{/*</div>*/}

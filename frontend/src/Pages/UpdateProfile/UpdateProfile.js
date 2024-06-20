@@ -82,21 +82,26 @@ const UpdateProfile = () => {
       <Helmet>
         <title>{t('sitenames.editProfile')}</title>
       </Helmet>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <label>
-          {t('editProfile.username')}
-          <input type="text" name="username" value={formData.username} onChange={handleChange} />
-        </label>
-        <label>
-          {t('editProfile.description')}
-          <textarea name="description" value={formData.description} onChange={handleChange} />
-        </label>
-        <label>
-          {t('editProfile.profile-photo')}
-          <input type="file" name="image" onChange={handleImageChange} />
-        </label>
-        <button type="submit">{t('editProfile.editButton')}</button>
-      </form>
+      <div className="formContainer" >
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
+          <label className="usernameLabel">
+            {t('editProfile.username')}
+            <input type="text" className="usernameInput" name="username" value={formData.username}
+                   onChange={handleChange}/>
+          </label>
+          <label className="descriptionLabel">
+            {t('editProfile.description')}
+            <textarea name="description" className="descriptionInput" value={formData.description}
+                      onChange={handleChange}/>
+          </label>
+          <label className="profilePhotoLabel">
+            {t('editProfile.profile-photo')}
+            <input type="file" name="image" className="profilePhotoInput" onChange={handleImageChange}/>
+          </label>
+          <button type="submit">{t('editProfile.editButton')}</button>
+        </form>
+      </div>
+
     </div>
   );
 };
